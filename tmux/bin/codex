@@ -1,0 +1,32 @@
+#!/bin/sh
+
+session="${1}"
+
+if [ ! -d "$project" ]
+then
+  project="$HOME/code/${session}"
+fi
+
+if [ ! -d "$project" ]
+then
+  project=.
+fi
+
+if [ "$session" = "" ]
+then
+  exit
+fi
+
+tmux has-session -t "$session" 2>/dev/null
+if [ $? != 0 ]
+then
+  (cd "$project" && TMUX= tmux new-session -d -s "$session")
+fi
+
+if [ "$TMUX" == "" ]
+then
+  tmux attach -t "$session"
+clear
+else
+  tmux switch-client -t "$session"
+fi

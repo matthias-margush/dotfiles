@@ -1,0 +1,3 @@
+#!/bin/sh
+
+codex $(ls ~/code | fzf-tmux -p 77%,70% --prompt="Project: " --layout=reverse --info=hidden)

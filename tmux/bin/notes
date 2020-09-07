@@ -1,0 +1,22 @@
+#!/bin/sh
+
+project=~/Notes
+session=Notes
+
+if ! test -d "$project"
+then
+  mkdir -p "$project"
+fi
+
+if ! tmux has-session -t "$session" 2>/dev/null
+then
+  # (cd "$project" && TMUX= tmux new-session -d -s "$session" nvim --cmd "let g:skip_session=1" -c "SwitchNotes")
+  (cd "$project" && TMUX= tmux new-session -d -s "$session")
+fi
+
+if [ "$TMUX" == "" ]
+then
+  tmux attach -t "$session"
+else
+  tmux switch-client -t "$session"
+fi
