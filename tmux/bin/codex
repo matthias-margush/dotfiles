@@ -2,6 +2,11 @@
 
 session="${1}"
 
+if [ "$session" = "dotfiles" ]
+then
+  project=~/.dotfiles
+fi
+
 if [ ! -d "$project" ]
 then
   project="$HOME/code/${session}"
@@ -17,10 +22,9 @@ then
   exit
 fi
 
-tmux has-session -t "$session" 2>/dev/null
-if [ $? != 0 ]
+if ! tmux ls | grep "^$session:" >/dev/null 2>&1
 then
-  (cd "$project" && TMUX= tmux new-session -d -s "$session")
+  (cd "$project" && TMUX='' tmux new-session -d -s "$session")
 fi
 
 if [ "$TMUX" == "" ]
