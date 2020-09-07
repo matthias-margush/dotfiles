@@ -1,0 +1,29 @@
+let mapleader=" "
+
+" Plugins
+set argtextobj
+set commentary
+set multiple-cursors
+set surround
+set nohighlightedyank
+
+# Settings
+set ideajoin
+set incsearch
+set ideamarks
+set visualbell
+set ideastatusicon=gray
+
+# Key maps
+map gr :action FindUsages<CR>
+vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
+nmap gwap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+nmap <leader>r :action RenameElement<CR>
+# nmap / :action Find<CR>
+nmap <leader>gg :action ActivateVersionControlToolWindow<CR>
+
+nmap gd :action EditSource<CR>
+nmap ]g :action GotoNextError<CR>
+nmap [g :action GotoPreviousError<CR>
+nmap <leader>df :action ReformatCode<CR>
+nmap <C-k> :action Vcs.Operations.Popup<CR>
