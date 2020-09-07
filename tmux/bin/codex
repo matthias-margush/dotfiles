@@ -22,7 +22,7 @@ then
   exit
 fi
 
-if ! tmux ls | grep "^$session:" >/dev/null 2>&1
+if ! (tmux ls | grep "^$session:") >/dev/null 2>&1
 then
   (cd "$project" && TMUX='' tmux new-session -d -s "$session")
 fi
@@ -30,7 +30,7 @@ fi
 if [ "$TMUX" == "" ]
 then
   tmux attach -t "$session"
-clear
+  clear
 else
   tmux switch-client -t "$session"
 fi
