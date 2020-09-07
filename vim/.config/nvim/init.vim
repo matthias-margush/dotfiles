@@ -22,7 +22,6 @@ Plug 'kassio/neoterm'   | runtime neoterm.vim
 " LSP
 runtime lsp/vim-lsp/init.vim
 
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'matthias-margush/context.vim'
 
 " Editor settings
