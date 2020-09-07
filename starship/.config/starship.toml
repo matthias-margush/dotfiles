@@ -1,0 +1,11 @@
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "jobs",
+    "line_break",
+    "character",
+]
+
+[directory]
+truncate_to_repo = true
