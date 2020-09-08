@@ -1,13 +1,18 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
-  Plug 'tommcdo/vim-lion'               | let g:lion_squeeze_spaces = 1
+  Plug 'tommcdo/vim-lion'       | let g:lion_squeeze_spaces = 1
   Plug 'romainl/vim-cool' 
+  Plug 'wellle/targets.vim'
+  Plug 'machakann/vim-sandwich' | runtime sandwich.vim
+  Plug 'tpope/vim-repeat'
 call plug#end()
 
-xmap gc  <Plug>VSCodeCommentary
-nmap gc  <Plug>VSCodeCommentary
-omap gc  <Plug>VSCodeCommentary
-nmap gcc <Plug>VSCodeCommentaryLine
+xmap <silent> gc  <Plug>VSCodeCommentary
+nmap <silent> gc  <Plug>VSCodeCommentary
+omap <silent> gc  <Plug>VSCodeCommentary
+nmap <silent> gcc <Plug>VSCodeCommentaryLine
+nnoremap <silent> ]g :call VSCodeNotify('editor.action.marker.nextInFiles')
+nnoremap <silent> [g :call VSCodeNotify('editor.action.marker.prevInFiles')
 
 nmap <silent> ,, :set opfunc=<SID>send_to_term<CR>g@
 vmap <silent> ,, :<C-U>call <SID>send_to_term(visualmode(), 1)<CR>
