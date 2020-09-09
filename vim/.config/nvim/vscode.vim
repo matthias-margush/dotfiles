@@ -14,8 +14,8 @@ xmap <silent> gc  <Plug>VSCodeCommentary
 nmap <silent> gc  <Plug>VSCodeCommentary
 omap <silent> gc  <Plug>VSCodeCommentary
 nmap <silent> gcc <Plug>VSCodeCommentaryLine
-nnoremap <silent> ]g :call VSCodeNotify('editor.action.marker.nextInFiles')
-nnoremap <silent> [g :call VSCodeNotify('editor.action.marker.prevInFiles')
+nnoremap <silent> ]g :call VSCodeNotify('editor.action.marker.nextInFiles')<cr>
+nnoremap <silent> [g :call VSCodeNotify('editor.action.marker.prevInFiles')<cr>
 
 nmap <silent> ,, :set opfunc=<SID>send_to_term<CR>g@
 vmap <silent> ,, :<C-U>call <SID>send_to_term(visualmode(), 1)<CR>
@@ -35,11 +35,11 @@ function! s:send_to_term(type, ...)
     silent exe "normal! `[v`]y"
   endif
 
-  let selection = @@
-  if trim(selection) != ""
+  if trim(@@) != ""
+    echom @@
     call VSCodeNotify(
           \ "workbench.action.terminal.sendSequence",
-          \ {'text': "\e[200~".selection."\e[201~\n"}
+          \ {'text': "\e[200~".@@."\e[201~\n"}
           \ )
   endif
 
