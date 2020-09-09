@@ -42,7 +42,7 @@ else
 
   " Editing enhancements
   Plug 'ntpeters/vim-better-whitespace' | runtime better-whitespace.vim
-  Plug 'tommcdo/vim-lion'               | let g:lion_squeeze_spaces = 1
+  Plug 'tommcdo/vim-lion'               | runtime lion.vim
   Plug 'tpope/vim-commentary'
   Plug 'machakann/vim-sandwich'         | runtime sandwich.vim
   Plug 'bhurlow/vim-parinfer'           | runtime parinfer.vim
