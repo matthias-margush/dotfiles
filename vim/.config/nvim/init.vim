@@ -21,6 +21,7 @@ else
   " Running tests
   " Plug 'janko/vim-test' | runtime test.vim
   Plug 'kassio/neoterm'   | runtime neoterm.vim
+  Plug 'igemnace/vim-makery'
 
   " LSP
   runtime lsp/vim-lsp/init.vim
