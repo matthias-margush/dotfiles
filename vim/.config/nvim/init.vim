@@ -49,9 +49,7 @@ else
   Plug 'bhurlow/vim-parinfer'           | runtime parinfer.vim
   Plug 'wellle/targets.vim'
 
-  " Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']} | runtime nerdtree.vim
-  Plug 'lambdalisue/fern.vim' | runtime fern.vim
-  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+  Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']} | runtime nerdtree.vim
   Plug 'lambdalisue/nerdfont.vim'
   Plug 'tpope/vim-eunuch'
 
