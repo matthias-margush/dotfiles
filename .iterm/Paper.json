@@ -321,7 +321,7 @@
   },
   "Unicode Version" : 9,
   "ASCII Ligatures" : false,
-  "Name" : " ",
+  "Name" : "Paper",
   "Cursor Text Color" : {
     "Green Component" : 1,
     "Blue Component" : 1,
@@ -335,7 +335,13 @@
     "Alpha Component" : 1,
     "Green Component" : 0.66666666666666663
   },
-  "Transparency" : 0,
+  "Ansi 0 Color" : {
+    "Red Component" : 0.97647058823529409,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.97647058823529409,
+    "Alpha Component" : 1,
+    "Green Component" : 0.97647058823529409
+  },
   "Ansi 1 Color" : {
     "Red Component" : 0.46666666666666667,
     "Color Space" : "sRGB",
@@ -344,22 +350,6 @@
     "Green Component" : 0.33333333333333331
   },
   "Horizontal Spacing" : 1,
-  "Ansi 3 Color" : {
-    "Red Component" : 0.46666666666666667,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.33333333333333331,
-    "Alpha Component" : 1,
-    "Green Component" : 0.46666666666666667
-  },
-  "Custom Directory" : "No",
-  "Ansi 0 Color" : {
-    "Red Component" : 0.97647058823529409,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.97647058823529409,
-    "Alpha Component" : 1,
-    "Green Component" : 0.97647058823529409
-  },
-  "Guid" : "937038AD-8246-4C52-B913-05E93AC58451",
   "Ansi 2 Color" : {
     "Red Component" : 0.33333333333333331,
     "Color Space" : "sRGB",
@@ -367,7 +357,6 @@
     "Alpha Component" : 1,
     "Green Component" : 0.46666666666666667
   },
-  "Normal Font" : "AverageMono 10",
   "Ansi 4 Color" : {
     "Red Component" : 0.33333333333333331,
     "Color Space" : "sRGB",
@@ -375,6 +364,17 @@
     "Alpha Component" : 1,
     "Green Component" : 0.33333333333333331
   },
+  "Guid" : "937038AD-8246-4C52-B913-05E93AC58451",
+  "Custom Directory" : "No",
+  "Ansi 3 Color" : {
+    "Red Component" : 0.46666666666666667,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.33333333333333331,
+    "Alpha Component" : 1,
+    "Green Component" : 0.46666666666666667
+  },
+  "Normal Font" : "AverageMono 10",
+  "Transparency" : 0,
   "Right Option Key Sends" : 0,
   "Ansi 6 Color" : {
     "Red Component" : 0.33333333333333331,
