@@ -68,7 +68,7 @@ function! s:on_lsp_buffer_enabled() abort
   nnoremap <silent><buffer> <leader>tr :call ToggleHighlightReferences()<cr>
 
   nnoremap <silent><buffer> <leader>df :LspDocumentFormat<cr>
-  " autocmd BufWritePre <buffer> call s:format_doc()
+  autocmd BufWritePre <buffer> LspDocumentFormat
 endfunction
 
 augroup lsp_install
