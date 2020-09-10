@@ -8,7 +8,7 @@ antigen bundle Aloxaf/fzf-tab
 antigen apply
 
 source ~/.fzf.zsh
-source ~/.fzf-tab.zsh
+# source ~/.fzf-tab.zsh
 
 export MODE_INDICATOR=
 

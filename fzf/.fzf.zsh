@@ -11,19 +11,19 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 FZF_TMUX=1
 
-FZF_TAB_COMMAND=(
-    fzf-tmux
-    --ansi   # Enable ANSI color support, necessary for showing groups
-    --expect='$continuous_trigger' # For continuous completion
-    '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
-    --nth=2,3 --delimiter='\x00'  # Don't search prefix
-    --layout=reverse --height=${FZF_TMUX_HEIGHT:=75%}
-    --tiebreak=begin -m --bind=tab:down,btab:up,change:top,tab:toggle --cycle
-    --print-query
-    '--query=$query'   # $query will be expanded to query string at runtime.
-    '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
-)
-zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
+# FZF_TAB_COMMAND=(
+#     fzf-tmux
+#     --ansi   # Enable ANSI color support, necessary for showing groups
+#     --expect='$continuous_trigger' # For continuous completion
+#     '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
+#     --nth=2,3 --delimiter='\x00'  # Don't search prefix
+#     --layout=reverse --height=${FZF_TMUX_HEIGHT:=75%}
+#     --tiebreak=begin -m --bind=tab:down,btab:up,change:top,tab:toggle --cycle
+#     --print-query
+#     '--query=$query'   # $query will be expanded to query string at runtime.
+#     '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
+# )
+# zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
 
 HL_COLOR=#775555
 export FZF_DEFAULT_OPTS="
