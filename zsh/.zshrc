@@ -11,7 +11,7 @@ source ~/.fzf.zsh
 
 export MODE_INDICATOR=
 
-if [ "$INSIDE_EMACS" = "" ]
+if [ "$INSIDE_EMACS" != "" ]
 then
   bindkey -e
   set -o emacs

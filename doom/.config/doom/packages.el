@@ -10,6 +10,8 @@
 ;; solaire makes the active window dim - disable
 (package! solaire-mode :disable t)
 
+(package! dtrt :disable t)
+
 (package! orgraphy
   :recipe (:host github :repo "matthias-margush/orgraphy"))
 

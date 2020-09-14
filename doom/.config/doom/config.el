@@ -11,7 +11,7 @@
       user-mail-address "matthias.margush@me.com")
 
 
-(setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-nord)
 (doom-themes-set-faces nil
   ;; see: doom-themes--colors
   '(org-block :background (doom-color 'modeline-bg))
@@ -19,10 +19,13 @@
   '(markdown-header-face :inherit 'variable-pitch))
 
 
+
 ;; display current funciton in the modeline
 (which-function-mode)
 
 (add-hook! 'VTerm-mode)
+
+
   ;; (evil-set-initial-state 'emacs)
 
 ;; (use-package! doom-themes
@@ -38,6 +41,7 @@
 
 (setq markdown-header-scaling t
       markdown-hide-markup t)
+
 (orgraphy-mode)
 
 ;; (use-package! sacred-theme
@@ -169,10 +173,9 @@
   (setq eshell-where-to-jump 'begin)
   (setq eshell-review-quick-commands nil)
   (setq eshell-smart-space-goes-to-end t)
+  (eshell-smart-initialize)
   (map! :map eshell-mode-map :i "M-r" #'counsel-esh-history)
   (map! :map eshell-mode-map :i "C-l" #'me/eshell-clear))
-
-
 
 (use-package! doom-modeline
   :init

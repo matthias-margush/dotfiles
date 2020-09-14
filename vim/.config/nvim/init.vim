@@ -48,6 +48,7 @@ else
   Plug 'machakann/vim-sandwich'         | runtime sandwich.vim
   Plug 'bhurlow/vim-parinfer'           | runtime parinfer.vim
   Plug 'wellle/targets.vim'
+  Plug 'chrisbra/NrrwRgn'
 
   Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']} | runtime nerdtree.vim
   Plug 'lambdalisue/nerdfont.vim'
