@@ -6,7 +6,15 @@
 ;; use 'M-x doom/reload'.
 
 (package! evil-snipe :disable t)
-(package! solaire-mode :ignore t)
+
+;; solaire makes the active window dim - disable
+(package! solaire-mode :disable t)
+
+(package! orgraphy
+  :recipe (:host github :repo "matthias-margush/orgraphy"))
+
+(package! sacred-theme
+  :recipe (:host github :repo "matthias-margush/sacred-theme"))
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)

@@ -4,7 +4,6 @@ source "${HOME}/bin/antigen.zsh"
 
 antigen use oh-my-zsh
 antigen bundle vi-mode
-antigen bundle Aloxaf/fzf-tab
 antigen apply
 
 source ~/.fzf.zsh
@@ -12,8 +11,14 @@ source ~/.fzf.zsh
 
 export MODE_INDICATOR=
 
-bindkey -v
-set -o vi
+if [ "$INSIDE_EMACS" = "" ]
+then
+  bindkey -e
+  set -o emacs
+else
+  bindkey -v
+  set -o vi
+fi
 
 test -f ~/.localrc && source ~/.localrc
 

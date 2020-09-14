@@ -9,7 +9,7 @@
 # ------------
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
-FZF_TMUX=1
+# FZF_TMUX=1
 
 # FZF_TAB_COMMAND=(
 #     fzf-tmux

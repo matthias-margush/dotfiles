@@ -5,7 +5,12 @@ export GOPATH=~/go
 
 export EDITOR=vim
 export ALTERNATE_EDITOR=""
-export MANPAGER='vim -c MANPAGER -'
+
+
+if [ "$INSIDE_EMACS" != "" ]
+then
+    export MANPAGER='vim -c MANPAGER -'
+fi
 
 test -f ~/.localenv && source ~/.localenv
 
