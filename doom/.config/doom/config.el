@@ -9,6 +9,20 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Matthias Margush"
       user-mail-address "matthias.margush@me.com")
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil))
+      mouse-wheel-progressive-speed nil)
+
+(defun me/scroll-left ()
+  (interactive)
+  (scroll-left 1))
+
+(defun me/scroll-right ()
+  (interactive)
+  (scroll-right 1))
+
+;; Turn on horizontal scrolling with mouse wheel
+(global-set-key [wheel-right] #'me/scroll-left)
+(global-set-key [wheel-left] #'me/scroll-right)
 
 
 (setq doom-theme 'doom-nord)
@@ -50,9 +64,8 @@
 ;;   (require 'sacredpaper-theme)
 ;;   (sacred-theme-forest))
 
-(add-hook! sql-mode
-  (sh-mode) ;; ensure sh repl is available in sql-mode
-  (sql-mode))
+;; (add-hook! sql-mode
+;;   (sh-mode)) ;; ensure sh repl is available in sql-mode
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:

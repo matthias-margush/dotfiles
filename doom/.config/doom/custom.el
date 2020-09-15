@@ -13,3 +13,5 @@
  )
 (put 'customize-group 'disabled nil)
 (put 'customize-face 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
