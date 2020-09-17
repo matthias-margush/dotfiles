@@ -23,7 +23,7 @@ function! MyTabLine()
 		let i += 1
 		if i == 1
 			let p += 2
-			let s .= '%#TabLineBetween# '
+			let s .= '%#TabLineBetween# '
 		endif
 		if i == tabpagenr()
 			let s .= '%#TabLineSel#'
@@ -43,7 +43,7 @@ function! MyTabLine()
 			let p += 3
 		endif
 		if i >= n
-			let s .= ' %#TabFill#'
+			let s .= ' %#TabFill#'
 			let p += 2
 		endif
 	endwhile

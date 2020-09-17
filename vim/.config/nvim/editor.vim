@@ -22,7 +22,7 @@ set hidden                " allow switching from unsaved buffers
 set laststatus=1          " show status line if there is more than 1 window
 set guioptions-=rL
 set conceallevel=0
-set lazyredraw
+set nolazyredraw
 set modifiable
 set mouse=a               " enable mouse in terminal
 set nocursorline          " current line highlighting
@@ -30,6 +30,7 @@ set nolist
 set noruler               " hide line/col status
 set previewheight=10
 set nospell
+set spellfile=.en.utf8.add,~/.config/nvim/spell/en.utf8.add
 set noswapfile            " whether to use a swap file
 set nowrap                " no line wrapping
 " set omnifunc=syntaxcomplete#Complete
@@ -62,6 +63,7 @@ if has('nvim')
 endif
 
 " nnoremap <silent> <leader>gf :edit <cfile><cr>
+nnoremap <silent> <C-w><C-t> :tab split<cr>
 tnoremap <C-w><C-h> <C-\><C-N><C-w>h
 tnoremap <C-w>h <C-\><C-N><C-w>h
 tnoremap <C-w><C-j> <C-\><C-N><C-w>j

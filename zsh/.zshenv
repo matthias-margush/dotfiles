@@ -3,7 +3,7 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
 export GOPATH=~/go
 
-export EDITOR=vim
+export EDITOR=nvim
 export ALTERNATE_EDITOR=""
 
 

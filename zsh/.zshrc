@@ -6,6 +6,7 @@ antigen use oh-my-zsh
 antigen bundle vi-mode
 antigen apply
 
+zle_highlight=(default:bold)
 source ~/.fzf.zsh
 # source ~/.fzf-tab.zsh
 
