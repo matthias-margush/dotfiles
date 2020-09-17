@@ -14,7 +14,6 @@ else
 
   call plug#begin('~/.local/share/nvim/plugged')
 
-  Plug 'wincent/terminus'
 
   Plug 'tpope/vim-dispatch' | runtime dispatch.vim
 
@@ -35,8 +34,9 @@ else
   Plug 'tpope/vim-sleuth'
 
   " UX
-  Plug 'nelstrom/vim-visual-star-search'
   Plug 'matthias-margush/vim-unimpaired'
+  Plug 'nelstrom/vim-visual-star-search'
+  Plug 'romainl/vim-cool'
 
   " Colors
   Plug 'matthias-margush/vim-noctu'
@@ -97,7 +97,5 @@ else
 
   runtime notes.vim
   runtime workspace.vim
-
-  " source ~/.config/kitty/ink.vim
 
 endif
