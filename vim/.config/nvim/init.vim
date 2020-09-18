@@ -14,7 +14,11 @@ else
 
   call plug#begin('~/.local/share/nvim/plugged')
 
+  Plug 'matthias-margush/critiq.vim' | runtime critiq.vim
+  " Plug 'junkblocker/patchreview-vim'
+  " Plug 'codegram/vim-codereview'
 
+  " Plug 'wincent/terminus'
   Plug 'tpope/vim-dispatch' | runtime dispatch.vim
 
   " Running tests
@@ -23,8 +27,9 @@ else
   Plug 'igemnace/vim-makery'
 
   " LSP
+  runtime lsp/nvim/init.vim
   " runtime lsp/vim-lsp/init.vim
-  runtime lsp/coc/init.vim
+  " runtime lsp/coc/init.vim
 
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'matthias-margush/context.vim' | runtime context.vim
@@ -100,5 +105,6 @@ else
   runtime notes.vim
   runtime workspace.vim
   runtime treesitter.vim
+  runtime lsp/nvim/lsp.vim
 
 endif
