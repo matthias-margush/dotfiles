@@ -12,7 +12,7 @@ sign define LspDiagnosticsInformationSign text=✗ texthl=LspDiagnosticsInformat
 sign define LspDiagnosticsHintSign text=✗ texthl=LspDiagnosticsHint linehl= numhl=
 
 " autocmd BufEnter * lua require'completion'.on_attach()
-let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_timer_cycle = 700
 let g:completion_enable_auto_popup = 1
 let g:diagnostic_auto_popup_while_jump = 0
