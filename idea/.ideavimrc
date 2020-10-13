@@ -8,8 +8,8 @@ set surround
 set highlightedyank
 let g:highlightedyank_highlight_color = "rgba(221, 217, 204, 155)"
 
-# Settings
-# https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+" Settings
+" https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
 set ideaput
 set ideajoin
 set incsearch
@@ -20,16 +20,20 @@ set idearefactormode=keep
 set ideawrite
 set noshowmode
 
-# Key maps
+" Key maps
 map <leader>u :action FindUsages<CR>
-vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
-nmap gwap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+
+" vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
+" nmap gwap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
+
 nmap <leader>r :action RenameElement<CR>
-# nmap / :action Find<CR>
+" nmap / :action Find<CR>
 nmap <leader>gg :action ActivateVersionControlToolWindow<CR>
 
 nmap gd :action EditSource<CR>
 nmap ]e :action GotoNextError<CR>
 nmap [e :action GotoPreviousError<CR>
+nmap ]d :action NextDiff<CR>
+nmap [d :action PreviousDiff<CR>
 nmap <leader>df :action ReformatCode<CR>
 nmap <C-k> :action Vcs.Operations.Popup<CR>
