@@ -42,3 +42,4 @@ endfunction
 
 autocmd FileType go call s:ConfigureBuffer()
 autocmd FileType clojure call s:ConfigureBuffer()
+autocmd FileType markdown call s:ConfigureBuffer()

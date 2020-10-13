@@ -27,11 +27,11 @@ else
   Plug 'igemnace/vim-makery'
 
   " LSP
-  " runtime lsp/nvim/init.vim
-  runtime lsp/vim-lsp/init.vim
+  runtime lsp/nvim/init.vim
+  " runtime lsp/vim-lsp/init.vim
   " runtime lsp/coc/init.vim
 
-  " Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'matthias-margush/context.vim' | runtime context.vim
 
   " Editor settings
@@ -104,7 +104,7 @@ else
 
   runtime notes.vim
   runtime workspace.vim
-  " runtime treesitter.vim
-  " runtime lsp/nvim/lsp.vim
+  runtime treesitter.vim
+  runtime lsp/nvim/lsp.vim
 
 endif
