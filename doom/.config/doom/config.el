@@ -9,6 +9,9 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Matthias Margush"
       user-mail-address "matthias.margush@me.com")
+
+(setq sql-password-wallet "~/.sql-wallet.gpg")
+
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil))
       mouse-wheel-progressive-speed nil)
 
@@ -25,7 +28,7 @@
 (global-set-key [wheel-left] #'me/scroll-right)
 
 
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-nord-light)
 (doom-themes-set-faces nil
   ;; see: doom-themes--colors
   '(org-block :background (doom-color 'modeline-bg))
@@ -36,11 +39,6 @@
 
 ;; display current funciton in the modeline
 (which-function-mode)
-
-(add-hook! 'VTerm-mode)
-
-
-  ;; (evil-set-initial-state 'emacs)
 
 ;; (use-package! doom-themes
 ;;   ;; :init
@@ -88,6 +86,9 @@
 (set-window-buffer nil (current-buffer))
 
 (global-hl-line-mode nil)
+
+(add-hook! after-init
+  (set-face-italic-p 'italic nil))
 
 ;; Empty window header
 (setq header-line-format " ")

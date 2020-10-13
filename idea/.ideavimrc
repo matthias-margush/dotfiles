@@ -6,6 +6,7 @@ set commentary
 set multiple-cursors
 set surround
 set highlightedyank
+set ReplaceWithRegister
 let g:highlightedyank_highlight_color = "rgba(221, 217, 204, 155)"
 
 " Settings
@@ -22,12 +23,7 @@ set noshowmode
 
 " Key maps
 map <leader>u :action FindUsages<CR>
-
-" vmap gq :action com.andrewbrookins.idea.wrap.WrapAction<CR>
-" nmap gwap :action com.andrewbrookins.idea.wrap.WrapParagraphAction<CR>
-
 nmap <leader>r :action RenameElement<CR>
-" nmap / :action Find<CR>
 nmap <leader>gg :action ActivateVersionControlToolWindow<CR>
 
 nmap gd :action EditSource<CR>

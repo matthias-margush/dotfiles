@@ -12,6 +12,9 @@
 
 (package! dtrt :disable t)
 
+(unpin! doom-themes)
+
+
 (package! orgraphy
   :recipe (:host github :repo "matthias-margush/orgraphy"))
 
