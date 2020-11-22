@@ -26,7 +26,9 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
-nnoremap <leader>tr :silent call CocActionAsync('highlight')<cr>
+" nnoremap <leader>tr :silent call CocActionAsync('highlight')<cr>
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " command! -nargs=0 Format :call CocAction('format')
 
 function! s:show_documentation()

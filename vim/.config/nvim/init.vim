@@ -18,7 +18,6 @@ else
   " Plug 'junkblocker/patchreview-vim'
   " Plug 'codegram/vim-codereview'
 
-  " Plug 'wincent/terminus'
   Plug 'tpope/vim-dispatch' | runtime dispatch.vim
 
   " Running tests
@@ -27,12 +26,12 @@ else
   Plug 'igemnace/vim-makery'
 
   " LSP
-  runtime lsp/nvim/init.vim
+  " runtime lsp/ale/init.vim
+  " runtime lsp/nvim/init.vim
   " runtime lsp/vim-lsp/init.vim
-  " runtime lsp/coc/init.vim
+  runtime lsp/coc/init.vim
 
-  Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'matthias-margush/context.vim' | runtime context.vim
+  " Plug 'matthias-margush/context.vim' | runtime context.vim
 
   " Editor settings
   Plug 'editorconfig/editorconfig-vim'
@@ -43,10 +42,13 @@ else
   " UX
   Plug 'matthias-margush/vim-unimpaired'
   Plug 'nelstrom/vim-visual-star-search'
+  Plug 'PeterRincker/vim-searchlight'
   Plug 'romainl/vim-cool'
 
   " Colors
   Plug 'matthias-margush/vim-noctu'
+
+  runtime treesitter/plug.vim
 
   " Editing enhancements
   Plug 'ntpeters/vim-better-whitespace' | runtime better-whitespace.vim
@@ -56,6 +58,8 @@ else
   Plug 'bhurlow/vim-parinfer'           | runtime parinfer.vim
   Plug 'wellle/targets.vim'
   Plug 'chrisbra/NrrwRgn'
+  Plug 'AndrewRadev/splitjoin.vim'
+  " Plug 'FooSoft/vim-argwrap' | nnoremap <silent> gS :ArgWrap<CR>
 
   Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree']} | runtime nerdtree.vim
   Plug 'lambdalisue/nerdfont.vim'
@@ -104,7 +108,7 @@ else
 
   runtime notes.vim
   runtime workspace.vim
-  runtime treesitter.vim
   runtime lsp/nvim/lsp.vim
+  runtime treesitter/treesitter.vim
 
 endif

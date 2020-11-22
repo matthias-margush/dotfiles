@@ -1,8 +1,8 @@
 let g:fzf_history_dir = '~/.local/share/fzf-history' " history
 
 function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'), 'r')
+  " copen
 endfunction
 
 let g:fzf_action = {
@@ -27,7 +27,7 @@ command! -bang -nargs=* GGrep
       \   'git grep --line-number '.shellescape(<q-args>), 0,
       \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.6 } }
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
