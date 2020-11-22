@@ -1,6 +1,7 @@
 export PATH=/usr/local/bin:$PATH
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
+export PATH="$HOME/.rbenv/bin:$PATH"
 export GOPATH=~/go
 
 export EDITOR=nvim

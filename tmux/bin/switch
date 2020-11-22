@@ -2,5 +2,5 @@
 
 codex $(  \
   (echo dotfiles && ls ~/code) | \
-    fzf-tmux -p 90%,60% --prompt="Project: " --layout=reverse --info=hidden \
+    fzf-tmux -p 100%,60% --prompt="Project: " --layout=reverse --info=hidden \
 )
