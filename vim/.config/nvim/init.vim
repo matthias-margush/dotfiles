@@ -21,15 +21,18 @@ else
   Plug 'tpope/vim-dispatch' | runtime dispatch.vim
 
   " Running tests
-  " Plug 'janko/vim-test' | runtime test.vim
+  Plug 'janko/vim-test' | runtime test.vim
   Plug 'kassio/neoterm'   | runtime neoterm.vim
-  Plug 'igemnace/vim-makery'
+  Plug 'igemnace/vim-makery' | runtime makery.vim
 
   " LSP
   " runtime lsp/ale/init.vim
   " runtime lsp/nvim/init.vim
   " runtime lsp/vim-lsp/init.vim
   runtime lsp/coc/init.vim
+
+  " Rust
+  Plug 'rust-lang/rust.vim'
 
   " Plug 'matthias-margush/context.vim' | runtime context.vim
 
@@ -44,6 +47,8 @@ else
   Plug 'nelstrom/vim-visual-star-search'
   Plug 'PeterRincker/vim-searchlight'
   Plug 'romainl/vim-cool'
+  Plug 'machakann/vim-highlightedyank'
+  " Plug 'DanilaMihailov/beacon.nvim' | let g:beacon_shrink=0
 
   " Colors
   Plug 'matthias-margush/vim-noctu'

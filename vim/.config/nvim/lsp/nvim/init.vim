@@ -1,5 +1,5 @@
 let g:nvim_lsp_enabled=v:true
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'airblade/vim-gitgutter' | runtime lsp/nvim/gitgutter.vim
 Plug 'SirVer/ultisnips'       | runtime lsp/nvim/ultisnips.vim
 Plug 'liuchengxu/vista.vim'   | runtime lsp/nvim/vista.vim

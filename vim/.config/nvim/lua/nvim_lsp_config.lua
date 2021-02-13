@@ -69,8 +69,9 @@ end
 vim.lsp.callbacks['textDocument/hover'] = M.doc_preview
 vim.lsp.callbacks['textDocument/publishDiagnostics'] = M.quickfix_diagnostics
 
-nvim_lsp = require("nvim_lsp")
+nvim_lsp = require("lspconfig")
 nvim_lsp.gopls.setup({ on_attach=on_attach })
 nvim_lsp.clojure_lsp.setup({ on_attach=on_attach })
+nvim_lsp.rls.setup{}
 
 return M
