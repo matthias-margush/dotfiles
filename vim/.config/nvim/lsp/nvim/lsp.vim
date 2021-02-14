@@ -32,13 +32,14 @@ function! s:configureNvimLSP()
     nnoremap <buffer><silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
     nnoremap <buffer><silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     nnoremap <buffer><silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-    nnoremap <buffer><silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <buffer><silent> <leader>u    <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <buffer><silent> <leader>r    <cmd>lua vim.lsp.buf.rename()<CR>
     nnoremap <buffer><silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
     nnoremap <buffer><silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-    nnoremap <buffer><silent> ]g    :NextDiagnostic<CR>
-    nnoremap <buffer><silent> [g    :PrevDiagnostic<CR>
+    nnoremap <buffer><silent> ]g    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+    nnoremap <buffer><silent> [g    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
     nnoremap <buffer><silent> <Leader>df <cmd>lua vim.lsp.buf.formatting()<CR>
-    nnoremap <buffer><silent> <leader>q <cmd>lua vim.lsp.buf.code_action()<CR>
+		nnoremap <buffer><silent> <leader>q <cmd>lua vim.lsp.buf.code_action()<CR>
 
     " if exists('+signcolumn')
     "   setlocal signcolumn=yes
@@ -48,9 +49,13 @@ function! s:configureNvimLSP()
   autocmd FileType go call s:ConfigureBuffer()
   autocmd FileType clojure call s:ConfigureBuffer()
   autocmd FileType markdown call s:ConfigureBuffer()
-
 endfunction
 
+" augroup UPDATE_DIAGNOSTICS_LOCLIST
+" 	autocmd!
+" 	autocmd InsertLeave * lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
+" 	autocmd InsertLeave * lua vim.lsp.diagnostic.set({open_loclist = false})
+" augroup END
 
 if exists("g:nvim_lsp_enabled")
   call s:configureNvimLSP()

@@ -32,18 +32,19 @@ command! -bang -nargs=* GGrep
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview('up'), <bang>0)
+  \ {'options': ['--layout=reverse', '--info=inline','--preview-window=up', '--preview',  'cat {}']},
+  \   <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(
-      \   <q-args>,
-      \   fzf#vim#with_preview({'window': {'width': 0.9, 'height': 0.6}}, 'up'),
+      \  <q-args>,
+      \ {'options': ['--layout=reverse', '--info=inline','--preview-window=up', '--preview',  'cat {}']},
       \   <bang>0)
 
 command! -bang -nargs=? -complete=dir Buffers
        \ call fzf#vim#buffers(
-       \   <q-args>,
-       \   fzf#vim#with_preview({'window': {'width': 0.9, 'height': 0.6}}, 'up'),
+       \  <q-args>,
+       \ {'options': ['--layout=reverse', '--info=inline','--preview-window=up', '--preview',  'cat {}']},
        \ <bang>0)
 
 highlight link fzf1 Normal

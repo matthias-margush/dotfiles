@@ -1,7 +1,5 @@
 inoremap <silent><expr> <c-x><c-o> coc#refresh()
 
-let g:coc_enable_locationlist = 0
-
 runtime lsp/coc/bookmark.vim
 runtime lsp/coc/git.vim
 runtime lsp/coc/lists.vim
@@ -29,13 +27,13 @@ omap af <Plug>(coc-funcobj-a)
 " nnoremap <leader>tr :silent call CocActionAsync('highlight')<cr>
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" command! -nargs=0 Format :call CocAction('format')
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 

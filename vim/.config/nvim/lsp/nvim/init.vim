@@ -5,7 +5,6 @@ Plug 'SirVer/ultisnips'       | runtime lsp/nvim/ultisnips.vim
 Plug 'liuchengxu/vista.vim'   | runtime lsp/nvim/vista.vim
 
 Plug 'tsuyoshicho/vim-efm-langserver-settings'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 
 " Extra tools

@@ -22,3 +22,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 endif
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()

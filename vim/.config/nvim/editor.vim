@@ -15,7 +15,7 @@ set completeopt=menu,noinsert,noselect ",preview
 " set foldlevelstart=99     " don't fold
 set foldlevelstart=99
 set foldcolumn=0
-set foldmethod=syntax
+" set foldmethod=syntax " (set with treesitter)
 set foldnestmax=1
 set grepprg=ag\ --nogroup\ --nocolor
 set hidden                " allow switching from unsaved buffers

@@ -35,11 +35,10 @@ function M.doc_preview(_, method, result)
 end
 
 function on_attach(client, bufnr)
-  require'diagnostic'.on_attach()
-  require'completion'.on_attach()
+  -- require'completion'.on_attach()
 
   -- Set the omnifunc for this buffer.
-  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Configure some mappings for this buffer.
   -- local opts = { noremap=true, silent=true }
@@ -66,8 +65,53 @@ function M.quickfix_diagnostics(err, method, result, client_id)
   end
 end
 
-vim.lsp.callbacks['textDocument/hover'] = M.doc_preview
-vim.lsp.callbacks['textDocument/publishDiagnostics'] = M.quickfix_diagnostics
+vim.lsp.handlers['textDocument/hover'] = M.doc_preview
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     -- This will disable virtual text, like doing:
+--     -- let g:diagnostic_enable_virtual_text = 0
+--     virtual_text = false,
+
+--     -- This is similar to:
+--     -- let g:diagnostic_show_sign = 1
+--     -- To configure sign display,
+--     --  see: ":help vim.lsp.diagnostic.set_signs()"
+--     signs = true,
+
+--     -- This is similar to:
+--     -- "let g:diagnostic_insert_delay = 1"
+--     update_in_insert = false,
+--   }
+-- )
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, method, params, client_id, bufnr, config)
+  local uri = params.uri
+
+  vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      underline = true,
+      virtual_text = false,
+      signs = sign_decider,
+      update_in_insert = false,
+    }
+  )(err, method, params, client_id, bufnr, config)
+
+  bufnr = bufnr or vim.uri_to_bufnr(uri)
+
+  if bufnr == vim.api.nvim_get_current_buf() then
+    vim.lsp.diagnostic.set_loclist { open_loclist = false }
+  end
+end
+
+-- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     if result and result.diagnostics then
+--       for _, diagnostic in ipairs(vim.lsp.util.diagnostics_by_buf) do
+--         vim.lsp.util.set_qflist(diagnostic)
+--       end
+--     end
+--   }
+-- )
 
 nvim_lsp = require("lspconfig")
 nvim_lsp.gopls.setup({ on_attach=on_attach })
