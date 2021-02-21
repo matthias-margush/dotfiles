@@ -1,7 +1,15 @@
 (use-package lispy
   :hook (emacs-lisp-mode . lispy-mode)
+
+  :general
+  (:states '(normal) :prefix local-leader "e b" #'eval-buffer)
+  (:states '(normal) :prefix local-leader "e e" #'eval-last-sexp)
+  (:states '(normal) :prefix local-leader "e e" #'eval-defun)
+
   :commands lispy-mode
+
   :init
+  (setq me/lisp-map (make-sparse-keymap))
   (setq lispy-move-after-commenting nil
         lispy-safe-actions-ignore-comments t
         lispy-safe-actions-ignore-strings t

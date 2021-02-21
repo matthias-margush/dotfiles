@@ -15,7 +15,6 @@
 
 (use-package evil
   :general
-  (:states '(normal) :prefix leader "SPC" #'counsel-switch-buffer)
   (:states '(normal) :prefix leader "h" help-map)
   :init
   (setq evil-want-keybinding nil)

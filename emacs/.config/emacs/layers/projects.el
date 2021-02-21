@@ -6,7 +6,8 @@
 	 ("s-:" . counsel-M-x))
   :init
   (setq ivy-count-format ""
-	ivy-use-virtual-buffers t)
+        ivy-use-virtual-buffers t
+        ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
 
   :config
   (counsel-mode)
@@ -39,6 +40,7 @@
   :general
   (:states '(normal) :prefix leader "p" 'projectile-command-map)
   (:states '(normal) :prefix leader "/" #'counsel-git-grep)
+ #'counsel-git-grep (:states '(normal) :prefix leader "SPC" #'counsel-projectile-switch-to-buffer)
 
   :bind
   ("s-F" . counsel-git-grep)

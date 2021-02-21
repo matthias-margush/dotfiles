@@ -1,8 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(define-key emacs-lisp-mode-map (kbd "C-c C-b") #'eval-buffer)
-(define-key emacs-lisp-mode-map (kbd "C-c C-e") #'eval-last-sexp)
-
 (use-package eglot
   :bind-keymap ("s-l" . eglot-mode-map)
   :bind ((:map eglot-mode-map
