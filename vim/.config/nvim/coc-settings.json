@@ -1,11 +1,13 @@
 {
 	"coc.preferences.formatOnSaveFiletypes": ["go"],
 	"coc.preferences.hoverTarget": "preview",
+	"signature.enable": false,
 	"diagnostic.errorSign": "⚠",
 	"diagnostic.infoSign": "⚠",
 	"diagnostic.messageTarget": "echo",
 	"diagnostic.warningSign": "⚠",
 	"suggest.echodocSupport": true,
 	"suggest.enablePreview": false,
-	"suggest.floatEnable": false
+	"suggest.floatEnable": false,
+	"suggest.triggerCompletionWait": 500
 }

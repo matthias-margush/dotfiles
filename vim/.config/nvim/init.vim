@@ -18,8 +18,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-dispatch' | runtime dispatch.vim
 
 " Running tests
-Plug 'janko/vim-test' | runtime test.vim
-Plug 'kassio/neoterm'   | runtime neoterm.vim
+Plug 'janko/vim-test'      | runtime test.vim
+Plug 'kassio/neoterm'      | runtime neoterm.vim
 Plug 'igemnace/vim-makery' | runtime makery.vim
 
 " LSP
@@ -85,8 +85,8 @@ Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'habamax/vim-asciidoctor' | runtime asciidoctor.vim " gem install asciidoctor-diagram
 
 " Presenting
-Plug 'junegunn/goyo.vim' | runtime present.vim
-Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/goyo.vim' | runtime present.vim
+" Plug 'junegunn/limelight.vim'
 
 " Pager
 Plug 'lambdalisue/vim-manpager', {'on': 'MANPAGER'}
