@@ -1,0 +1,47 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/matthias/.dotfiles/emacs/.config/" . "emacs-backup/")
+ ("/Users/matthias/.dotfiles/emacs/" . ".config/")
+ ("/Users/matthias/" . ".dotfiles/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/matthias/.dotfiles/emacs/.config/emacs/"
+ "/Users/matthias/.dotfiles/emacs/.config/emacs-backup/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "early-init"
+ "init"
+ "projects.el"
+ "lisp.el"
+ "evil.el"
+ "ido.el"
+ "ui.el"
+ "straight.el"
+ "git.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/matthias/.dotfiles/emacs/.config/emacs/" (24625 40007 566736 360000) "ui.el~" "init~" "early-init~" "recentf" "straight.el~" "history" "straight.el" "ido.el" "projects.el" "auto-save-list/" "lisp.el" "amx-items" "straight/" "projectile.cache" "transient/" "projectile-bookmarks.eld" "evil.el" "lisp.el~" "git.el" "ido.last~" "git.el~" "smex-items" "projects.el~" "ui.el" "ido.last" "ido.el~" "early-init" "init" "../" "./")
+
+ ("/Users/matthias/.dotfiles/emacs/.config/emacs-backup/" (24625 39677 371701 530000) ".lsp-session-v1" ".gitignore~" "magithub/" "fast.el~" "ui.el~" ".perspective" "init~" "early-init~" "elpa/" "lisp~" "recentf" "languages.el" "straight.el~" "evil.el~" "project.org" "viper" ".projectile" "project.org~" ".gitignore" "straight.el" "ido.el" "local/" "projects.el" "editing.el" "compile~" "lisp.el" "straight/" "recentf~" "persp-confs/" "transient/" "tramp" "projectile-bookmarks.eld" "evil.el" "lisp.el~" "places" "org.el" "git.el" "ido.last~" "env.el~" "languages.el~" "shell.el~" "git.el~" ".mc-lists.elc" "viper~" "eshell/" "smex-items" "projects.el~" "dump.el~" ".mc-lists.el" "ui.el" "ido.last" "profile-dotemacs.el" "ido.el~" "email.el~" "early-init" ".session.vim" "forge-database.sqlite" "snippets/" "init" "shell.el" "org.el~" "../" "./")
+
+ ("/Users/matthias/" (24625 33419 42034 96000) "Construction Paper.icls" "GolandProjects/" ".fzf-tab.zsh" ".zsh_sessions/" ".viminfo" ".mume/" "emacs-d-backup/" ".markdown/" ".gvimrc" ".gitconfig" ".aws/" ".inputrc" ".cache/" ".python_history" "Downloads/" ".zgen/" ".gem/" ".antigen/" ".m2/" ".spacemacs" ".vscode/" ".themes" ".tmux/" ".markdownNavigator/" ".pyenv/" ".spacemacs.env" "dftest/" "Documents/" ".npm/" "elpa/" ".zcompdump" ".jgitconfig" ".aspell.en.prepl" "IdeaProjects/" ".Trash/" "Dropbox/" "den-backup/" ".gradle/" ".ghc/" ".profile" "switch/" "Applications/" ".vimrc" "Movies/" ".ssh/" ".rustup/" ".gpr-tok" ".kube/" ".zshenv" ".gitignore" ".codereview" "Notes/" ".ideavimrc" ".dropbox/" "Public/" ".zshrc.zwc" ".fzf.zsh" ".deft/" ".lein/" ".cups/" ".gitignore_global" ".dlv/" ".android/" ".cargo/" ".minikube/" ".switch/" ".dotfiles/" "emacs" ".emacs-undo/" ".lesshst" "actions.txt" "Library/" ".zhistory" "Desktop/" ".zsh_history" "code/" ".clojure_history" ".zprofile" "Pictures/" ".psql_history" ".NERDTreeBookmarks" ".local/" ".confluent/" "Org/" ".slime_paste" ".zshrc" ".subversion/" ".rbenv/" "spacemacs-emacs.d/" "bin/" ".authinfo.gpg" ".tooling/" ".CFUserTextEncoding" ".yarnrc" ".tmux.conf" ".zcompdump-Matthias’s MacBook Pro-5.7.1" ".gnupg/" ".DS_Store" "go/" "code-backup/" ".terminfo/" ".vim/" "confluent/" "doom-emacs.d/" ".docker/" ".clojure/" ".sql-wallet.gpg" ".session.vim" "Music/" ".localenv" ".config/" ".stack/" "quelpa/" "../" "./")
+
+ ("/Users/" (24076 20864 0 0) "matthias/" "Shared/" ".localized" "../" "./")
+
+ ("/Users/matthias/.dotfiles/" (24624 36707 473142 297000) ".idea/" "antigen/" "git/" "fzf/" ".iterm/" "zsh/" ".git/" "kitty/" "tmux/" "idea/" "emacs/" "doom/" "markdown/" "starship/" ".DS_Store" ".session.vim" "vim/" "../" "./")
+
+ ("/Users/matthias/.dotfiles/emacs/" (24624 36805 987201 875000) ".config/" "../" "./")
+
+ ("/Users/matthias/.dotfiles/emacs/.config/" (24625 29019 242128 321000) "emacs/" "emacs-backup/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

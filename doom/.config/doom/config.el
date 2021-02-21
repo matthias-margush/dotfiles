@@ -28,16 +28,30 @@
 (global-set-key [wheel-left] #'me/scroll-right)
 
 
-(setq doom-theme 'doom-nord-light)
-(doom-themes-set-faces nil
-  ;; see: doom-themes--colors
-  '(org-block :background (doom-color 'modeline-bg))
-  '(org-block-begin-line :background (doom-color 'bg))
-  '(markdown-header-face :inherit 'variable-pitch))
+(setq doom-theme 'doom-construction-paper-light)
+;; (setq doom-theme 'doom-plain)
+
+;; (setq doom-themes-enable-italic t)
+;; (setq doom-theme 'doom-flatwhite)
+;; (setq doom-flatwhite-brighter-modeline t)
+;;
+;; (setq doom-theme 'doom-oceanic-next)
+
+;; (setq doom-theme 'doom-nord-light)
+;; (setq doom-theme 'doom-one)
+
+;; (doom-themes-set-faces nil
+;;   ;; see: doom-themes--colors
+;;   '(org-block :background (doom-color 'modeline-bg))
+;;   '(org-block-begin-line :background (doom-color 'bg))
+;;   '(markdown-header-face :inherit 'variable-pitch))
 
 
+(global-spell-fu-mode -1)
+(global-flycheck-mode -1)
+(global-hl-line-mode -1)
 
-;; display current funciton in the modeline
+;; display current function in the modeline
 (which-function-mode)
 
 ;; (use-package! doom-themes
@@ -54,7 +68,7 @@
 (setq markdown-header-scaling t
       markdown-hide-markup t)
 
-(orgraphy-mode)
+;; (orgraphy-mode)
 
 ;; (use-package! sacred-theme
 ;;   :config
@@ -85,17 +99,26 @@
  right-margin-width 4)
 (set-window-buffer nil (current-buffer))
 
-(global-hl-line-mode nil)
 
-(add-hook! after-init
-  (set-face-italic-p 'italic nil))
+;; (add-hook! after-init
+;;   (set-face-italic-p 'italic nil))
+
+(orgraphy-mode)
+
+;; (add-hook! markdown-mode
+;;   (orgraphy-mode))
+
+;; (add-hook! org-mode
+;;   (orgraphy-mode))
 
 ;; Empty window header
 (setq header-line-format " ")
 
 
 ;; Default size of new windows
-(add-to-list 'default-frame-alist '(internal-border-width . 36))
+(add-to-list 'default-frame-alist '(internal-border-width . 18))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil))
 (add-to-list 'default-frame-alist '(top . 150))
 (add-to-list 'default-frame-alist '(left . 1125))
 (add-to-list 'default-frame-alist '(width . 90))
@@ -111,29 +134,29 @@
     (setq frame-resize-pixelwise t)
     (pcase (treemacs-current-visibility)
       (`visible
-        (progn
+       (progn
 
-          (set-frame-position
-           (selected-frame)
-           (+ x (* (default-font-width) treemacs-width) border) y)
+         (set-frame-position
+          (selected-frame)
+          (+ x (* (default-font-width) treemacs-width) border) y)
 
-          (set-frame-width
-           (selected-frame)
-           (- (frame-width) treemacs-width (/ border (default-font-width))))
+         (set-frame-width
+          (selected-frame)
+          (- (frame-width) treemacs-width (/ border (default-font-width))))
 
-          (+treemacs/toggle)))
+         (+treemacs/toggle)))
 
       (_ ;; not visible
-        (progn
-          (set-frame-position
-           (selected-frame)
-           (- x (* (default-font-width) treemacs-width) border) y)
+       (progn
+         (set-frame-position
+          (selected-frame)
+          (- x (* (default-font-width) treemacs-width) border) y)
 
-          (set-frame-width
-           (selected-frame)
-           (+ (frame-width) treemacs-width (/ border (default-font-width))))
+         (set-frame-width
+          (selected-frame)
+          (+ (frame-width) treemacs-width (/ border (default-font-width))))
 
-          (+treemacs/toggle))))))
+         (+treemacs/toggle))))))
 
 (defun me/sidebar-find-file ()
   "Find the current file in the sidebar."

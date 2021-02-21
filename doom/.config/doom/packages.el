@@ -12,11 +12,15 @@
 
 (package! dtrt :disable t)
 
+;; (package! doom-themes
+;;   :recipe (:host github :repo "hlissner/emacs-doom-themes"
+;;            :fork (:host github :repo "matthias-margush/emacs-doom-themes" :branch "construction-paper")))
+
 (unpin! doom-themes)
 
 
 (package! orgraphy
-  :recipe (:host github :repo "matthias-margush/orgraphy"))
+  :recipe (:host github :repo "matthias-margush/orgraphy" :branch "markdown-faces"))
 
 (package! sacred-theme
   :recipe (:host github :repo "matthias-margush/sacred-theme"))

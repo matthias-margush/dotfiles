@@ -9,6 +9,7 @@ h5,
 h6 {
   font-family: "Open Sans Condensed", sans-serif;
   line-height: 1.42;
+  font-weight: normal;
 }
 
 header {
@@ -37,10 +38,10 @@ body {
   font-weight: normal;
   font-style: normal;
   margin: 0 auto;
-  max-width: 48rem;
-  line-height: 1.45;
+  /* max-width: 52rem; */
+  /* line-height: 1.45; */
   padding: 72px;
-  line-height: 1.85;
+  line-height: 1;
   padding-top: 0px !important;
 }
 
@@ -50,15 +51,15 @@ p {
 }
 
 h1 {
-  font-size: 48px;
-}
-
-h2 {
   font-size: 36px;
 }
 
-h3 {
+h2 {
   font-size: 28px;
+}
+
+h3 {
+  font-size: 26px;
 }
 
 h4 {
@@ -102,20 +103,24 @@ h3 {
 }
 
 blockquote {
-  border-left: 5px solid #777;
-  background-color: #f3f3f3;
-  padding: 1rem;
+  color: #aaa;
+  border-left: 3px solid #aaa;
+  /* background-color: #f3f3f3; */
+  padding-left: 1rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: 0rem;
 }
 
 pre {
-  background-color: #f3f3f3 !important;
-  box-shadow: 1px 1px #f3f3f3;
-  border-radius: 0 0 225px 0/0 0 1px 0;
-  border-top: 5px solid #777;
-  border-bottom: 1px solid #777;
-  line-height: 1.25;
+  /* background-color: #f3f3f3 !important; */
+  /* box-shadow: 1px 1px #f3f3f3; */
+  /* border-radius: 0 0 225px 0/0 0 1px 0; */
+  /* border-top: 5px solid #777; */
+  /* border-bottom: 1px solid #777; */
+  /* line-height: 1.25; */
   overflow-x: scroll;
-  padding: 24px !important;
+  /* padding: 24px !important; */
 }
 
 table {

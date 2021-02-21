@@ -1,0 +1,77 @@
+;; -*- lexical-binding: t; -*-
+
+(defun me/deft ()
+  (interactive)
+  (if (fboundp 'spacebar-deft)
+      (spacebar-deft)
+    (deft))
+  (deft-filter-clear)
+  (evil-insert-state))
+
+;; Notes
+(use-package org
+  :after exec-path-from-shell
+  :hook (org-babel-after-execute . org-redisplay-inline-images)
+  :init
+  (setq
+   org-startup-folded nil
+   org-startup-indented nil
+   org-startup-with-inline-images t
+   org-adapt-indentation nil
+   org-agenda-files '("~/Org")
+   org-babel-clojure-backend 'cider
+   org-babel-default-header-args:sh '((:prologue . "exec 2>&1") (:epilogue . ":"))
+   org-confirm-babel-evaluate nil
+   org-confirm-elisp-link-function nil
+   org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar"
+   org-ellipsis "  "
+   org-enable-github-support t
+   org-fontify-done-headline t
+   org-fontify-quote-and-verse-blocks t
+   org-fontify-whole-heading-line nil
+   org-goto-interface 'outline-path-completion
+   org-hide-emphasis-markers t
+   org-hide-leading-stars t
+   org-outline-path-complete-in-steps nil
+   org-plain-list-ordered-item-terminator t
+   org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2020.2/libexec/plantuml.jar"
+   org-pretty-entities t
+   org-projectile-file "TODO.org"
+   org-src-fontify-natively t
+   org-src-window-setup 'current-window
+   org-want-todo-bindings t
+   plantuml-jar-args '("-charset" "UTF-8" "-config" "~/code/dot/plantuml.txt")
+   plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.1/libexec/plantuml.jar")
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ditaa . t)
+     (plantuml . t)
+     (gnuplot . t)
+     (shell . t)
+     (clojure . t)))
+  (require 'ox-md))
+
+(use-package ox-pandoc
+  :after exec-path-from-shell
+  :init
+  (setq org-pandoc-options '((standalone . t))))
+
+(use-package orgraphy
+  :demand t
+  :straight (orgraphy :type git :host github :repo "matthias-margush/orgraphy")
+  :config
+  (orgraphy--init))
+
+(use-package deft
+  :commands (deft deft-filter-clear)
+  :bind
+  (:map global-map
+	("s-d" . deft))
+  :init
+  (setq deft-directory "~/Org"
+	deft-auto-save-interval 0
+	deft-extensions '("org")
+	deft-default-extension "org"
+	deft-use-filename-as-title nil
+	deft-use-filter-string-for-filename t))
