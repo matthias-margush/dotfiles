@@ -1,11 +1,15 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package eglot
-  :bind-keymap ("s-l" . eglot-mode-map)
-  :bind ((:map eglot-mode-map
-	       ("r" . eglot-rename)
-	       ("f" . eglot-format)
-	       ("o" . eglot-code-action-organize-imports))))
+  :general
+  (:states '(normal) :prefix leader "r" #'eglot-rename)
+  (:states '(normal) :prefix leader "f" #'eglot-format)
+  (:states '(normal) :prefix leader "o" #'eglot-code-action-organize-imports)
+  (:states '(normal) :prefix local-leader "d" #'flymake-show-diagnostics-buffer)
+  (:keymaps 'normal
+            ;; ",e" #'flymake-show-diagnostics-buffer
+            "]e" #'flymake-goto-next-error
+            "[e" #'flymake-goto-prev-error))
 
 (use-package markdown-mode
   :hook ((markdown-mode . visual-line-mode))

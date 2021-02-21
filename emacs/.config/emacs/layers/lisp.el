@@ -2,9 +2,11 @@
   :hook (emacs-lisp-mode . lispy-mode)
 
   :general
-  (:states '(normal) :prefix local-leader "e b" #'eval-buffer)
-  (:states '(normal) :prefix local-leader "e e" #'eval-last-sexp)
-  (:states '(normal) :prefix local-leader "e e" #'eval-defun)
+  (:states 'normal
+   :keymaps 'emacs-lisp-mode-map
+            ",eb" #'eval-buffer
+            ",ee" #'eval-last-sexp
+            ",ef" #'eval-defun)
 
   :commands lispy-mode
 

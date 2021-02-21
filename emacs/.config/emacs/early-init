@@ -2,8 +2,8 @@
 
 (setq frame-alist
       '(
-	(width . 80)
-	(height . 70)
+        (width . 80)
+        (height . 70)
         (internal-border-width . 20)
         (vertical-scroll-bars . nil)))
 (setq default-frame-alist frame-alist
@@ -20,10 +20,6 @@
 (defun display-startup-echo-area-message ()
   "Redefine to clean up echo area message."
   (message ""))
-
-;; History
-(savehist-mode 1) ;; minibuffer history
-(recentf-mode)
 
 (load "~/.config/emacs/layers/straight" nil t)
 (load "~/.config/emacs/layers/ui" nil t)

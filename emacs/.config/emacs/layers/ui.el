@@ -1,5 +1,8 @@
 (tool-bar-mode -1)
-(desktop-save-mode t)
+
+;; History
+(savehist-mode 1) ;; minibuffer history
+(recentf-mode)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
