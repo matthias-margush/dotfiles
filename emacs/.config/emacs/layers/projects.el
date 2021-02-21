@@ -16,49 +16,49 @@
 
 (use-package counsel-projectile
   :bind ("C-x C-f" . counsel-find-file)
-  )
-
-;(use-package ibuffer-sidebar
-;  :commands (ibuffer-sidebar-toggle-sidebar))
+  :config
+  (counsel-projectile-mode))
 
 (defun me/project-notes ()
- "Open a project notes file when opening projectile."
- (interactive)
- (when (projectile-project-p)
-   (set-frame-parameter nil 'me/projectile-project-name projectile-project-name)
-   (let ((notes (expand-file-name "project.org" (projectile-project-root))))
-     (if (and notes (file-exists-p notes))
-	  (find-file notes)
-	(let ((notes (locate-file
-		      "README"
-		      `(,(projectile-project-root))
-		      '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
-	  (if (and notes (file-exists-p notes))
-	      (find-file notes)
-	    (projectile-find-file)))))))
+  "Open a project notes file when opening projectile."
+  (interactive)
+  (when (projectile-project-p)
+    (set-frame-parameter nil 'me/projectile-project-name projectile-project-name)
+    (let ((notes (expand-file-name "project.org" (projectile-project-root))))
+      (if (and notes (file-exists-p notes))
+          (find-file notes)
+        (let ((notes (locate-file
+                      "README"
+                      `(,(projectile-project-root))
+                      '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
+          (if (and notes (file-exists-p notes))
+              (find-file notes)
+            (projectile-find-file)))))))
 
 (use-package projectile
-  :demand t
-  ;:hook (projectile-after-switch-project . me/project-tab)
-  :bind-keymap ("s-p" . projectile-command-map)
-  :bind (("s-e" . projectile-run-eshell)
-	 ("s-F" . counsel-projectile-rg)
-  	 (:map projectile-command-map
-	       ("p" . counsel-projectile-switch-project)
-	       ("f" . counsel-projectile-find-file)
-	       ("b" . counsel-projectile-switch-to-buffer)
-  	       ("s-p" . me/project-notes)
-  	       ("s r" . counsel-projectile-rg)
-  	       ("s a" . counsel-projectile-ag)
-  	       ("s s" . counsel-projectile-ag)
-  	       ("t" . me/neotree-toggle)
-  	       ("x f" . vterm)))
+  :general
+  (:states '(normal) :prefix leader "p" 'projectile-command-map)
+  (:states '(normal) :prefix leader "/" #'counsel-git-grep)
+
+  :bind
+  ("s-F" . counsel-git-grep)
+  (:map projectile-command-map
+        ("p" . counsel-projectile-switch-project)
+        ("f" . counsel-projectile-find-file)
+        ("b" . counsel-projectile-switch-to-buffer)
+        ("s-p" . me/project-notes)
+        ("s r" . counsel-projectile-rg)
+        ("s a" . counsel-projectile-ag)
+        ("s s" . counsel-projectile-ag)
+        ("s g" . counsel-git-grep)
+        ("t" . me/neotree-toggle)
+        ("x f" . vterm))
   :init
   (setq projectile-switch-project-action #'me/project-notes)
-  (setq ;; projectile-completion-system 'ido
-	projectile-current-project-on-switch 'move-to-end
-	projectile-dynamic-mode-line nil
-	projectile-project-search-path '("~/.config/emacs/straight/repos" "~/code"))
+  (setq
+   projectile-current-project-on-switch 'move-to-end
+   projectile-dynamic-mode-line nil
+   projectile-project-search-path '("~/.config/emacs/straight/repos" "~/code"))
   :config
   (projectile-mode))
 

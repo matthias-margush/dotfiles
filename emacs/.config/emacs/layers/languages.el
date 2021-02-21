@@ -54,7 +54,6 @@
 
 ;; (use-package sql-indent)
 (use-package sqlformat
-  ;; :hook (sql-mod . sqlformat-on-save-mode)
+  ;; :hook (sql-mode . sqlformat-on-save-mode)
   :init
-  (setq sqlformat-command 'pgformatter)
-  )
+  (setq sqlformat-command 'pgformatter))

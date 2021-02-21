@@ -1,6 +1,9 @@
 (tool-bar-mode -1)
 (desktop-save-mode t)
 
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
 (defun show-file-name ()
   "Show the full path file name."
   (interactive)
