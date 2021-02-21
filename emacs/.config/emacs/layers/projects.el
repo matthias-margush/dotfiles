@@ -2,26 +2,32 @@
   :bind ("C-'" . #'imenu-list-smart-toggle))
 
 (use-package counsel
-    :bind (("C-x b" . counsel-switch-buffer)
+  :bind (("C-x b" . counsel-switch-buffer)
            ("s-:" . counsel-M-x))
-    :init
-    (setq ivy-count-format ""
-          ivy-use-virtual-buffers t
-          ivy-read-action-format-function #'ivy-read-action-format-columns
-          ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
 
-    :config
-    (counsel-mode)
-    (defun counsel-more-chars ()))
+  :general
+  (:states 'normal
+           ",cc" #'counsel-compile)
+  :init
+  (setq ivy-count-format ""
+        ivy-use-virtual-buffers t
+        ivy-read-action-format-function #'ivy-read-action-format-columns
+        ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+
+  :config
+  (counsel-mode)
+  (defun counsel-more-chars ()))
 
 (global-set-key (kbd "M-x") 'counsel-M-x)
 
 (use-package counsel-projectile
-    :bind ("C-x C-f" . counsel-find-file)
-    :config
-    (counsel-projectile-mode)
-    (add-to-list 'counsel-projectile-switch-project-action
-                 '("n" me/project-notes "open project notes") t))
+  :bind ("C-x C-f" . counsel-find-file)
+
+  
+  :config
+  (counsel-projectile-mode)
+  (add-to-list 'counsel-projectile-switch-project-action
+               '("n" me/project-notes "open project notes") t))
 
 (defun me/project-notes (project)
   "Open a project notes file when opening projectile."

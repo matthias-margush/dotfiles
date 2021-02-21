@@ -1,0 +1,13 @@
+diff --git a/src/nsterm.m b/src/nsterm.m
+index 88317f8839..69617235b2 100644
+--- a/src/nsterm.m
++++ b/src/nsterm.m
+@@ -7656,7 +7656,7 @@ - (instancetype) initFrameFromEmacs: (struct frame *)f
+      Currently it only happens by accident and is buggy anyway.  */
+ #ifdef NS_IMPL_COCOA
+   if ([win respondsToSelector: @selector(setTabbingMode:)])
+-    [win setTabbingMode: NSWindowTabbingModeDisallowed];
++    [win setTabbingMode: NSWindowTabbingModePreferred];
+ #endif
+ 
+   ns_window_num++;
