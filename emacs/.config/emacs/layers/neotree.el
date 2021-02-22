@@ -1,4 +1,7 @@
 (use-package neotree
+  :custom
+  (neo-smart-open t)
+
   :init
   (setq neo-theme 'icons))
 

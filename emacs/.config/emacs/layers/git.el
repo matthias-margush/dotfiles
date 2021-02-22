@@ -29,7 +29,8 @@
    (dired-mode . diff-hl-dired-mode))
 
   :init
-  (setq diff-hl-draw-borders nil)
+  (setq diff-hl-draw-borders nil
+        diff-hl-side 'right)
 
   :config
   (global-diff-hl-mode)

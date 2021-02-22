@@ -1,5 +1,9 @@
 (tool-bar-mode -1)
 
+(setq-default fringe-indicator-alist nil)
+(global-set-key [wheel-right] (lambda () (interactive) (scroll-left 1)))
+(global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
+
 ;; History
 (savehist-mode 1) ;; minibuffer history
 (recentf-mode)
@@ -51,8 +55,10 @@
 	    (require 'dired-x)))
 (setq dired-omit-mode t)
 
+;;; unbind annoying keys
 (unbind-key (kbd "s-m"))
 (unbind-key (kbd "s-l"))
+(unbind-key (kbd "s-p"))
 
 (use-package helpful
   :bind ("C-h k" . helpful-key)
