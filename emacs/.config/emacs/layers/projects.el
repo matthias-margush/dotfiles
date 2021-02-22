@@ -1,3 +1,5 @@
+;;; init.el -*- lexical-binding: t; -*-
+
 (use-package imenu-list
   :bind ("C-'" . #'imenu-list-smart-toggle))
 
@@ -27,13 +29,12 @@
   :config
   (counsel-projectile-mode)
   (add-to-list 'counsel-projectile-switch-project-action
-               '("n" me/project-notes "open project notes") t))
+               '("so" me/project-switch-or-open "switch to or open") t))
 
 (defun me/project-notes ()
   "Open a project notes file when opening projectile."
   (interactive)
   (when (projectile-project-p)
-    (set-frame-parameter nil 'me/projectile-project-name projectile-project-name)
     (let ((notes (expand-file-name "project.org" (projectile-project-root))))
       (if (and notes (file-exists-p notes))
           (find-file notes)
@@ -42,13 +43,51 @@
                         `(,(projectile-project-root))
                         '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
             (if (and notes (file-exists-p notes))
-                (find-file notes)
-                (projectile-find-file)))))))
+                (find-file notes)))))))
 
-(defun me/switch-project (args)
+(defun me/project-open-notes (project)
+  "Open a project notes file when opening projectile."
+  (interactive)
+  (let ((notes (expand-file-name "project.org" project)))
+    (if (and notes (file-exists-p notes))
+      (find-file notes)
+      (let ((notes (locate-file
+                    "README"
+                    `(,(expand-file-name project))
+                    '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
+        (if (and notes (file-exists-p notes))
+          (find-file notes)
+          (counsel-find-file nil project))))))
+
+
+(defun me/project-switch-or-open (project)
   "Switch project"
   (interactive "P")
-  (counsel-projectile-switch-project))
+  (if (not (frame-parameter (selected-frame) 'me/project))
+    (progn
+      (set-frame-parameter (selected-frame) 'me/project project)
+      (counsel-projectile-find-file))
+    (let ((found nil))
+      (dolist (frame (frame-list))
+        (when-let (frame-project (frame-parameter frame 'me/project))
+          (when (and (not found) (string= project frame-project))
+            (setq found t)
+            (make-frame-visible frame)
+            (raise-frame frame)
+            (select-frame frame))))
+
+      (unless found
+        (let ((new-frame (make-frame)))
+          (set-frame-parameter new-frame 'me/project project)
+          (me/project-open-notes project))))))
+
+(defun me/switch-project (project)
+  "Switch project"
+  (interactive "P")
+  (counsel-projectile-switch-project "so"))
+
+(unbind-key (kbd "C-SPC"))
+(global-set-key (kbd "C-SPC C-SPC") #'me/switch-project)
 
 (use-package projectile
   :general
@@ -73,6 +112,7 @@
   (setq
    projectile-current-project-on-switch 'move-to-end
    projectile-dynamic-mode-line nil
+   projectile-switch-project-action #'counsel-projectile-find-file
    projectile-project-search-path '("~/.config/emacs/straight/repos" "~/code"))
 
   :config
