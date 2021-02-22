@@ -29,7 +29,7 @@
   (add-to-list 'counsel-projectile-switch-project-action
                '("n" me/project-notes "open project notes") t))
 
-(defun me/project-notes (project)
+(defun me/project-notes ()
   "Open a project notes file when opening projectile."
   (interactive)
   (when (projectile-project-p)
@@ -62,7 +62,7 @@
         ("p" . me/switch-project)
         ("f" . counsel-projectile-find-file)
         ("b" . counsel-projectile-switch-to-buffer)
-        ("s-p" . me/project-notes)
+        ("n" . me/project-notes)
         ("s r" . counsel-projectile-rg)
         ("s a" . counsel-projectile-ag)
         ("s s" . counsel-projectile-ag)

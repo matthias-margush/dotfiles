@@ -1,12 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package flx-ido
-  :demand t
   :config (flx-ido-mode t))
 
 (use-package ido
   :ensure nil
-  :demand t
   :bind ((:map ido-common-completion-map))
   :init
   (setq ido-max-window-height 1
@@ -18,19 +16,16 @@
   (ido-everywhere))
 
 (use-package ido-completing-read+
-  :demand t
   :after ido
   :config
   (ido-ubiquitous-mode t))
 
 (use-package amx
-  :demand t
   :config
   (amx-mode))
 
 ;; IDO in places like describe-face
 (use-package crm-custom
-  :demand t
   :config
   (crm-custom-mode 1))
 

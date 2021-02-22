@@ -31,7 +31,6 @@
   (evil-mode))
 
 (use-package evil-collection
-  :demand t
   :after evil
   :init
   (setq evil-collection-setup-minibuffer t

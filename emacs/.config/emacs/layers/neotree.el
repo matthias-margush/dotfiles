@@ -1,9 +1,13 @@
 (use-package neotree
+  :hook
+  (neotree-mode . hl-line-mode)
+
   :custom
   (neo-smart-open t)
 
   :init
-  (setq neo-theme 'icons))
+  (setq neo-theme 'icons
+        neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$")))
 
 (use-package all-the-icons)
 
