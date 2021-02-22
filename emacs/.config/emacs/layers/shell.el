@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t; -*-
+
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
@@ -24,12 +25,12 @@
 	      (local-set-key (kbd "s-k") #'eshell-clear)
 	      (local-set-key (kbd "s-h") #'counsel-esh-history)))
 
-;; (use-package esh-autosuggest
-;;   :hook (eshell-mode . esh-autosuggest-mode)
-;;   :config
-;;   ;; (defun setup-eshell-grouped-backends ()
-;;   ;;   (setq-local company-backends
-;;   ;; 		'((company-capf esh-autosuggest))))
+(use-package esh-autosuggest
+  :hook (eshell-mode . esh-autosuggest-mode)
+  :config
+  ;; (defun setup-eshell-grouped-backends ()
+  ;;   (setq-local company-backends
+  ;; 		'((company-capf esh-autosuggest))))
 
 ;; ;;   ;; (add-hook 'eshell-mode-hook #'setup-eshell-grouped-backends)
 ;;   )
@@ -56,14 +57,18 @@
   :init
   (setq vterm-always-compile-module t))
 
+;;  prompt
 (setq eshell-prompt-function
       (lambda ()
-	(propertize
-	 (concat 
-	  "\n"
-	  (abbreviate-file-name (eshell/pwd))
-	  "\n❯ ")
-	 'face '(:weight bold))))
+        (concat
+         (propertize
+          (concat
+           "\n"
+           (abbreviate-file-name (eshell/pwd))
+           )
+          'face '(:weight bold))
+         "\n❯ ")))
+(setq eshell-prompt-regexp "^ ❯ ")
 
 (require 'dired-x)
 (add-hook 'dired-load-hook
@@ -75,9 +80,8 @@
 ;; brew install coreutils
 (setq insert-directory-program "/usr/local/bin/gls")
 (setq eshell-ls-use-in-dired t)
-(setq eshell-highlight-prompt nil)
+(setq eshell-highlight-prompt t)
 (setq eshell-banner-message "")
-(setq eshell-prompt-regexp "^❯ ")
 (setq eshell-cd-shows-directory nil)
 
 (require 'eshell)
