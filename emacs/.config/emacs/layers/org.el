@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (defun me/deft ()
   (interactive)
@@ -8,11 +8,31 @@
   (deft-filter-clear)
   (evil-insert-state))
 
+(with-eval-after-load 'org
+  (general-define-key
+   :states 'normal
+   "s-]" #'org-next-link
+   "s-[" #'org-previous-link))
+
 ;; Notes
 (use-package org
-  :after exec-path-from-shell
-  :hook (org-babel-after-execute . org-redisplay-inline-images)
+  :custom
+  (org-hide-leading-stars t)
+  (org-hide-emphasis-markers t)
+
+  :after
+  exec-path-from-shell
+
+  :hook
+  (org-babel-after-execute . org-redisplay-inline-images)
+
   :init
+  (setq
+   org-link-frame-setup '((vm . vm-visit-folder-other-frame)
+                          (vm-imap . vm-visit-imap-folder-other-frame)
+                          (gnus . org-gnus-no-new-news)
+                          (file . find-file)
+                          (wl . wl-other-frame))) ()
   (setq
    org-startup-folded nil
    org-startup-indented nil
@@ -30,8 +50,6 @@
    org-fontify-quote-and-verse-blocks t
    org-fontify-whole-heading-line nil
    org-goto-interface 'outline-path-completion
-   org-hide-emphasis-markers t
-   org-hide-leading-stars t
    org-outline-path-complete-in-steps nil
    org-plain-list-ordered-item-terminator t
    org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2020.2/libexec/plantuml.jar"
@@ -43,6 +61,7 @@
    plantuml-jar-args '("-charset" "UTF-8" "-config" "~/code/dot/plantuml.txt")
    plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.1/libexec/plantuml.jar")
   :config
+  (add-to-list 'org-file-apps '(t . emacs) t)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((ditaa . t)
@@ -52,10 +71,10 @@
      (clojure . t)))
   (require 'ox-md))
 
-(use-package ox-pandoc
-  :after exec-path-from-shell
-  :init
-  (setq org-pandoc-options '((standalone . t))))
+;; (use-package ox-pandoc
+;;   :after exec-path-from-shell
+;;   :init
+;;   (setq org-pandoc-options '((standalone . t))))
 
 (use-package orgraphy
   :straight (orgraphy :type git :host github :repo "matthias-margush/orgraphy")

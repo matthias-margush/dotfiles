@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package general
+  :demand t
   :init
   (setq general-override-states '(insert
                                   emacs
@@ -14,6 +15,8 @@
   (defconst local-leader ","))
 
 (use-package evil
+  :demand t
+  :after general
   :custom
   (evil-undo-system 'undo-redo)
 
@@ -24,6 +27,9 @@
            "[e" #'flymake-goto-prev-error
            ",d" #'flymake-show-diagnostics-buffer)
 
+  :bind (:map help-map
+              ("F" . describe-face))
+
   :init
   (setq evil-want-keybinding nil)
 
@@ -31,6 +37,7 @@
   (evil-mode))
 
 (use-package evil-collection
+  :demand t
   :after evil
   :init
   (setq evil-collection-setup-minibuffer t

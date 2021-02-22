@@ -1,13 +1,17 @@
 (use-package lispy
-  :hook (emacs-lisp-mode . lispy-mode)
+  :hook
+  ((emacs-lisp-mode . lispy-mode)
+   (lisp-mode . lispy-mode))
 
   :general
   (:states 'normal
-   :keymaps 'emacs-lisp-mode-map
-            ",eb" #'eval-buffer
-            ",ee" #'eval-last-sexp
-            ",ef" #'eval-defun)
-
+           :keymaps 'emacs-lisp-mode-map
+           ",eb" #'eval-buffer
+           ",ee" #'eval-last-sexp
+           ",ef" #'eval-defun)
+  (:states 'visual
+           :keymaps 'emacs-lisp-mode-map
+           ",er" #'eval-region)
   :commands lispy-mode
 
   :init
@@ -25,8 +29,12 @@
   (lisp-mode)
   (lispy-set-key-theme '(parinfer)))
 
+
 (use-package lispyville
-  :hook (emacs-lisp-mode . lispyville-mode)
+    :hook
+  ((emacs-lisp-mode . lispyville-mode)
+   (lisp-mode . lispyville-mode) )
+
   :init
   (setq
    lispyville-insert-states nil

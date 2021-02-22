@@ -28,9 +28,10 @@
 (load "~/.config/emacs/layers/git" nil t)
 (load "~/.config/emacs/layers/projects" nil t)
 (load "~/.config/emacs/layers/neotree" nil t)
-(load "~/.config/emacs/layers/org" nil t)
 (load "~/.config/emacs/layers/lisp" nil t)
 (load "~/.config/emacs/layers/languages" nil t)
+(load "~/.config/emacs/layers/org" nil t)
+
 
 (setq mac-option-modifier 'meta)
 (global-set-key (kbd "s-}") #'ns-prev-frame)

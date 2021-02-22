@@ -14,7 +14,7 @@
   (setq ivy-count-format ""
         ivy-use-virtual-buffers t
         ivy-read-action-format-function #'ivy-read-action-format-columns
-        ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+        ivy-re-builders-alist '((t . ivy--regex-plus)))
 
   :config
   (counsel-mode)
@@ -24,7 +24,6 @@
 
 (use-package counsel-projectile
   :bind ("C-x C-f" . counsel-find-file)
-
   
   :config
   (counsel-projectile-mode)
@@ -56,30 +55,26 @@
                     `(,(expand-file-name project))
                     '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
         (if (and notes (file-exists-p notes))
-          (find-file notes)
-          (counsel-find-file nil project))))))
+            (find-file notes)
+            (counsel-projectile-switch-project-action-find-file project))))))
 
 
 (defun me/project-switch-or-open (project)
   "Switch project"
   (interactive "P")
-  (if (not (frame-parameter (selected-frame) 'me/project))
-    (progn
-      (set-frame-parameter (selected-frame) 'me/project project)
-      (counsel-projectile-find-file))
-    (let ((found nil))
-      (dolist (frame (frame-list))
-        (when-let (frame-project (frame-parameter frame 'me/project))
-          (when (and (not found) (string= project frame-project))
-            (setq found t)
-            (make-frame-visible frame)
-            (raise-frame frame)
-            (select-frame frame))))
+  (let ((found nil))
+    (dolist (frame (frame-list))
+      (when-let (frame-project (frame-parameter frame 'me/project))
+        (when (and (not found) (string= project frame-project))
+          (setq found t)
+          (make-frame-visible frame)
+          (raise-frame frame)
+          (select-frame frame))))
 
-      (unless found
-        (let ((new-frame (make-frame)))
-          (set-frame-parameter new-frame 'me/project project)
-          (me/project-open-notes project))))))
+    (unless found
+      (let ((new-frame (make-frame)))
+        (set-frame-parameter new-frame 'me/project project)
+        (me/project-open-notes project)))))
 
 (defun me/switch-project (project)
   "Switch project"
@@ -90,6 +85,7 @@
 (global-set-key (kbd "C-SPC C-SPC") #'me/switch-project)
 
 (use-package projectile
+  :demand t
   :general
   (:states '(normal) :prefix leader "p" 'projectile-command-map)
   (:states '(normal) :prefix leader "/" #'counsel-git-grep)
@@ -99,6 +95,7 @@
   ("s-F" . counsel-git-grep)
   (:map projectile-command-map
         ("p" . me/switch-project)
+        ("r" . projectile-recentf)
         ("f" . counsel-projectile-find-file)
         ("b" . counsel-projectile-switch-to-buffer)
         ("n" . me/project-notes)
@@ -110,6 +107,7 @@
         ("x f" . vterm))
   :init
   (setq
+   projectile-completion-system 'ivy
    projectile-current-project-on-switch 'move-to-end
    projectile-dynamic-mode-line nil
    projectile-switch-project-action #'counsel-projectile-find-file
