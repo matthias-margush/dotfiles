@@ -25,14 +25,14 @@
 	      (local-set-key (kbd "s-k") #'eshell-clear)
 	      (local-set-key (kbd "s-h") #'counsel-esh-history)))
 
-(use-package esh-autosuggest
-  :hook (eshell-mode . esh-autosuggest-mode)
-  :config
+;(use-package esh-autosuggest
+;  :hook (eshell-mode . esh-autosuggest-mode)
+;  :config
   ;; (defun setup-eshell-grouped-backends ()
   ;;   (setq-local company-backends
   ;; 		'((company-capf esh-autosuggest))))
 
-;; ;;   ;; (add-hook 'eshell-mode-hook #'setup-eshell-grouped-backends)
+;;;;;; ;;   ;; (add-hook 'eshell-mode-hook #'setup-eshell-grouped-backends)
 ;;   )
 
 (add-hook 'eshell-mode-hook
