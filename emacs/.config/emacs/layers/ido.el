@@ -1,39 +1,40 @@
 ;; -*- lexical-binding: t; -*-
 
-(use-package flx-ido
-  :config (flx-ido-mode t))
+;; (use-package flx-ido
+;;   :config (flx-ido-mode t))
 
 (use-package ido
   :ensure nil
   :bind ((:map ido-common-completion-map))
   :init
   (setq ido-max-window-height 1
-	ido-enable-last-directory-history t
-	ido-record-commands t
-	ido-virtual-buffers t)
+        ido-enable-last-directory-history t
+        ido-record-commands t
+        ido-virtual-buffers t)
   :config
   (ido-mode)
-  (ido-everywhere))
+  ;; (ido-everywhere)
+  )
 
-(use-package ido-completing-read+
-  :after ido
-  :config
-  (ido-ubiquitous-mode t))
+;; (use-package ido-completing-read+
+;;   :after ido
+;;   :config
+;;   (ido-ubiquitous-mode t))
 
-(use-package amx
-  :config
-  (amx-mode))
+;; (use-package amx
+;;   :config
+;;   (amx-mode))
 
 ;; IDO in places like describe-face
-(use-package crm-custom
-  :config
-  (crm-custom-mode 1))
+;; (use-package crm-custom
+;;   :config
+;;   (crm-custom-mode 1))
 
-(require 'icomplete)
-(icomplete-mode)
+;; (require 'icomplete)
+;; (icomplete-mode)
 
 (use-package company
-  :defer 2
+  :hook (after-init . global-company-mode)
   :bind (:map company-active-map
               ("C-n" . company-select-next-or-abort)
               ("C-p" . company-select-previous-or-abort)
@@ -49,5 +50,5 @@
     "Prevents eldoc from interfering with company-echo."
     (setq ad-return-value (and ad-return-value
                                (not company-candidates))))
-  (global-company-mode))
 
+  (global-company-mode))
