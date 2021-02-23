@@ -1,15 +1,9 @@
-(tool-bar-mode -1)
-
-(setq-default fringe-indicator-alist nil)
 (global-set-key [wheel-right] (lambda () (interactive) (scroll-left 1)))
 (global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
 
 ;; History
 (savehist-mode 1) ;; minibuffer history
 (recentf-mode)
-
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
 
 (defun show-file-name ()
   "Show the full path file name."
@@ -56,6 +50,7 @@
 	    (dired-omit-mode)
 	    (require 'dired-x)))
 (setq dired-omit-mode t)
+
 
 ;;; unbind annoying keys
 (unbind-key (kbd "s-m"))

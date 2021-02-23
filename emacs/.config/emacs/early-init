@@ -17,23 +17,16 @@
 (setq frame-title-format '("\n"))
 (setq initial-scratch-message "")
 (setq ns-use-proxy-icon nil)
+(tool-bar-mode -1)
+(setq-default fringe-indicator-alist nil)
 (defun display-startup-echo-area-message ()
   "Redefine to clean up echo area message."
   (message ""))
-
-(load "~/.config/emacs/layers/straight" nil t)
-(load "~/.config/emacs/layers/ui" nil t)
-(load "~/.config/emacs/layers/evil" nil t)
-(load "~/.config/emacs/layers/shell" nil t)
-(load "~/.config/emacs/layers/git" nil t)
-(load "~/.config/emacs/layers/projects" nil t)
-(load "~/.config/emacs/layers/neotree" nil t)
-(load "~/.config/emacs/layers/lisp" nil t)
-(load "~/.config/emacs/layers/languages" nil t)
-(load "~/.config/emacs/layers/org" nil t)
-
 
 (setq mac-option-modifier 'meta)
 (global-set-key (kbd "s-}") #'ns-prev-frame)
 (global-set-key (kbd "s-{") #'ns-next-frame)
 (global-set-key (kbd "s-t") #'make-frame)
+
+(load "~/.config/emacs/layers/straight" nil t)
+(load "~/.config/emacs/layers/ui" nil t)
