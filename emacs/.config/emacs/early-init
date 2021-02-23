@@ -3,7 +3,7 @@
 (setq frame-alist
       '(
         (width . 80)
-        (height . 70)
+        (height . 60)
         (internal-border-width . 20)
         (vertical-scroll-bars . nil)))
 (setq default-frame-alist frame-alist

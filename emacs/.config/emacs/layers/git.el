@@ -11,7 +11,7 @@
     (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
           magit-diff-refine-hunk 'all))
 
-(use-package forge)
+(use-package forge :after markdown)
 
 (use-package git-link
     :bind (:map git-map

@@ -11,6 +11,7 @@
 (with-eval-after-load 'org
   (general-define-key
    :states 'normal
+   :keymaps '(org-mode-map)
    "s-]" #'org-next-link
    "s-[" #'org-previous-link))
 

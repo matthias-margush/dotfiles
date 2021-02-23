@@ -54,6 +54,10 @@
 	 (eshell-mode . with-editor-export-editor)))
 
 (use-package vterm
+  :general
+  (states 'insert :keymaps '(vterm-mode-map)
+          "s-[" #'vterm-send-escape)
+
   :init
   (setq vterm-always-compile-module t))
 

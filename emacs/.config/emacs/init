@@ -2,8 +2,8 @@
   (menu-bar-mode -1))
 
 (set-face-attribute 'variable-pitch nil :font "Open Sans Condensed-16")
-(set-face-attribute 'fixed-pitch nil :font "AverageMono-11")
-(set-face-attribute 'default nil :font "AverageMono-11")
+(set-face-attribute 'fixed-pitch nil :font "Hasklug Nerd Font Mono-10")
+(set-face-attribute 'default nil :font "Hasklug Nerd Font Mono-10")
 
 (load "~/.config/emacs/layers/clojure" nil t)
 (use-package origami :config (global-origami-mode))
