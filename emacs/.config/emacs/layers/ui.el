@@ -20,6 +20,8 @@
 
 (setq initial-major-mode 'fundamental-mode)
 
+(use-package editorconfig :config (editorconfig-mode))
+
 (use-package construction-paper-theme
   :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
 

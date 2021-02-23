@@ -101,6 +101,7 @@
         ("n" . me/project-notes)
         ("s r" . counsel-projectile-rg)
         ("s a" . counsel-projectile-ag)
+        ("c" . counsel-compile)
         ("s s" . counsel-projectile-ag)
         ("s g" . counsel-git-grep)
         ("t" . me/neotree-toggle)
