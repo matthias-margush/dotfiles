@@ -20,8 +20,6 @@
           #'(lambda ()
 	      (setq-local completion-in-region-function #'ivy-completion-in-region)
 	      (setq-local ivy-display-functions-alist nil)
-	      (add-to-list 'eshell-visual-commands "docker")
-	      (setq eshell-visual-commands (delete "docker" eshell-visual-commands))
 	      (local-set-key (kbd "s-k") #'eshell-clear)
 	      (local-set-key (kbd "s-h") #'counsel-esh-history)))
 
@@ -35,10 +33,17 @@
 ;;;;;; ;;   ;; (add-hook 'eshell-mode-hook #'setup-eshell-grouped-backends)
 ;;   )
 
+(general-define-key
+ :states 'insert
+ :keymaps '(eshell-mode-map)
+ "M-p" #'eshell-previous-input
+ "M-n" #'eshell-next-input)
+
 (add-hook 'eshell-mode-hook
           (lambda ()
             (add-to-list 'eshell-visual-commands "ssh")
             (add-to-list 'eshell-visual-commands "tail")
+            (add-to-list 'eshell-visual-commands "docker")
             (add-to-list 'eshell-visual-commands "top")))
 
 (when (require 'ansi-color nil t)
