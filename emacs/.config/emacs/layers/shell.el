@@ -73,7 +73,7 @@
          "\n"
          (abbreviate-file-name (eshell/pwd))
          "\n❯ ")))
-(setq eshell-prompt-regexp "^ ❯ ")
+(setq eshell-prompt-regexp "^❯ ")
 
 (require 'dired-x)
 (add-hook 'dired-load-hook
