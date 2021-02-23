@@ -70,12 +70,8 @@
 (setq eshell-prompt-function
       (lambda ()
         (concat
-         (propertize
-          (concat
-           "\n"
-           (abbreviate-file-name (eshell/pwd))
-           )
-          'face '(:weight bold))
+         "\n"
+         (abbreviate-file-name (eshell/pwd))
          "\n❯ ")))
 (setq eshell-prompt-regexp "^ ❯ ")
 
