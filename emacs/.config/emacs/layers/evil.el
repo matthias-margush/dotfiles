@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (use-package general
   :demand t
@@ -44,7 +44,8 @@
         evil-collection-company-use-tng nil
         evil-collection-term-sync-state-and-mode-p t
         evil-collection-want-unimpaired-p nil
-        ;evil-collection-key-blacklist '("SPC")
+	evil-kill-on-visual-paste nil
+        evil-collection-key-blacklist '("SPC")
         evil-collection-setup-debugger-keys t)
   :config
   (evil-collection-init))
