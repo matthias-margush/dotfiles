@@ -7,19 +7,6 @@
 (set-face-attribute 'fixed-pitch nil :font "Hasklug Nerd Font Mono-10")
 (set-face-attribute 'default nil :font "Hasklug Nerd Font Mono-10")
 
-(load "~/.config/emacs/layers/ui" nil t)
-(load "~/.config/emacs/layers/evil" nil t)
-(load "~/.config/emacs/layers/shell" nil t)
-(load "~/.config/emacs/layers/git" nil t)
-(load "~/.config/emacs/layers/projects" nil t)
-(load "~/.config/emacs/layers/neotree" nil t)
-(load "~/.config/emacs/layers/lisp" nil t)
-(load "~/.config/emacs/layers/languages" nil t)
-(load "~/.config/emacs/layers/org" nil t)
-(load "~/.config/emacs/layers/ido" nil t)
-(load "~/.config/emacs/layers/clojure" nil t)
-(use-package origami :config (global-origami-mode))
-
 (defun me/my-project-notes ()
   "Project file"
   (interactive "P")
@@ -27,10 +14,21 @@
     (if (and projects (file-exists-p projects))
         (find-file projects))))
 
-(add-hook 'after-init-hook #'me/my-project-notes)
-
-;; ;(desktop-save-mode t)
-;; ;(setq desktop-restore-frames nil)
+(load "~/.config/emacs/layers/evil" nil t)
+(load "~/.config/emacs/layers/org" nil t)
+(me/my-project-notes)
+	
+(load "~/.config/emacs/layers/tabbar" nil t)
+(load "~/.config/emacs/layers/ui" nil t)
+(load "~/.config/emacs/layers/shell" nil t)
+(load "~/.config/emacs/layers/git" nil t)
+(load "~/.config/emacs/layers/projects" nil t)
+(load "~/.config/emacs/layers/neotree" nil t)
+(load "~/.config/emacs/layers/lisp" nil t)
+(load "~/.config/emacs/layers/languages" nil t)
+(load "~/.config/emacs/layers/ido" nil t)
+(load "~/.config/emacs/layers/clojure" nil t)
+(use-package origami :config (global-origami-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
