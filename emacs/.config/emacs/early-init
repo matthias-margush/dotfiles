@@ -2,7 +2,7 @@
 
 (setq frame-alist
       '(
-        (width . 80)
+        (width . 90)
         (height . 60)
         (internal-border-width . 20)
         (vertical-scroll-bars . nil)))
@@ -46,16 +46,50 @@
 (global-set-key (kbd "s-t") #'make-frame)
 
 (load "~/.config/emacs/layers/straight" nil t)
+
 (use-package construction-paper-theme
+  :custom
+  (window-divider-default-right-width 100)
+
   :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
 
   :init
   (defun me/modeline-style-line (&optional arg)
     "Style the mode line a simple line."
-    (set-face-attribute 'mode-line nil :background nil :foreground nil :underline t :box nil)
-    (set-face-attribute 'mode-line nil :inherit 'default :underline t)
-    (set-face-attribute 'mode-line-inactive nil :background nil :foreground nil :underline t :box nil)
-    (set-face-attribute 'mode-line-inactive nil :inherit 'default :underline t))
+    (let ((box-color "#D2CCBD"))
+
+      ;; #DDDBD6
+      ;; #f0ecea
+      ;; #EBDCD0
+
+      (set-face-attribute
+       'window-divider nil
+       :background box-color
+       :foreground box-color
+       :underline nil
+       :box `(:line-width 1 :color ,box-color) :height 0.1)
+
+
+      (set-face-attribute
+       'mode-line nil
+       :inherit 'default
+       :underline t
+       :foreground box-color 
+       :box `(:line-width 1 :color ,box-color) :height 0.1)
+
+      (set-face-attribute
+       'mode-line-inactive nil
+       :background nil
+       :foreground box-color
+       :underline t
+       :box `(:line-width 1 :color ,box-color) :height 0.1)
+
+      (set-face-attribute
+       'mode-line-inactive nil
+       :inherit 'default
+       :foreground box-color
+       :underline t
+       :box `(:line-width 1 :color ,box-color) :height 0.1)))
 
   (setq-default mode-line-format '(""))
   (advice-add 'enable-theme :after #'me/modeline-style-line)
