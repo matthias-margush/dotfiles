@@ -1,7 +1,4 @@
-;; -*- lexical-binding: t; -*-
-
-;; (use-package flx-ido
-;;   :config (flx-ido-mode t))
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (use-package ido
   :ensure nil
@@ -16,22 +13,9 @@
   ;; (ido-everywhere)
   )
 
-;; (use-package ido-completing-read+
-;;   :after ido
-;;   :config
-;;   (ido-ubiquitous-mode t))
-
-;; (use-package amx
-;;   :config
-;;   (amx-mode))
-
-;; IDO in places like describe-face
-;; (use-package crm-custom
-;;   :config
-;;   (crm-custom-mode 1))
-
-;; (require 'icomplete)
-;; (icomplete-mode)
+(use-package amx 			;; show recent first
+  :config
+  (amx-mode))
 
 (use-package company
   :hook (after-init . global-company-mode)
