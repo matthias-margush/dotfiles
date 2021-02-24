@@ -1,4 +1,4 @@
-;; -*-Lisp-*-
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (setq frame-alist
       '(
@@ -10,6 +10,23 @@
       initial-frame-alist frame-alist)
 
 ;; Visual cleanup
+(defun suppress-messages (func &rest args)
+  "Suppress message output from FUNC."
+  ;; Some packages are too noisy.
+  ;; https://superuser.com/questions/669701/emacs-disable-some-minibuffer-messages
+  (cl-flet ((silence (&rest args1) (ignore)))
+    (advice-add 'message :around #'silence)
+    (unwind-protect
+        (apply func args)
+      (advice-remove 'message #'silence))))
+
+;; Suppress "Cleaning up the recentf...done (0 removed)"
+(advice-add 'recentf-cleanup :around #'suppress-messages)
+(advice-add 'recentf-load-list :around #'suppress-messages)
+
+;; surpress "package cl is deprecated"
+(setq byte-compile-warnings '(cl-functions)) 
+
 (fringe-mode '(8 . 4))
 (scroll-bar-mode -1)
 (setq-default truncate-lines t)
