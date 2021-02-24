@@ -12,8 +12,12 @@
   (general-define-key
    :states 'normal
    :keymaps '(org-mode-map)
-   "s-]" #'org-next-link
-   "s-[" #'org-previous-link))
+   "s-<down>" #'org-next-link
+   "s-<up>" #'org-previous-link
+   "s-<right>" #'org-open-at-point))
+
+(evil-add-command-properties #'org-open-at-point :jump t)
+(evil-define-key 'normal 'global (kbd "s-<left>") #'evil-jump-backward)
 
 ;; Notes
 (use-package org

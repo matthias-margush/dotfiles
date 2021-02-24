@@ -90,6 +90,7 @@
   (:states '(normal) :prefix leader "p" 'projectile-command-map)
   (:states '(normal) :prefix leader "/" #'counsel-git-grep)
   (:states '(normal) :prefix leader "SPC" #'counsel-projectile-switch-to-buffer)
+  (:states '(normal) "s-\\" #'projectile-run-eshell)
 
   :bind
   ("s-F" . counsel-git-grep)
