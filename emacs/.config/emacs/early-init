@@ -1,15 +1,16 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (setq frame-alist
-      '(
-        (width . 90)
-        (height . 60)
-        (internal-border-width . 20)
-        (vertical-scroll-bars . nil)))
+  '((top . 100)
+    (left . 1000)
+    (width . 90)
+    (height . 60)
+    (internal-border-width . 20)
+    (vertical-scroll-bars . nil)))
 (setq default-frame-alist frame-alist
       initial-frame-alist frame-alist)
 
-(setq ffap-machine-p-known 'reject) 	; don't complete links 
+(setq ffap-machine-p-known 'reject) 	; don't complete links
 (setq max-specpdl-size 13000)           ; bigger stack
 
 ;; clipboard
@@ -32,7 +33,7 @@
 (advice-add 'recentf-load-list :around #'suppress-messages)
 
 ;; surpress "package cl is deprecated"
-(setq byte-compile-warnings '(cl-functions)) 
+(setq byte-compile-warnings '(cl-functions))
 
 (fringe-mode '(8 . 4))
 (scroll-bar-mode -1)
@@ -81,7 +82,7 @@
        'mode-line nil
        :inherit 'default
        :underline t
-       :foreground box-color 
+       :foreground box-color
        :box `(:line-width 1 :color ,box-color) :height 0.1)
 
       (set-face-attribute

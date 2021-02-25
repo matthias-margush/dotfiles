@@ -24,7 +24,7 @@
 
 (use-package counsel-projectile
   :bind ("C-x C-f" . counsel-find-file)
-  
+
   :config
   (counsel-projectile-mode)
   (add-to-list 'counsel-projectile-switch-project-action
@@ -128,12 +128,16 @@
 (use-package yasnippet-snippets
  :after yasnippet)
 
+(use-package multi-line
+  :general
+  (:states 'normal "gs" #'multi-line))
+
 (setq frame-title-format
-    '(""
-      "%b"
-      (:eval
+  '(""
+     "%b"
+     (:eval
        (if (fboundp 'projectile-project-name)
-           (let ((project-name (projectile-project-name)))
-             (if (not (string= "" project-name))
-                 (format " in [%s]" project-name)
-               (format " in [%s]" (frame-parameter nil 'me/projectile-project-name))))))))
+         (let ((project-name (projectile-project-name)))
+           (if (not (string= "" project-name))
+             (format " in [%s]" project-name)
+             (format " in [%s]" (frame-parameter nil 'me/projectile-project-name))))))))
