@@ -51,7 +51,7 @@ Plug 'shougo/echodoc.vim' | let g:echodoc_enable_at_startup=1
 " Colors
 Plug 'matthias-margush/vim-noctu'
 
-runtime treesitter/plug.vim
+"runtime treesitter/plug.vim
 
 " Editing enhancements
 Plug 'ntpeters/vim-better-whitespace' | runtime better-whitespace.vim
@@ -112,5 +112,5 @@ colorscheme noctu
 runtime notes.vim
 runtime workspace.vim
 runtime lsp/nvim/lsp.vim
-runtime treesitter/treesitter.vim
+"runtime treesitter/treesitter.vim
 

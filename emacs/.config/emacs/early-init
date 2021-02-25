@@ -9,6 +9,13 @@
 (setq default-frame-alist frame-alist
       initial-frame-alist frame-alist)
 
+(setq ffap-machine-p-known 'reject) 	; don't complete links 
+(setq max-specpdl-size 13000)           ; bigger stack
+
+;; clipboard
+(setq x-select-enable-clipboard nil)
+(setq save-interprogram-paste-before-kill t)
+
 ;; Visual cleanup
 (defun suppress-messages (func &rest args)
   "Suppress message output from FUNC."
@@ -17,7 +24,7 @@
   (cl-flet ((silence (&rest args1) (ignore)))
     (advice-add 'message :around #'silence)
     (unwind-protect
-        (apply func args)
+	 (apply func args)
       (advice-remove 'message #'silence))))
 
 ;; Suppress "Cleaning up the recentf...done (0 removed)"

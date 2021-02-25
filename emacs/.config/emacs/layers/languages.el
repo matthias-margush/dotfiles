@@ -41,9 +41,7 @@
   :init
   (defun me/go-editor-settings ()
     ;; (setq flycheck-checker 'gometalinter)
-    (electric-pair-mode)
-    (setq indent-tabs-mode t
-	  tab-width 2)))
+    (electric-pair-mode)))
 
 (use-package yaml-mode
   :commands yaml-mode
