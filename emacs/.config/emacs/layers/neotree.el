@@ -25,3 +25,48 @@
 		  (neotree-find file-name)))
 	  (message "Could not find git project root.")))
     (neotree-toggle)))
+
+(defun me/sidebar ()
+  "Open the sidebar."
+  (interactive)
+  (require 'neotree)
+  (pcase-let ((`(,x . ,y) (frame-position))
+              (`(,left ,top ,right ,bottom) (frame-edges))
+               (border (+ (* 2 (frame-parameter (selected-frame) 'internal-border-width))
+                         (frame-fringe-width)
+                         ))
+               ;; (height (+ 3 (frame-height (selected-frame))))
+               )
+    ;; (message "%s, %s, %s, %s" left top right bottom)
+    (let ((width (- right left))
+	         (height (- bottom top (default-font-height) -1)))
+      (setq frame-resize-pixelwise t)
+      (if (neo-global--window-exists-p)
+        (let ((neo-width (window-total-width (neo-global--get-window))))
+
+          (me/neotree-toggle)
+
+          (set-frame-position
+            (selected-frame)
+            (+ left neo-width (* 2 border))
+            y)
+
+          (set-frame-width
+            (selected-frame)
+            (- width neo-width (* 3 border))
+            nil t))
+
+        (progn
+          (me/neotree-toggle)
+          (let ((neo-width (window-total-width (neo-global--get-window))))
+            (set-frame-position
+              (selected-frame)
+              (- left (+ neo-width (* 2 border)))
+              y)
+
+            (set-frame-width
+              (selected-frame)
+              (+ width neo-width border)
+              nil t))))
+      (set-frame-height (selected-frame) height nil t)
+      )))
