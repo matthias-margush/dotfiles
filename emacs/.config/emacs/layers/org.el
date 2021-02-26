@@ -4,7 +4,7 @@
   (interactive)
   (if (fboundp 'spacebar-deft)
       (spacebar-deft)
-    (deft))
+      (deft))
   (deft-filter-clear)
   (evil-insert-state))
 
@@ -30,20 +30,21 @@
 
   :hook
   (org-babel-after-execute . org-redisplay-inline-images)
+  (org-mode . visual-line-mode)
 
   :init
   (setq
    org-link-frame-setup '((vm . vm-visit-folder-other-frame)
-                          (vm-imap . vm-visit-imap-folder-other-frame)
-                          (gnus . org-gnus-no-new-news)
-                          (file . find-file)
-                          (wl . wl-other-frame))) ()
+			  (vm-imap . vm-visit-imap-folder-other-frame)
+			  (gnus . org-gnus-no-new-news)
+			  (file . find-file)
+			  (wl . wl-other-frame))) ()
   (setq
    org-startup-folded nil
    org-startup-indented nil
    org-startup-with-inline-images t
    org-adapt-indentation nil
-   org-agenda-files '("~/Org")
+   org-agenda-files '("~/Notes")
    org-babel-clojure-backend 'cider
    org-babel-default-header-args:sh '((:prologue . "exec 2>&1") (:epilogue . ":"))
    org-confirm-babel-evaluate nil

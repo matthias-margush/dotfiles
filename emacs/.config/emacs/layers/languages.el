@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package eglot
+  :hook ((go-mode . eglot-ensure))
+
   :general
   (:states '(normal) :prefix leader "r" #'eglot-rename)
   (:states '(normal) :prefix leader "f" #'eglot-format)
@@ -10,7 +12,10 @@
   (:keymaps 'normal
     ;; ",e" #'flymake-show-diagnostics-buffer
     "]e" #'flymake-goto-next-error
-    "[e" #'flymake-goto-prev-error))
+    "[e" #'flymake-goto-prev-error)
+
+  :init
+  (setq eldoc-echo-area-use-multiline-p 1))
 
 (use-package markdown-mode
   :hook ((markdown-mode . visual-line-mode))
@@ -42,7 +47,9 @@
   :init
   (defun me/go-editor-settings ()
     ;; (setq flycheck-checker 'gometalinter)
-    (electric-pair-mode)))
+    (electric-pair-mode))
+
+  (eval-after-load "go-mode" '(setq go-mode-map (make-sparse-keymap))))
 
 (use-package yaml-mode
   :commands yaml-mode
@@ -62,3 +69,5 @@
   ;; :hook (sql-mode . sqlformat-on-save-mode)
   :init
   (setq sqlformat-command 'pgformatter))
+
+(use-package feature-mode)
