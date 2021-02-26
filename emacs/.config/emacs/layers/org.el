@@ -8,6 +8,23 @@
   (deft-filter-clear)
   (evil-insert-state))
 
+(defun me/notes-switch-or-open (_)
+  "Switch to notes"
+  (interactive "P")
+  (let ((found nil))
+    (dolist (frame (frame-list))
+      (when-let (frame-project (frame-parameter frame 'me/project))
+        (when (and (not found) (string= "me/notes" frame-project))
+          (setq found t)
+          (make-frame-visible frame)
+          (raise-frame frame)
+          (select-frame frame))))
+
+    (unless found
+      (let ((new-frame (make-frame)))
+        (set-frame-parameter new-frame 'me/project "me/notes")))
+    (me/deft)))
+
 (with-eval-after-load 'org
   (general-define-key
    :states 'normal
@@ -91,11 +108,11 @@
   :commands (deft deft-filter-clear)
   :bind
   (:map global-map
-	("s-d" . deft))
+	("s-d" . me/notes-switch-or-open))
   :init
-  (setq deft-directory "~/Org"
-	deft-auto-save-interval 0
-	deft-extensions '("org")
-	deft-default-extension "org"
-	deft-use-filename-as-title nil
-	deft-use-filter-string-for-filename t))
+  (setq deft-directory "~/Notes")
+	(setq deft-auto-save-interval 0)
+	(setq deft-extensions '("org"))
+	(setq deft-default-extension "org")
+	(setq deft-use-filename-as-title nil)
+	(setq deft-use-filter-string-for-filename t))

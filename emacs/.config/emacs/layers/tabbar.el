@@ -66,7 +66,6 @@
 (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
 (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
 
-
 (add-hook 'after-init-hook
 	  (lambda ()
 	    (require 'lv)

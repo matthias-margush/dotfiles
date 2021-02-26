@@ -105,7 +105,7 @@
         ("c" . counsel-compile)
         ("s s" . counsel-projectile-ag)
         ("s g" . counsel-git-grep)
-        ("t" . me/neotree-toggle)
+        ("t" . neotree-toggle)
         ("x f" . vterm))
   :init
   (setq
@@ -134,10 +134,9 @@
 
 (setq frame-title-format
   '(""
-     "%b"
      (:eval
        (if (fboundp 'projectile-project-name)
          (let ((project-name (projectile-project-name)))
            (if (not (string= "" project-name))
-             (format " in [%s]" project-name)
-             (format " in [%s]" (frame-parameter nil 'me/projectile-project-name))))))))
+             (format project-name)
+             (format (frame-parameter nil 'me/projectile-project-name))))))))
