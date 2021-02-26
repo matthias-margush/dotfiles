@@ -1,18 +1,20 @@
-;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
+(setq lv-use-padding t
+  lv-force-update t)
 (defun me/tab-echo (&optional _)
   "Echo the tabs."
   (interactive "P")
-
   (let ((msg "| "))
     (dolist (tab (funcall tab-bar-tabs-function))
       (let* ((details (assq 'name tab))
-	     (which (car tab))
-	     (name (cdr details)))
-	(if (eq which 'current-tab)
-	  (setq msg (concat msg (propertize name 'face 'font-lock-keyword-face) " | "))
-	  (setq msg (concat msg (format "%s | " name))))))
-    (message msg)))
+	            (which (car tab))
+	            (name (cdr details)))
+        (if (eq which 'current-tab)
+	        (setq msg (concat msg (propertize name 'face 'font-lock-keyword-face) " | "))
+	        (setq msg (concat msg (format "%s | " name))))))
+    (lv-delete-window)
+    (lv-message "%s" msg)))                  ; lv-message is from hydra
 
 (defun me/tab-new (_)
   "Create a new tab"
@@ -54,3 +56,10 @@
 (evil-ex-define-cmd "tabnew" #'me/tab-new)
 (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
 (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
+
+
+(add-hook 'after-init-hook
+  (lambda ()
+    (require 'lv)
+    (me/tab-echo)
+    (run-with-idle-timer .1 t #'me/tab-echo)))
