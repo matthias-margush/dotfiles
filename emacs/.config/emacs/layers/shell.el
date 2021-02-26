@@ -18,10 +18,10 @@
 
 (add-hook 'eshell-mode-hook
           #'(lambda ()
-	      (setq-local completion-in-region-function #'ivy-completion-in-region)
-	      (setq-local ivy-display-functions-alist nil)
-	      (local-set-key (kbd "s-k") #'eshell-clear)
-	      (local-set-key (kbd "s-h") #'counsel-esh-history)))
+	            (setq-local completion-in-region-function #'ivy-completion-in-region)
+	            (setq-local ivy-display-functions-alist nil)
+	            (local-set-key (kbd "s-k") #'eshell-clear)
+	            (local-set-key (kbd "s-h") #'counsel-esh-history)))
 
 ;(use-package esh-autosuggest
 ;  :hook (eshell-mode . esh-autosuggest-mode)
