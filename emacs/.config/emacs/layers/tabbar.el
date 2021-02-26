@@ -9,7 +9,7 @@
   "Face for inactive spacebar tabs.")
 
 (setq lv-use-padding t
-      lv-force-update t)
+      lv-force-update nil)
 
 (defun me/tab-echo (&optional _)
   "Echo the tabs."
