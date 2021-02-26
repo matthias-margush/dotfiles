@@ -51,6 +51,14 @@
 
   (eval-after-load "go-mode" '(setq go-mode-map (make-sparse-keymap))))
 
+(use-package gotest
+  :general
+  (:states '(normal) :keymaps 'go-mode-map :prefix local-leader "tf" #'go-test-current-file)
+  (:states '(normal) :keymaps 'go-mode-map :prefix local-leader "tt" #'go-test-current-test)
+  (:states '(normal) :keymaps 'go-mode-map :prefix local-leader "tl" #'go-test-current-test-cache)
+  (:states '(normal) :keymaps 'go-mode-map :prefix local-leader "tp" #'go-test-current-project)
+  (:states '(normal) :keymaps 'go-mode-map :prefix local-leader "tr" #'go-run))
+
 (use-package yaml-mode
   :commands yaml-mode
   :mode (("\\.yaml\\'" . yaml-mode)
