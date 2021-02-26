@@ -17,11 +17,11 @@
   (let ((msg "| "))
     (dolist (tab (funcall tab-bar-tabs-function))
       (let* ((details (assq 'name tab))
-	            (which (car tab))
-	            (name (cdr details)))
-        (if (eq which 'current-tab)
-	        (setq msg (concat msg (propertize name 'face 'spacebar-active) " | "))
-	        (setq msg (concat msg (propertize name 'face 'spacebar-inactive) " | ")))))
+	     (which (car tab))
+	     (name (cdr details)))
+	(if (eq which 'current-tab)
+	    (setq msg (concat msg (propertize name 'face 'spacebar-active) " | "))
+	  (setq msg (concat msg (propertize name 'face 'spacebar-inactive) " | ")))))
     (lv-delete-window)
     (lv-message msg))) ; lv-message is from hydra
 
@@ -68,7 +68,7 @@
 
 
 (add-hook 'after-init-hook
-  (lambda ()
-    (require 'lv)
-    (me/tab-echo)
-    (run-with-idle-timer .1 t #'me/tab-echo)))
+	  (lambda ()
+	    (require 'lv)
+	    (me/tab-echo)
+	    (run-with-idle-timer 0.1 t #'me/tab-echo)))
