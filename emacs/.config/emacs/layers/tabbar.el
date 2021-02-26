@@ -1,7 +1,16 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
+(defface spacebar-active
+  '((t :inherit variable-pitch))
+  "Face for active spacebar tab.")
+
+(defface spacebar-inactive
+  '((t :inherit variable-pitch))
+  "Face for inactive spacebar tabs.")
+
 (setq lv-use-padding t
-  lv-force-update t)
+      lv-force-update t)
+
 (defun me/tab-echo (&optional _)
   "Echo the tabs."
   (interactive "P")
@@ -11,10 +20,10 @@
 	            (which (car tab))
 	            (name (cdr details)))
         (if (eq which 'current-tab)
-	        (setq msg (concat msg (propertize name 'face 'font-lock-keyword-face) " | "))
-	        (setq msg (concat msg (format "%s | " name))))))
+	        (setq msg (concat msg (propertize name 'face 'spacebar-active) " | "))
+	        (setq msg (concat msg (propertize name 'face 'spacebar-inactive) " | ")))))
     (lv-delete-window)
-    (lv-message "%s" msg)))                  ; lv-message is from hydra
+    (lv-message msg))) ; lv-message is from hydra
 
 (defun me/tab-new (_)
   "Create a new tab"
