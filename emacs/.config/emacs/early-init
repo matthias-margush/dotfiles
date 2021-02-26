@@ -64,7 +64,7 @@
   :init
   (defun me/modeline-style-line (&optional arg)
     "Style the mode line a simple line."
-    (let ((box-color "#D2CCBD"))
+    (let ((box-color "#BC7C49"))
 
       ;; #DDDBD6
       ;; #f0ecea

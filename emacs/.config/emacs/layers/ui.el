@@ -16,15 +16,13 @@
 
 (use-package editorconfig :config (editorconfig-mode))
 
-
-
 (use-package default-text-scale
   :bind (("s-=" . default-text-scale-increase)
 	 ("s-+" . default-text-scale-increase)
 	 ("s--" . default-text-scale-decrease)
 	 ("s-0" . default-text-scale-reset))
   :config (default-text-scale-mode t))
- 
+
 (use-package rainbow-mode)
 
 (require 'dired-x)
