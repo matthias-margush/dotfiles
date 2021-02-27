@@ -70,9 +70,12 @@
 (add-hook 'after-init-hook
 	  (lambda ()
 	    (me/tabs-refresh)
+	    (add-hook 'post-command-hook #'me/tabs-refresh)
 	    ;; (run-with-timer 1 1 #'me/tabs-refresh)
 	    ;; (run-with-idle-timer 1 1 #'me/tabs-refresh)
 	    ))
+
+;; (add-hook 'buffer-list-update-hook #'me/tabs-refresh)
 
 (defun me/tab-new (_)
   "Create a new tab"
