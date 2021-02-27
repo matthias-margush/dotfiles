@@ -1,6 +1,6 @@
 ; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-(use-package posframe)
+;; (use-package posframe)
 
 (defface spacebar-active
   '((t :inherit variable-pitch))
@@ -15,72 +15,96 @@
 (defun me/tab-echo (&optional _)
   "Echo the tabs."
   (interactive "P")
-  (let ((msg (propertize "| " 'face 'spacebar-inactive)))
-    (dolist (tab (funcall tab-bar-tabs-function))
-      (let* ((details (assq 'name tab))
-	     (which (car tab))
-	     (name (cdr details)))
-	;(message "%s" tab)
-	(if (eq which 'current-tab)
-	    (setq msg (concat
-		       msg
-		       (propertize name 'face 'spacebar-active)
-		       (propertize " | " 'face 'spacebar-inactive)))
-	  (setq msg
-		(concat
-		 msg
-		 (propertize name 'face 'spacebar-inactive)
-		 (propertize " | " 'face 'spacebar-inactive))))))
-    (posframe-show
-     (format " *me/tabbar - %s *" (selected-frame))
-     :string msg
-     :position `(,(frame-fringe-width) . 1)
-     :posframe-width (frame-width))))
+  (unless (or cursor-in-echo-area (active-minibuffer-window))
+    (let ((msg (propertize "| " 'face 'spacebar-inactive))
+	  (name (format "*me/tabbar - %s*" (selected-frame))))
+      (dolist (tab (funcall tab-bar-tabs-function))
+	(let* ((details (assq 'name tab))
+	       (which (car tab))
+	       (name (cdr details)))
+	  (if (eq which 'current-tab)
+	      (setq msg (concat
+			 msg
+			 (propertize name 'face 'spacebar-active)
+			 (propertize " | " 'face 'spacebar-inactive)))
+	    (setq msg
+		  (concat
+		   msg
+		   (propertize name 'face 'spacebar-inactive)
+		   (propertize " | " 'face 'spacebar-inactive))))))
 
-;(add-hook 'after-init-hook
-;	  (lambda ()
-;	    (run-with-idle-timer 1 t #'me/tab-echo)))
+      (format msg))))
 
-;; (defun me/tabs-new-frame (frame)
-;;   (with-selected-frame frame (me/tab-echo)))
+(defvar tab-current-msg "")
 
-;; (add-hook 'after-make-frame-functions #'me/tabs-new-frame)
+(defadvice eldoc--message
+    (around eldoc--message-default-tabs)
+  "Display tab line above the message."
+  (unwind-protect
+      (let ((msg (ad-get-arg 0)))
+	(if (string= nil msg)
+	    (ad-set-arg 0 (me/tab-echo)))))
+  ad-do-it)
 
-;; (add-hook 'after-focus-change-function #'me/tab-echo)
+(ad-activate 'eldoc--message)
+;; (ad-deactivate 'eldoc--message)
 
-;; (add-hook 'after-init-hook
-;; 	  (lambda ()
-;; 	    (add-to-list 'after-make-frame-functions #'me/tab-echo t)))
+(defalias 'message-plain (symbol-function 'message))
 
+(defun me/tabs-message-with-tabs (&optional msg)
+  (concat (propertize "   " 'face 'spacebar-active) msg))
 
+;; transform inputs to (message):
+(setq set-message-function #'me/tabs-message-with-tabs)
+
+;; (setq minibuffer-message-timeout 100000)
+
+(defun me/tabs-refresh ()
+  (interactive)
+  (unless (current-message)
+    (message (me/tab-echo))))
+
+;; (add-hook 'pre-command-hook #'me/tabs-refresh nil t)
+
+;; (setq minibuffer-message-clear-timeout 10000000)
+(add-hook 'after-init-hook
+	  (lambda ()
+	    (me/tabs-refresh)
+	    ;; (run-with-timer 1 1 #'me/tabs-refresh)
+	    ;; (run-with-idle-timer 1 1 #'me/tabs-refresh)
+	    ))
 
 (defun me/tab-new (_)
   "Create a new tab"
   (interactive "P")
   (tab-bar-new-tab)
-  (me/tab-echo))
+  (me/tabs-refresh)
+  )
 
 (defun me/tab-next (_)
   "Switch to the next tab."
   (interactive "P")
   (tab-bar-switch-to-next-tab)
-  (me/tab-echo))
+  (me/tabs-refresh)
+  )
 
 (defun me/tab-prev (_)
   "Switch to the previous tab."
   (interactive "P")
   (tab-bar-switch-to-prev-tab)
-  (me/tab-echo))
+  (me/tabs-refresh)
+  )
 
 (defun me/tab-close (_)
   "Switch to the previous tab."
   (interactive "P")
   (tab-bar-close-tab)
-  (me/tab-echo))
+  (me/tabs-refresh)
+  )
 
 (evil-define-key 'normal 'global (kbd "gt") #'me/tab-next)
 (evil-define-key 'normal 'global (kbd "gT") #'me/tab-prev)
-(evil-define-key 'normal 'global (kbd "g SPC") #'me/tab-echo)
+(evil-define-key 'normal 'global (kbd "g SPC") #'me/tabs-refresh)
 (define-key evil-window-map (kbd "C-t") #'me/tab-new)
 (define-key evil-window-map (kbd "C-q") #'me/tab-close)
 
