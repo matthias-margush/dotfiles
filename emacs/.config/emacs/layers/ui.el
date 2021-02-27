@@ -8,7 +8,7 @@
 (defun show-file-name ()
   "Show the full path file name."
   (interactive)
-  (message "[%s] %s" (line-number-at-pos) (buffer-file-name) ))
+  (message "[%s] %s" (line-number-at-pos) (buffer-file-name)))
 
 (global-set-key (kbd "C-S-G") #'show-file-name)
 
@@ -18,18 +18,18 @@
 
 (use-package default-text-scale
   :bind (("s-=" . default-text-scale-increase)
-	 ("s-+" . default-text-scale-increase)
-	 ("s--" . default-text-scale-decrease)
-	 ("s-0" . default-text-scale-reset))
+         ("s-+" . default-text-scale-increase)
+         ("s--" . default-text-scale-decrease)
+         ("s-0" . default-text-scale-reset))
   :config (default-text-scale-mode t))
 
 (use-package rainbow-mode)
 
 (require 'dired-x)
 (add-hook 'dired-load-hook
-	  (lambda ()
-	    (dired-omit-mode)
-	    (require 'dired-x)))
+          (lambda ()
+            (dired-omit-mode)
+            (require 'dired-x)))
 (setq dired-omit-mode t)
 
 
