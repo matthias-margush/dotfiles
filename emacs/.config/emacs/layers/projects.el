@@ -4,8 +4,9 @@
   :bind ("C-'" . #'imenu-list-smart-toggle))
 
 (use-package counsel
+  :demand t                             ; get all overrides
   :bind (("C-x b" . counsel-switch-buffer)
-           ("s-:" . counsel-M-x))
+         ("s-:" . counsel-M-x))
 
   :general
   (:states 'normal
@@ -37,26 +38,26 @@
     (let ((notes (expand-file-name "project.org" (projectile-project-root))))
       (if (and notes (file-exists-p notes))
           (find-file notes)
-          (let ((notes (locate-file
-                        "README"
-                        `(,(projectile-project-root))
-                        '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
-            (if (and notes (file-exists-p notes))
-                (find-file notes)))))))
+        (let ((notes (locate-file
+                      "README"
+                      `(,(projectile-project-root))
+                      '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
+          (if (and notes (file-exists-p notes))
+              (find-file notes)))))))
 
 (defun me/project-open-notes (project)
   "Open a project notes file when opening projectile."
   (interactive)
   (let ((notes (expand-file-name "project.org" project)))
     (if (and notes (file-exists-p notes))
-      (find-file notes)
+        (find-file notes)
       (let ((notes (locate-file
                     "README"
                     `(,(expand-file-name project))
                     '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
         (if (and notes (file-exists-p notes))
             (find-file notes)
-            (counsel-projectile-switch-project-action-find-file project))))))
+          (counsel-projectile-switch-project-action-find-file project))))))
 
 
 (defun me/project-switch-or-open (project)
@@ -119,24 +120,24 @@
   (projectile-mode))
 
 (use-package yasnippet
- :bind ("s-y" . yas-insert-snippet)
- :init
- (setq yas-verbosity 0)
- :config
- (yas-global-mode t))
+  :bind ("s-y" . yas-insert-snippet)
+  :init
+  (setq yas-verbosity 0)
+  :config
+  (yas-global-mode t))
 
 (use-package yasnippet-snippets
- :after yasnippet)
+  :after yasnippet)
 
 (use-package multi-line
   :general
   (:states 'normal "gs" #'multi-line))
 
 (setq frame-title-format
-  '(""
-     (:eval
-       (if (fboundp 'projectile-project-name)
-         (let ((project-name (projectile-project-name)))
-           (if (not (string= "" project-name))
-             (format project-name)
-             (format (frame-parameter nil 'me/projectile-project-name))))))))
+      '(""
+        (:eval
+         (if (fboundp 'projectile-project-name)
+             (let ((project-name (projectile-project-name)))
+               (if (not (string= "" project-name))
+                   (format project-name)
+                 (format (frame-parameter nil 'me/projectile-project-name))))))))
