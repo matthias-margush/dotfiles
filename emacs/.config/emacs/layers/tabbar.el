@@ -1,4 +1,6 @@
-;; -*- mode: emacs-lisp; lexical-binding: t -*-
+; -*- mode: emacs-lisp; lexical-binding: t -*-
+
+(use-package posframe)
 
 (defface spacebar-active
   '((t :inherit variable-pitch))
@@ -8,22 +10,49 @@
   '((t :inherit variable-pitch))
   "Face for inactive spacebar tabs.")
 
-(setq lv-use-padding t
-      lv-force-update nil)
+(setq-default cursor-in-non-selected-windows nil)
 
 (defun me/tab-echo (&optional _)
   "Echo the tabs."
   (interactive "P")
-  (let ((msg "| "))
+  (let ((msg (propertize "| " 'face 'spacebar-inactive)))
     (dolist (tab (funcall tab-bar-tabs-function))
       (let* ((details (assq 'name tab))
 	     (which (car tab))
 	     (name (cdr details)))
+	;(message "%s" tab)
 	(if (eq which 'current-tab)
-	    (setq msg (concat msg (propertize name 'face 'spacebar-active) " | "))
-	  (setq msg (concat msg (propertize name 'face 'spacebar-inactive) " | ")))))
-    (lv-delete-window)
-    (lv-message msg))) ; lv-message is from hydra
+	    (setq msg (concat
+		       msg
+		       (propertize name 'face 'spacebar-active)
+		       (propertize " | " 'face 'spacebar-inactive)))
+	  (setq msg
+		(concat
+		 msg
+		 (propertize name 'face 'spacebar-inactive)
+		 (propertize " | " 'face 'spacebar-inactive))))))
+    (posframe-show
+     (format " *me/tabbar - %s *" (selected-frame))
+     :string msg
+     :position `(,(frame-fringe-width) . 1)
+     :posframe-width (frame-width))))
+
+;(add-hook 'after-init-hook
+;	  (lambda ()
+;	    (run-with-idle-timer 1 t #'me/tab-echo)))
+
+;; (defun me/tabs-new-frame (frame)
+;;   (with-selected-frame frame (me/tab-echo)))
+
+;; (add-hook 'after-make-frame-functions #'me/tabs-new-frame)
+
+;; (add-hook 'after-focus-change-function #'me/tab-echo)
+
+;; (add-hook 'after-init-hook
+;; 	  (lambda ()
+;; 	    (add-to-list 'after-make-frame-functions #'me/tab-echo t)))
+
+
 
 (defun me/tab-new (_)
   "Create a new tab"
@@ -65,9 +94,3 @@
 (evil-ex-define-cmd "tabnew" #'me/tab-new)
 (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
 (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
-
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (require 'lv)
-	    (me/tab-echo)
-	    (run-with-idle-timer 0.1 t #'me/tab-echo)))

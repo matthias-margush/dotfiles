@@ -5,7 +5,7 @@
     (left . 1000)
     (width . 90)
     (height . 60)
-    (internal-border-width . 20)
+    (internal-border-width . 30)
     (vertical-scroll-bars . nil)))
 (setq default-frame-alist frame-alist
       initial-frame-alist frame-alist)
@@ -14,8 +14,7 @@
 (setq max-specpdl-size 13000)           ; bigger stack
 
 ;; clipboard
-(setq x-select-enable-clipboard nil)
-(setq save-interprogram-paste-before-kill t)
+(setq save-interprogram-paste-before-kill nil)
 
 ;; Visual cleanup
 (defun suppress-messages (func &rest args)
@@ -101,7 +100,7 @@
 
   (setq-default mode-line-format '(""))
   (advice-add 'enable-theme :after #'me/modeline-style-line)
-  (add-to-list 'after-make-frame-functions #'me/modeline-style-line)
+  (add-to-list 'after-make-frame-functions #'me/modeline-style-line t)
 
   :config
   (require 'construction-paper-theme)
