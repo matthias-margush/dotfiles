@@ -27,8 +27,7 @@
            "[e" #'flymake-goto-prev-error
            ",d" #'flymake-show-diagnostics-buffer)
 
-  :bind (:map help-map
-              ("F" . describe-face))
+  :bind (:map help-map ("F" . describe-face))
 
   :init
   (setq evil-want-keybinding nil)
