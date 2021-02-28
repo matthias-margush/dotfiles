@@ -30,7 +30,30 @@
 (load "~/.config/emacs/layers/languages" nil t)
 (load "~/.config/emacs/layers/ido" nil t)
 (load "~/.config/emacs/layers/clojure" nil t)
-(use-package origami :config (global-origami-mode))
+
+(use-package origami
+  :after evil
+  :general
+  (:states '(normal) "zo"
+           (lambda ()
+             (interactive)
+             (save-excursion
+               (origami-next-fold (current-buffer) (point))
+               (origami-open-node (current-buffer) (point)))))
+  (:states '(normal) "zc"
+           (lambda ()
+             (interactive)
+             (save-excursion
+               (end-of-line)
+               (origami-close-node (current-buffer) (point)))))
+  (:states '(normal) "za"
+           (lambda ()
+             (interactive)
+             (save-excursion
+               (end-of-line)
+               (origami-toggle-node (current-buffer) (point)))))
+  :config
+  (global-origami-mode))
 
 (use-package envrc
   :config (envrc-global-mode))
