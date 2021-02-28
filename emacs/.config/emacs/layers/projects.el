@@ -1,7 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (use-package imenu-list
-  :bind ("C-'" . #'imenu-list-smart-toggle))
+  :general
+  (:states 'normal :prefix leader "v" #'imenu-list-smart-toggle))
 
 (use-package counsel
   :demand t                             ; get all overrides
@@ -9,8 +10,9 @@
          ("s-:" . counsel-M-x))
 
   :general
-  (:states 'normal
-           ",cc" #'counsel-compile)
+  (:states 'normal ",cc" #'counsel-compile)
+  (:states 'normal :prefix leader "j" #'counsel-semantic-or-imenu)
+
   :init
   (setq ivy-count-format ""
         ivy-use-virtual-buffers t
