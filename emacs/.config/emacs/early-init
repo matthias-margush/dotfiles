@@ -127,3 +127,16 @@
          face which-func
          mouse-face mode-line-highlight
          help-echo "Go to beginning\n\ ")))
+
+(defun me/project-to-buffer-name ()
+  ;; (file-relative-name buffer-file-truename (cdr-safe (project-current)))
+  (if buffer-file-truename
+    (let* ((name buffer-file-truename)
+            (project (cdr-safe (project-current)))
+            (name (file-relative-name name project)))
+      (combine-and-quote-strings
+        (split-string name "/+")
+        " ❯ "))
+    (buffer-name)))
+
+(setq-default mode-line-buffer-identification '(:eval (me/project-to-buffer-name)))

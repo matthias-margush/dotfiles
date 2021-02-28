@@ -12,19 +12,6 @@
 ;; (defun me/header-line ()
 ;;   (concat " . " (which-function)))
 
-(defun me/project-to-buffer-name ()
-  ;; (file-relative-name buffer-file-truename (cdr-safe (project-current)))
-  (let* ((name (or buffer-file-truename (buffer-name)))
-         (project (cdr-safe (project-current)))
-         (name (file-relative-name name project)))
-    (combine-and-quote-strings
-     (split-string name "/+")
-     " ❯ ")))
-
-(setq-default mode-line-buffer-identification '(:eval (me/project-to-buffer-name)))
-
-(require 'subr-x)
-
 (defun show-file-name ()
   "Show the full path file name."
   (interactive)
