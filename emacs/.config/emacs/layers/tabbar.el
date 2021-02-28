@@ -18,6 +18,8 @@
   (unless (or cursor-in-echo-area (active-minibuffer-window))
     (let ((msg (propertize "| " 'face 'spacebar-inactive))
 	  (name (format "*me/tabbar - %s*" (selected-frame))))
+
+      ;; tabs
       (dolist (tab (funcall tab-bar-tabs-function))
 	(let* ((details (assq 'name tab))
 	       (which (car tab))
@@ -32,6 +34,17 @@
 		   msg
 		   (propertize name 'face 'spacebar-inactive)
 		   (propertize " | " 'face 'spacebar-inactive))))))
+      ;; function
+      ;; (let ((fn (which-function)))
+      ;;   (when fn
+      ;;     (set-text-properties 0 (length fn) nil fn)
+      ;;     (setq msg
+      ;;           (concat msg
+      ;;                   (propertize
+      ;;                    ;; (concat "  ❯ " fn)
+      ;;                    (concat "  λ " fn)
+      ;;                    'face 'which-func)))
+      ;;     ))
 
       (format msg))))
 

@@ -1,15 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
+;;;  which-func mode
 (which-func-mode)
-
 (setq me/which-map (make-sparse-keymap))
-
-(defun me/echo-func (args)
-  "Echo the current function name."
-  (interactive "P")
-  (message (which-function)))
-
-(define-key me/which-map "f" #'me/echo-func)
 
 (general-define-key
   :states 'normal

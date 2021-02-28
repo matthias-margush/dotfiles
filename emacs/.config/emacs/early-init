@@ -1,12 +1,12 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (setq frame-alist
-  '((top . 100)
-    (left . 1000)
-    (width . 90)
-    (height . 60)
-    (internal-border-width . 30)
-    (vertical-scroll-bars . nil)))
+      '((top . 100)
+        (left . 1000)
+        (width . 90)
+        (height . 60)
+        (internal-border-width . 30)
+        (vertical-scroll-bars . nil)))
 (setq default-frame-alist frame-alist
       initial-frame-alist frame-alist)
 
@@ -24,7 +24,7 @@
   (cl-flet ((silence (&rest args1) (ignore)))
     (advice-add 'message :around #'silence)
     (unwind-protect
-	 (apply func args)
+        (apply func args)
       (advice-remove 'message #'silence))))
 
 ;; Suppress "Cleaning up the recentf...done (0 removed)"
@@ -105,3 +105,25 @@
   :config
   (require 'construction-paper-theme)
   (construction-paper-theme-light))
+
+(defface header-line-path
+  '((t :inherit variable-pitch))
+  "Face for the header line path.")
+
+(which-func-mode)
+(setq-default
+ header-line-format
+ '((:propertize "☰" face font-lock-bold-face)
+   "  "
+   (:propertize mode-line-buffer-identification face header-line-path)
+   (:propertize " λ " face font-lock-bold-face)
+   (which-func-mode ("" which-func-format ""))))
+
+(setq which-func-unknown " - ")
+(setq which-func-format
+      `((:propertize
+         which-func-current
+         local-map ,which-func-keymap
+         face which-func
+         mouse-face mode-line-highlight
+         help-echo "Go to beginning\n\ ")))
