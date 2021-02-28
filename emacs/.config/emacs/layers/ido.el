@@ -26,9 +26,11 @@
               ("C-r" . company-select-previous-or-abort))
 
   :init
-  (setq company-frontends '(company-echo-strip-common-frontend))
+  ;; (setq company-frontends '(company-echo-strip-common-frontend))
+  ;; (setq company-frontends '(counsel-company))
 
   :config
+  (company-tng-configure-default)
   (defadvice eldoc-display-message-no-interference-p
       (after dont-show-when-isearching activate)
     "Prevents eldoc from interfering with company-echo."
