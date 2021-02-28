@@ -113,11 +113,13 @@
 (which-func-mode)
 (setq-default
  header-line-format
- '((:propertize "☰" face font-lock-bold-face)
-   "  "
-   (:propertize mode-line-buffer-identification face header-line-path)
-   (:propertize " λ " face font-lock-bold-face)
-   (which-func-mode ("" which-func-format ""))))
+ '(
+    ;; (:propertize "☰" face font-lock-bold-face)
+    (:propertize "⧉" face font-lock-bold-face)
+    " "
+    (:propertize mode-line-buffer-identification face header-line-path)
+    (:propertize "    λ " face which-func)
+    (which-func-mode ("" which-func-format ""))))
 
 (setq which-func-unknown " - ")
 (setq which-func-format
@@ -136,7 +138,9 @@
             (name (file-relative-name name project)))
       (combine-and-quote-strings
         (split-string name "/+")
-        " ❯ "))
+        " ⧸ "
+        ;; " ❯ "
+        ))
     (buffer-name)))
 
 (setq-default mode-line-buffer-identification '(:eval (me/project-to-buffer-name)))
