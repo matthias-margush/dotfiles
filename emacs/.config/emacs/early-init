@@ -13,9 +13,6 @@
 (setq ffap-machine-p-known 'reject) 	; don't complete links
 (setq max-specpdl-size 13000)           ; bigger stack
 
-;; clipboard
-(setq save-interprogram-paste-before-kill nil)
-
 ;; Visual cleanup
 (defun suppress-messages (func &rest args)
   "Suppress message output from FUNC."

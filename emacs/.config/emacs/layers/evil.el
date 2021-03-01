@@ -33,6 +33,14 @@
   (setq evil-want-keybinding nil)
 
   :config
+  ;; clipboard
+  (setq x-select-enable-clipboard nil)
+  (define-key evil-visual-state-map (kbd "s-c") (kbd "\"+y"))
+  (define-key evil-insert-state-map (kbd "s-v") (kbd "C-r +"))
+  (define-key evil-ex-completion-map (kbd "s-v") (kbd "C-r +"))
+  (define-key evil-normal-state-map (kbd "s-v") (kbd "\"+p"))
+  (define-key evil-ex-search-keymap (kbd "s-v") (kbd "C-r +"))
+
   (evil-mode))
 
 (use-package evil-collection
