@@ -47,6 +47,16 @@
           (if (and notes (file-exists-p notes))
               (find-file notes)))))))
 
+(defun me/project-notes-file ()
+  ""
+  (let ((project-notes (concat
+                        (file-name-as-directory
+                         (cdr-safe (project-current)))
+                        "project.org")))
+    (if (file-exists-p project-notes)
+        project-notes
+      "~/Notes/projects.org")))
+
 (defun me/project-open-notes (project)
   "Open a project notes file when opening projectile."
   (interactive)

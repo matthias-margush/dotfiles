@@ -91,12 +91,14 @@
 
   (setq org-capture-templates
 	`(("c" "Code")
-	  ("cl" "capture"
-	   plain (clock)
+
+	  ("cl" "snippet" entry
+	   (file+headline me/project-notes-file "Snippets")
 	   "%(ha/org-capture-code-snippet \"%F\")"
 	   :empty-lines 1 :immediate-finish t)
-	  ("cf" "capture with notes"
-	   plain (clock)
+
+	  ("cf" "snippet with notes" entry
+	   (file+headline me/project-notes-file "Snippets")
 	   "%(ha/org-capture-code-snippet \"%F\")\n\n%?"
 	   :empty-lines 1)))
 
@@ -162,6 +164,6 @@
 				file-base))))
     (format "%s
 
-        #+BEGIN_%s %s
-     %s
-        #+END_%s" initial-txt type headers code-snippet type)))
+#+BEGIN_%s %s
+%s
+#+END_%s" initial-txt type headers code-snippet type)))
