@@ -118,7 +118,7 @@
         ("c" . counsel-compile)
         ("s s" . counsel-projectile-ag)
         ("s g" . counsel-git-grep)
-        ("t" . neotree-toggle)
+        ("t" . me/sidebar)
         ("x f" . vterm))
   :init
   (setq
