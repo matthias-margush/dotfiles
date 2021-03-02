@@ -126,7 +126,7 @@
    projectile-current-project-on-switch 'move-to-end
    projectile-dynamic-mode-line nil
    projectile-switch-project-action #'counsel-projectile-find-file
-   projectile-project-search-path '("~/.config/emacs/straight/repos" "~/code"))
+   projectile-project-search-path '("~/code"))
 
   :config
   (projectile-mode))

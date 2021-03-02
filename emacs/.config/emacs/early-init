@@ -111,7 +111,7 @@
 
 (setq-default
  header-line-format
- '((:propertize "⧉" face font-lock-bold-face)
+ '((:propertize "⧉" face bold)
     " "
     (:propertize mode-line-buffer-identification face header-line-path)
     (:propertize "    λ " face which-func)

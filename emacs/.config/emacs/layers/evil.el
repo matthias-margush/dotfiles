@@ -34,7 +34,7 @@
 
   :config
   ;; clipboard
-  (setq x-select-enable-clipboard nil)
+  (setq x-select-enable-clipboard t)
   (define-key evil-visual-state-map (kbd "s-c") (kbd "\"+y"))
   (define-key evil-insert-state-map (kbd "s-v") (kbd "C-r +"))
   (define-key evil-ex-completion-map (kbd "s-v") (kbd "C-r +"))

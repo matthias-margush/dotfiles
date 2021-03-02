@@ -69,7 +69,7 @@
    org-confirm-babel-evaluate nil
    org-confirm-elisp-link-function nil
    org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0_1/libexec/ditaa-0.11.0-standalone.jar"
-   org-ellipsis "  "
+   org-ellipsis " ... "
    org-enable-github-support t
    org-fontify-done-headline t
    org-fontify-quote-and-verse-blocks t

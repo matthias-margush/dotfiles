@@ -38,19 +38,22 @@
            (lambda ()
              (interactive)
              (save-excursion
-               (origami-next-fold (current-buffer) (point))
+               (goto-char (point-at-bol))
+               (goto-char (point-at-eol))
                (origami-open-node (current-buffer) (point)))))
   (:states '(normal) "zc"
            (lambda ()
              (interactive)
              (save-excursion
-               (end-of-line)
+               (goto-char (point-at-bol))
+               (goto-char (point-at-eol))
                (origami-close-node (current-buffer) (point)))))
   (:states '(normal) "za"
            (lambda ()
              (interactive)
              (save-excursion
-               (end-of-line)
+               (goto-char (point-at-bol))
+               (goto-char (point-at-eol))
                (origami-toggle-node (current-buffer) (point)))))
   :config
   (global-origami-mode))

@@ -53,4 +53,4 @@
 (use-package adaptive-wrap
     :hook (visual-line-mode . adaptive-wrap-prefix-mode)
     :config
-    (setq-default adaptive-wrap-extra-indent 2))
+    (setq-default adaptive-wrap-extra-indent 1))
