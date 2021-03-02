@@ -25,7 +25,9 @@
   (:states 'normal
            "]e" #'flymake-goto-next-error
            "[e" #'flymake-goto-prev-error
-           ",d" #'flymake-show-diagnostics-buffer)
+           ",d" #'flymake-show-diagnostics-buffer
+           "]q" #'next-error            ; compile window / search results
+           "[q" #'previous-error)       ; compile window / search results
 
   :bind (:map help-map ("F" . describe-face))
 
