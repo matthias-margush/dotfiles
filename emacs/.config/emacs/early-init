@@ -122,9 +122,7 @@
       `((:propertize
          which-func-current
          local-map ,which-func-keymap
-         face which-func
-         mouse-face mode-line-highlight
-         help-echo "Go to beginning\n\ ")))
+         face which-func)))
 
 (defun me/project-to-buffer-name ()
   (if buffer-file-truename
