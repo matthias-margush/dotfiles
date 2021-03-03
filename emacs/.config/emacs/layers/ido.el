@@ -19,11 +19,11 @@
 
 (use-package company
   :hook (after-init . global-company-mode)
-  :bind (:map company-active-map
-              ("C-n" . company-select-next-or-abort)
-              ("C-p" . company-select-previous-or-abort)
-              ("C-s" . company-select-next-or-abort)
-              ("C-r" . company-select-previous-or-abort))
+  ;; :bind (:map company-active-map
+  ;;             ("C-n" . company-select-next-or-abort)
+  ;;             ("C-p" . company-select-previous-or-abort)
+  ;;             ("C-s" . company-select-next-or-abort)
+  ;;             ("C-r" . company-select-previous-or-abort))
 
   :init
   ;; (setq company-frontends '(company-echo-strip-common-frontend))
