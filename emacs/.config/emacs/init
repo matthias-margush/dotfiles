@@ -32,6 +32,7 @@
 (load "~/.config/emacs/layers/clojure" nil t)
 
 (use-package origami
+  :demand t
   :after evil
   :general
   (:states '(normal) "zo"
@@ -59,6 +60,7 @@
              (save-excursion
                (origami-forward-toggle-node (current-buffer) (point)))))
   (:states '(normal) "S-<tab>" #'origami-recursively-toggle-node)
+
   (:states '(normal) "zA" #'origami-recursively-toggle-node)
   (:states '(normal) "zO" #'origami-recursively-toggle-node)
   (:states '(normal) "zC" #'origami-recursively-toggle-node)

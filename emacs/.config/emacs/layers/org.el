@@ -31,7 +31,9 @@
    :keymaps '(org-mode-map)
    "s-j" #'org-next-link
    "s-k" #'org-previous-link
-   "s-l" #'org-open-at-point))
+   "s-l" #'org-open-at-point
+   "TAB" #'org-cycle
+   "S-<tab>" #'org-shifttab))
 
 (evil-add-command-properties #'org-open-at-point :jump t)
 (evil-define-key 'normal 'global (kbd "s-h") #'evil-jump-backward)
