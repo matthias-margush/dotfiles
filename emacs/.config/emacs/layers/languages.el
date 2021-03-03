@@ -24,7 +24,9 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-completion-show-detail t
-        lsp-completion-show-kind t))
+        lsp-completion-show-kind t
+        lsp-file-watch-threshold 3000)
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'" ))
 
 (use-package lsp-ivy)
 
