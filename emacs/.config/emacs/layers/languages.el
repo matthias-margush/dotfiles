@@ -14,7 +14,7 @@
 
   :general
   (:states '(normal) :keymaps 'lsp-mode-map "gd" #'lsp-find-definition)
-  (:states '(normal) :keymaps 'lsp-mode-map "gd" #'lsp-find-references)
+  (:states '(normal) :keymaps 'lsp-mode-map "gr" #'lsp-find-references)
   (:states '(normal) :keymaps 'lsp-mode-map "K" #'lsp-describe-thing-at-point)
   (:states '(normal) :keymaps 'lsp-mode-map "==" #'lsp-format-buffer)
   (:states '(normal) :keymaps 'lsp-mode-map :prefix leader "J" #'lsp-ivy-workspace-symbol)
