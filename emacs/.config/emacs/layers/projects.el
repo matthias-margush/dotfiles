@@ -142,9 +142,6 @@
   :after yasnippet)
 
 (use-package multi-line
-  :bind
-  ("C-;" . #'multi-line)
-
   :general
   (:states 'normal "gs" #'multi-line))
 
