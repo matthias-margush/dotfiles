@@ -59,7 +59,7 @@
 			  (vm-imap . vm-visit-imap-folder-other-frame)
 			  (gnus . org-gnus-no-new-news)
 			  (file . find-file)
-			  (wl . wl-other-frame))) ()
+			  (wl . wl-other-frame)))
   (setq
    org-startup-folded nil
    org-startup-indented nil
@@ -159,11 +159,11 @@
 	 (file-base (file-name-nondirectory file-name))
 	 (line-number (line-number-at-pos (region-beginning)))
 	 (initial-txt (if (null func-name)
-			  (format "* From [[file:%s::%s][%s]]:"
+			  (format "* Code Snippet\n+From: [[file:%s::%s][%s]]:"
 				  file-name line-number file-base)
-			(format "* From ~%s~ (in [[file:%s::%s][%s]]):"
-				func-name file-name line-number
-				file-base))))
+			(format "* Code Snippet\n+From [[file:%s::%s][%s]]\n In ~%s~:"
+				file-name line-number file-base
+                                func-name))))
     (format "%s
 
 #+BEGIN_%s %s
