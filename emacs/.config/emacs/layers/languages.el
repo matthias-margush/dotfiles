@@ -12,34 +12,21 @@
 (use-package lsp-mode
   :hook ((go-mode . lsp))
 
+  :general
+  (:states '(normal) :keymaps 'lsp-mode-map "gd" #'lsp-find-definition)
+  (:states '(normal) :keymaps 'lsp-mode-map "gd" #'lsp-find-references)
+  (:states '(normal) :keymaps 'lsp-mode-map "K" #'lsp-describe-thing-at-point)
+  (:states '(normal) :keymaps 'lsp-mode-map "==" #'lsp-format-buffer)
+  (:states '(normal) :keymaps 'lsp-mode-map :prefix leader "J" #'lsp-ivy-workspace-symbol)
+  (:states '(normal) :keymaps 'lsp-mode-map "M-s-o" #'lsp-ivy-global-workspace-symbol)
+  (:states '(normal) :keymaps 'lsp-mode-map :prefix local-leader "sr" #'lsp-workspace-restart)
+
   :config
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-completion-show-detail t
         lsp-completion-show-kind t))
 
 (use-package lsp-ivy)
-
-;; (defun me/eglot-ensure ()
-;;   (interactive)
-;;   (message "ensuring eglot")
-;;   (eglot-ensure))
-
-;; (use-package eglot
-;;   :hook ((go-mode . me/eglot-ensure))
-
-;;   :general
-;;   (:states '(normal) :prefix leader "r" #'eglot-rename)
-;;   (:states '(normal) :prefix leader "f" #'eglot-format)
-;;   (:states '(normal) :prefix leader "o" #'eglot-code-action-organize-imports)
-;;   (:states '(normal) :prefix leader "q" #'eglot-code-action-quickfix)
-;;   (:states '(normal) :prefix local-leader "d" #'flymake-show-diagnostics-buffer)
-;;   (:keymaps 'normal
-;;             ;; ",e" #'flymake-show-diagnostics-buffer
-;;             "]e" #'flymake-goto-next-error
-;;             "[e" #'flymake-goto-prev-error)
-
-;;   :init
-;;   (setq eldoc-echo-area-use-multiline-p 1))
 
 (use-package markdown-mode
   :hook ((markdown-mode . visual-line-mode))
