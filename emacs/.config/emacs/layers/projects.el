@@ -142,6 +142,7 @@
   :after yasnippet)
 
 (use-package multi-line
+  :demand t                             ; sets up hooks in various modes
   :general
   (:states 'normal "gs" #'multi-line))
 
