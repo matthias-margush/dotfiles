@@ -33,14 +33,13 @@
 ;;;;;; ;;   ;; (add-hook 'eshell-mode-hook #'setup-eshell-grouped-backends)
 ;;   )
 
-(general-define-key
- :states 'insert
- :keymaps '(eshell-mode-map)
- "M-p" #'eshell-previous-input
- "M-n" #'eshell-next-input)
-
 (add-hook 'eshell-mode-hook
           (lambda ()
+            (general-define-key
+             :states 'insert
+             :keymaps '(eshell-mode-map)
+             "M-p" #'eshell-previous-input
+             "M-n" #'eshell-next-input)
             (add-to-list 'eshell-visual-commands "ssh")
             (add-to-list 'eshell-visual-commands "tail")
             (add-to-list 'eshell-visual-commands "docker")
