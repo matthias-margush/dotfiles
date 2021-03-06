@@ -1,6 +1,6 @@
 ; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-;; (use-package posframe)
+(tab-bar-history-mode)
 
 (defface spacebar-active
   '((t :inherit variable-pitch))
@@ -18,8 +18,6 @@
   (unless (or cursor-in-echo-area (active-minibuffer-window))
     (let ((msg (propertize "| " 'face 'spacebar-inactive))
 	  (name (format "*me/tabbar - %s*" (selected-frame))))
-
-      ;; tabs
       (dolist (tab (funcall tab-bar-tabs-function))
 	(let* ((details (assq 'name tab))
 	       (which (car tab))
@@ -34,18 +32,6 @@
 		   msg
 		   (propertize name 'face 'spacebar-inactive)
 		   (propertize " | " 'face 'spacebar-inactive))))))
-      ;; function
-      ;; (let ((fn (which-function)))
-      ;;   (when fn
-      ;;     (set-text-properties 0 (length fn) nil fn)
-      ;;     (setq msg
-      ;;           (concat msg
-      ;;                   (propertize
-      ;;                    ;; (concat "  ❯ " fn)
-      ;;                    (concat "  λ " fn)
-      ;;                    'face 'which-func)))
-      ;;     ))
-
       (format msg))))
 
 (defvar tab-current-msg "")
@@ -70,25 +56,15 @@
 ;; transform inputs to (message):
 (setq set-message-function #'me/tabs-message-with-tabs)
 
-;; (setq minibuffer-message-timeout 100000)
-
 (defun me/tabs-refresh ()
   (interactive)
   (unless (current-message)
     (message (me/tab-echo))))
 
-;; (add-hook 'pre-command-hook #'me/tabs-refresh nil t)
-
-;; (setq minibuffer-message-clear-timeout 10000000)
 (add-hook 'after-init-hook
 	  (lambda ()
 	    (me/tabs-refresh)
-	    (add-hook 'post-command-hook #'me/tabs-refresh)
-	    ;; (run-with-timer 1 1 #'me/tabs-refresh)
-	    ;; (run-with-idle-timer 1 1 #'me/tabs-refresh)
-	    ))
-
-;; (add-hook 'buffer-list-update-hook #'me/tabs-refresh)
+	    (add-hook 'post-command-hook #'me/tabs-refresh)))
 
 (defun me/tab-new (_)
   "Create a new tab"
@@ -114,6 +90,17 @@
   (tab-bar-close-tab)
   (me/tabs-refresh))
 
+(defun me/tab-first (_)
+  "Switch to the previous tab."
+  (interactive "P")
+  (tab-bar-select-tab 1)
+  (me/tabs-refresh))
+
+(defun me/tab-last ()
+  (interactive "P")
+  (tab-bar-select-tab (length (funcall tab-bar-tabs-function)))
+  (me/tabs-refresh))
+
 (evil-define-key 'normal 'global (kbd "gt") #'me/tab-next)
 (evil-define-key 'normal 'global (kbd "gT") #'me/tab-prev)
 (evil-define-key 'normal 'global (kbd "g SPC") #'me/tabs-refresh)
@@ -122,11 +109,11 @@
 
 ;; (define-key evil-motion-state-map (kbd "g`") #'eyebrowse-last-window-config)
 (evil-ex-define-cmd "tabn[ext]" #'me/tab-next)
-(evil-ex-define-cmd "tabp[revious]" #'tab-prev)
+(evil-ex-define-cmd "tabp[revious]" #'me/tab-prev)
 (evil-ex-define-cmd "tabN[ext]" #'me/tab-prev)
-(evil-ex-define-cmd "tabr[ewind]" (lambda () (interactive) (tab-bar-select-tab 1)))
-(evil-ex-define-cmd "tabf[irst]" (lambda () (interactive) (tab-bar-select-tab 1)))
-(evil-ex-define-cmd "tabl[ast]" (lambda () (interactive) (tab-bar-select-tab (length (funcall tab-bar-tabs-function)))))
+(evil-ex-define-cmd "tabr[ewind]" #'me/tab-first)
+(evil-ex-define-cmd "tabf[irst]" #'me/tab-first)
+(evil-ex-define-cmd "tabl[ast]" #'me/tab-last)
 (evil-ex-define-cmd "tabnew" #'me/tab-new)
 (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
 (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
