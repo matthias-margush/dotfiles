@@ -100,22 +100,19 @@
   "Switch to the next tab."
   (interactive "P")
   (tab-bar-switch-to-next-tab)
-  (me/tabs-refresh)
-  )
+  (me/tabs-refresh))
 
 (defun me/tab-prev (_)
   "Switch to the previous tab."
   (interactive "P")
   (tab-bar-switch-to-prev-tab)
-  (me/tabs-refresh)
-  )
+  (me/tabs-refresh))
 
 (defun me/tab-close (_)
   "Switch to the previous tab."
   (interactive "P")
   (tab-bar-close-tab)
-  (me/tabs-refresh)
-  )
+  (me/tabs-refresh))
 
 (evil-define-key 'normal 'global (kbd "gt") #'me/tab-next)
 (evil-define-key 'normal 'global (kbd "gT") #'me/tab-prev)
