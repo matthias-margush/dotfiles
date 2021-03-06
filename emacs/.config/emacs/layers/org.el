@@ -42,6 +42,14 @@
 (use-package org
   :general (:states '(normal visual) :prefix leader "c" #'org-capture)
 
+  :bind (:map org-mode-map
+              ("s-i" . (lambda () (interactive) (org-emphasize ?/)))
+              ("s-_" . (lambda () (interactive) (org-emphasize ?_)))
+              ("s--" . (lambda () (interactive) (org-emphasize ?+)))
+              ("s-~" . (lambda () (interactive) (org-emphasize ?~)))
+              ("s-=" . (lambda () (interactive) (org-emphasize ?=)))
+              ("s-b" . (lambda () (interactive) (org-emphasize ?*))))
+
   :custom
   (org-hide-leading-stars t)
   (org-hide-emphasis-markers t)
