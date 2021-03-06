@@ -1,6 +1,13 @@
 ; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-(tab-bar-history-mode)
+(use-package better-jumper              ; per-window & tab jump list
+  :init
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "C-o") #'better-jumper-jump-backward)
+    (define-key evil-motion-state-map (kbd "C-i") #'better-jumper-jump-forward))
+
+  :config
+  (better-jumper-mode))
 
 (defface spacebar-active
   '((t :inherit variable-pitch))
