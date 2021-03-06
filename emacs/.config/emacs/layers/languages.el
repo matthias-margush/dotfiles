@@ -15,10 +15,9 @@
   :general
   (:states '(normal) :keymaps 'lsp-mode-map "gd" #'lsp-find-definition)
   (:states '(normal) :keymaps 'lsp-mode-map "gr" #'lsp-find-references)
+  (:states '(normal) :keymaps 'lsp-mode-map "gI" #'lsp-find-implementation)
   (:states '(normal) :keymaps 'lsp-mode-map "K" #'lsp-describe-thing-at-point)
   (:states '(normal) :keymaps 'lsp-mode-map "==" #'lsp-format-buffer)
-  (:states '(normal) :keymaps 'lsp-mode-map :prefix leader "J" #'lsp-ivy-workspace-symbol)
-  (:states '(normal) :keymaps 'lsp-mode-map "M-s-o" #'lsp-ivy-global-workspace-symbol)
   (:states '(normal) :keymaps 'lsp-mode-map :prefix local-leader "sr" #'lsp-workspace-restart)
 
   :config
@@ -27,8 +26,6 @@
         lsp-completion-show-kind t
         lsp-file-watch-threshold 3000)
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'" ))
-
-(use-package lsp-ivy)
 
 (use-package markdown-mode
   :hook ((markdown-mode . visual-line-mode))

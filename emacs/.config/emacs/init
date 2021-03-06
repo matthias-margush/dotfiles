@@ -30,8 +30,8 @@
 (load "~/.config/emacs/layers/neotree" nil t)
 (load "~/.config/emacs/layers/lisp" nil t)
 (load "~/.config/emacs/layers/languages" nil t)
-;; (load "~/.config/emacs/layers/ido" nil t)
 (load "~/.config/emacs/layers/clojure" nil t)
+(load "~/.config/emacs/layers/help" nil t)
 
 (use-package origami
   :demand t

@@ -3,6 +3,8 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
+(define-key comint-mode-map (kbd "s-h") #'consult-history)
+
 (use-package exec-path-from-shell
   :init
   (setq exec-path-from-shell-check-startup-files nil)
@@ -18,8 +20,6 @@
 
 (add-hook 'eshell-mode-hook
           #'(lambda ()
-	            (setq-local completion-in-region-function #'ivy-completion-in-region)
-	            (setq-local ivy-display-functions-alist nil)
 	            (local-set-key (kbd "s-k") #'eshell-clear)
 	            (local-set-key (kbd "s-h") #'consult-history)))
 

@@ -24,11 +24,11 @@
 (use-package editorconfig :config (editorconfig-mode))
 
 (use-package default-text-scale
-    :bind (("s-=" . default-text-scale-increase)
-           ("s-+" . default-text-scale-increase)
-           ("s--" . default-text-scale-decrease)
-           ("s-0" . default-text-scale-reset))
-    :config (default-text-scale-mode t))
+  :bind (("s-=" . default-text-scale-increase)
+         ("s-+" . default-text-scale-increase)
+         ("s--" . default-text-scale-decrease)
+         ("s-0" . default-text-scale-reset))
+  :config (default-text-scale-mode t))
 
 (use-package rainbow-mode)
 
@@ -39,21 +39,12 @@
             (require 'dired-x)))
 (setq dired-omit-mode t)
 
-
 ;;; unbind annoying keys
 (unbind-key (kbd "s-m"))
 (unbind-key (kbd "s-l"))
 (unbind-key (kbd "s-p"))
 
-(use-package helpful
-  :bind
-  (:map help-map
-        ("f" . helpful-callable)
-        ("v" . helpful-variable)
-        ("k" . helpful-key)
-        ("C" . helpful-command)))
-
-  (use-package adaptive-wrap
-    :hook (visual-line-mode . adaptive-wrap-prefix-mode)
-    :config
-    (setq-default adaptive-wrap-extra-indent 1))
+(use-package adaptive-wrap
+  :hook (visual-line-mode . adaptive-wrap-prefix-mode)
+  :config
+  (setq-default adaptive-wrap-extra-indent 1))
