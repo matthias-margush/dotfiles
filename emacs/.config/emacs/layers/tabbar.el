@@ -94,8 +94,7 @@
   "Create a new tab"
   (interactive "P")
   (tab-bar-new-tab)
-  (me/tabs-refresh)
-  )
+  (me/tabs-refresh))
 
 (defun me/tab-next (_)
   "Switch to the next tab."

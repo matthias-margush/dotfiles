@@ -46,11 +46,14 @@
 (unbind-key (kbd "s-p"))
 
 (use-package helpful
-    :init
-  (setq counsel-describe-function-function #'helpful-callable)
-  (setq counsel-describe-variable-function #'helpful-variable))
+  :bind
+  (:map help-map
+        ("f" . helpful-callable)
+        ("v" . helpful-variable)
+        ("k" . helpful-key)
+        ("C" . helpful-command)))
 
-(use-package adaptive-wrap
+  (use-package adaptive-wrap
     :hook (visual-line-mode . adaptive-wrap-prefix-mode)
     :config
     (setq-default adaptive-wrap-extra-indent 1))

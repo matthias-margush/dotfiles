@@ -20,6 +20,8 @@
 (load "~/.config/emacs/layers/org" nil t)
 (me/my-project-notes)
 
+(load "~/.config/emacs/layers/selections" nil t)
+(load "~/.config/emacs/layers/completion" nil t)
 (load "~/.config/emacs/layers/tabbar" nil t)
 (load "~/.config/emacs/layers/ui" nil t)
 (load "~/.config/emacs/layers/shell" nil t)
@@ -28,7 +30,7 @@
 (load "~/.config/emacs/layers/neotree" nil t)
 (load "~/.config/emacs/layers/lisp" nil t)
 (load "~/.config/emacs/layers/languages" nil t)
-(load "~/.config/emacs/layers/ido" nil t)
+;; (load "~/.config/emacs/layers/ido" nil t)
 (load "~/.config/emacs/layers/clojure" nil t)
 
 (use-package origami
@@ -54,12 +56,13 @@
            (lambda ()
              (interactive)
              (origami-forward-toggle-node (current-buffer) (point))))
-  (:states '(normal) "TAB"
-           (lambda ()
-             (interactive)
-             (save-excursion
-               (origami-forward-toggle-node (current-buffer) (point)))))
-  (:states '(normal) "S-<tab>" #'origami-recursively-toggle-node)
+  ;; (:states '(normal) "<tab>"
+  ;;          (lambda ()
+  ;;            (interactive)
+  ;;            (save-excursion
+  ;;              (origami-forward-toggle-node (current-buffer) (point)))))
+
+  ;; (:states '(normal) "S-<tab>" #'origami-recursively-toggle-node)
 
   (:states '(normal) "zA" #'origami-recursively-toggle-node)
   (:states '(normal) "zO" #'origami-recursively-toggle-node)

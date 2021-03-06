@@ -49,7 +49,7 @@
   :demand t
   :after evil
   :init
-  (setq evil-collection-setup-minibuffer t
+  (setq evil-collection-setup-minibuffer nil
         evil-collection-company-use-tng t
         evil-collection-term-sync-state-and-mode-p t
         evil-collection-want-unimpaired-p nil

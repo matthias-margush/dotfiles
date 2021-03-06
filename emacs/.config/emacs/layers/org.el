@@ -32,7 +32,7 @@
    "s-j" #'org-next-link
    "s-k" #'org-previous-link
    "s-l" #'org-open-at-point
-   "TAB" #'org-cycle
+   "<tab>" #'org-cycle
    "S-<tab>" #'org-shifttab))
 
 (evil-add-command-properties #'org-open-at-point :jump t)
@@ -40,7 +40,7 @@
 
 ;; Notes
 (use-package org
-  :general (:states '(normal visual) :prefix leader "c" #'counsel-org-capture)
+  :general (:states '(normal visual) :prefix leader "c" #'org-capture)
 
   :custom
   (org-hide-leading-stars t)
