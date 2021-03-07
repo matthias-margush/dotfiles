@@ -6,6 +6,7 @@
 (require 'evil-config)
 (require 'folding-config)
 (require 'git-config)
+(require 'header-line-config)
 (require 'help-config)
 (require 'languages-config)
 (require 'lisp-config)

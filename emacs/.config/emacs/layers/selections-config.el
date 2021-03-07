@@ -5,10 +5,12 @@
 (use-package selectrum
   :init
   (setq selectrum-count-style nil)
+
   (setq selectrum-display-action
         '(display-buffer-in-side-window
           (side . bottom)
           (slot . -1)))
+
   (setq selectrum-max-window-height 15)
   (setq selectrum-extend-current-candidate-highlight t)
   (setq magit-completing-read-function #'selectrum-completing-read)
@@ -58,22 +60,22 @@
             (car (project-roots project))))))
 
 (use-package marginalia
-  :config
+    :config
   (marginalia-mode))
 
 (use-package embark
-  :bind
+    :bind
   ("C-S-a" . embark-act)
   (:map minibuffer-local-map
         ("C-c C-o" . embark-export)
         ("<tab>" . embark-act)))
 
 (use-package embark-consult
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook
-  (embark-collect-mode . embark-consult-preview-minor-mode))
+    :after (embark consult)
+    :demand t              ; only necessary if you have the hook below
+    ;; if you want to have consult previews as you move around an
+    ;; auto-updating embark collect buffer
+    :hook
+    (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (provide 'selections-config)

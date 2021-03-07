@@ -2,8 +2,18 @@
 
 (require 'package-config)
 
+(use-package fish-completion
+  :init
+  (when (and (executable-find "fish")
+             (require 'fish-completion nil t))
+    (setq shell-file-name "/usr/local/bin/fish")
+    (global-fish-completion-mode)))
+
+(setq shell-prompt-pattern "^❯ *")
+
+(add-hook 'shell-mode-hook (lambda () (setq comint-process-echoes t)))
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
 ;(define-key comint-mode-map (kbd "s-h") #'consult-history)
 
