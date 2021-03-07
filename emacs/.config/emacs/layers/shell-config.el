@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (require 'package-config)
+(require 'evil-config)
 
 (use-package fish-completion
   :init
@@ -11,11 +12,12 @@
 
 (setq shell-prompt-pattern "^❯ *")
 
-(add-hook 'shell-mode-hook (lambda () (setq comint-process-echoes t)))
+;; (add-hook 'shell-mode-hook (lambda () (setq comint-process-echoes t)))
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
-;(define-key comint-mode-map (kbd "s-h") #'consult-history)
+(define-key comint-mode-map (kbd "s-h") #'consult-history)
+(define-key comint-mode-map (kbd "s-k") #'comint-clear-buffer)
 
 (defun eshell-clear ()
   "Clear the eshell buffer."
