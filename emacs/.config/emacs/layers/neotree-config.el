@@ -1,3 +1,7 @@
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
+
 (use-package neotree
   :hook
   (neotree-mode . hl-line-mode)
@@ -70,3 +74,5 @@
               nil t))))
       (set-frame-height (selected-frame) height nil t)
       )))
+
+(provide 'neotree-config)

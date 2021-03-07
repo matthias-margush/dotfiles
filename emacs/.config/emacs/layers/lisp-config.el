@@ -1,3 +1,7 @@
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
+
 (use-package lispy
   :hook
   ((emacs-lisp-mode . lispy-mode)
@@ -47,3 +51,5 @@
                           additional
                           additional-insert
                           escape)))
+
+(provide 'lisp-config)

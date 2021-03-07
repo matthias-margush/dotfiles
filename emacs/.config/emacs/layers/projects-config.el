@@ -1,4 +1,6 @@
-;;; init.el -*- lexical-binding: t; -*-
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
 
 (use-package imenu-list
   :general
@@ -65,7 +67,6 @@
 (global-set-key (kbd "C-SPC C-SPC") #'projectile-switch-project)
 
 (use-package projectile
-  :demand t
   :general
   (:states '(normal) :prefix leader "p" 'projectile-command-map)
   (:states '(normal) "s-\\" #'projectile-run-eshell)
@@ -108,3 +109,5 @@
                (if (not (string= "" project-name))
                    (format project-name)
                  (format (frame-parameter nil 'me/projectile-project-name))))))))
+
+(provide 'projects-config)

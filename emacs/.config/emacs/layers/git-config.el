@@ -1,3 +1,7 @@
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
+
 (use-package magit
   :commands (magit-status magit-blame-addition git-link)
   :general (:states '(normal) :prefix leader "g" git-map)
@@ -38,3 +42,5 @@
   :config
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode))
+
+(provide 'git-config)

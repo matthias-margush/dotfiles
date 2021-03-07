@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: require 
+# key: re
+# --
+
+(require '${package-name})

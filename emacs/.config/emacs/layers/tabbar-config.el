@@ -1,5 +1,7 @@
 ; -*- mode: emacs-lisp; lexical-binding: t -*-
 
+(require 'package-config)
+
 (use-package better-jumper              ; per-window & tab jump list
   :init
   (with-eval-after-load 'evil-maps
@@ -124,3 +126,5 @@
 (evil-ex-define-cmd "tabnew" #'me/tab-new)
 (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
 (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
+
+(provide 'tabbar-config)

@@ -1,5 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(require 'package-config)
+
 (use-package selectrum
   :init
   (setq selectrum-count-style nil)
@@ -71,3 +73,5 @@
   ;; auto-updating embark collect buffer
   :hook
   (embark-collect-mode . embark-consult-preview-minor-mode))
+
+(provide 'selections-config)

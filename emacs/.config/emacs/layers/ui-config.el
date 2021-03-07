@@ -1,3 +1,7 @@
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
+
 (global-set-key [wheel-right] (lambda () (interactive) (scroll-left 1)))
 (global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
 
@@ -21,7 +25,7 @@
 
 (setq initial-major-mode 'fundamental-mode)
 
-(use-package editorconfig :config (editorconfig-mode))
+;; (use-package editorconfig :config (editorconfig-mode))
 
 (use-package default-text-scale
   :bind (("s-=" . default-text-scale-increase)
@@ -48,3 +52,5 @@
   :hook (visual-line-mode . adaptive-wrap-prefix-mode)
   :config
   (setq-default adaptive-wrap-extra-indent 1))
+
+(provide 'ui-config)

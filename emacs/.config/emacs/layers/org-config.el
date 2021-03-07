@@ -1,5 +1,8 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(require 'package-config)
+(require 'evil-config)
+
 (defun me/deft ()
   (interactive)
   (if (fboundp 'spacebar-deft)
@@ -40,34 +43,42 @@
 
 ;; Notes
 (use-package org
-  :general (:states '(normal visual) :prefix leader "c" #'org-capture)
-
-  :bind (:map org-mode-map
-              ("s-i" . (lambda () (interactive) (org-emphasize ?/)))
-              ("s-_" . (lambda () (interactive) (org-emphasize ?_)))
-              ("s--" . (lambda () (interactive) (org-emphasize ?+)))
-              ("s-~" . (lambda () (interactive) (org-emphasize ?~)))
-              ("s-=" . (lambda () (interactive) (org-emphasize ?=)))
-              ("s-b" . (lambda () (interactive) (org-emphasize ?*))))
+  :general
+  (:states '(normal visual) :prefix leader "c" #'org-capture)
+  (:keymaps 'org-mode-map
+            "s-i" #'me/emphasize-italic
+            "s-_" #'me/emphasize-underline
+            "s--" #'me/emphasize-strike
+            "s-~" #'me/emphasize-code
+            "s-=" #'me/emphasize-literal
+            "s-b" #'me/emphasize-bold)
 
   :custom
   (org-hide-leading-stars t)
   (org-hide-emphasis-markers t)
-
-  :after
-  exec-path-from-shell
 
   :hook
   (org-babel-after-execute . org-redisplay-inline-images)
   (org-mode . visual-line-mode)
 
   :init
+  (defun me/emphasize-bold () (interactive "P") (org-emphasize ?*))
+  (defun me/emphasize-code () (interactive "P") (org-emphasize ?~))
+  (defun me/emphasize-italic () (interactive "P") (org-emphasize ?/))
+  (defun me/emphasize-literal () (interactive "P") (org-emphasize ?=))
+  (defun me/emphasize-strike () (interactive "P") (org-emphasize ?+))
+  (defun me/emphasize-underline () (interactive "P") (org-emphasize ?_))
+
+  (setq org-modules '())
+  (setq org-agenda-inhibit-startup t)
+  (setq org-agenda-use-tag-inheritance t)
+
   (setq
    org-link-frame-setup '((vm . vm-visit-folder-other-frame)
-			  (vm-imap . vm-visit-imap-folder-other-frame)
-			  (gnus . org-gnus-no-new-news)
-			  (file . find-file)
-			  (wl . wl-other-frame)))
+                          (vm-imap . vm-visit-imap-folder-other-frame)
+                          (gnus . org-gnus-no-new-news)
+                          (file . find-file)
+                          (wl . wl-other-frame)))
   (setq
    org-startup-folded nil
    org-startup-indented nil
@@ -97,30 +108,33 @@
    plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.1/libexec/plantuml.jar")
 
   :config
-  (require 'org-capture)
-
-  (setq org-capture-templates
-	`(("c" "Code")
-
-	  ("cl" "snippet" entry
-	   (file+headline me/project-notes-file "Snippets")
-	   "%(ha/org-capture-code-snippet \"%F\")"
-	   :empty-lines 1 :immediate-finish t)
-
-	  ("cf" "snippet with notes" entry
-	   (file+headline me/project-notes-file "Snippets")
-	   "%(ha/org-capture-code-snippet \"%F\")\n\n%?"
-	   :empty-lines 1)))
-
   (add-to-list 'org-file-apps '(t . emacs) t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((ditaa . t)
-     (plantuml . t)
-     (gnuplot . t)
-     (shell . t)
-     (clojure . t)))
-  (require 'ox-md))
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages
+  ;;  '((ditaa . t)
+  ;;    (plantuml . t)
+  ;;    (gnuplot . t)
+  ;;    (shell . t)
+  ;;    (clojure . t)))
+  ;; (require 'ox-md)
+  )
+
+;; (use-package org-capture
+;;   :ensure nil
+
+;;   :init
+;;   (setq org-capture-templates
+;;         `(("c" "Code")
+
+;;           ("cl" "snippet" entry
+;;            (file+headline me/project-notes-file "Snippets")
+;;            "%(ha/org-capture-code-snippet \"%F\")"
+;;            :empty-lines 1 :immediate-finish t)
+
+;;           ("cf" "snippet with notes" entry
+;;            (file+headline me/project-notes-file "Snippets")
+;;            "%(ha/org-capture-code-snippet \"%F\")\n\n%?"
+;;            :empty-lines 1))))
 
 ;; (use-package ox-pandoc
 ;;   :after exec-path-from-shell
@@ -136,7 +150,7 @@
   :commands (deft deft-filter-clear)
   :bind
   (:map global-map
-	("s-d" . me/notes-switch-or-open))
+        ("s-d" . me/notes-switch-or-open))
   :init
   (setq deft-directory "~/Notes")
   (setq deft-auto-save-interval 0)
@@ -157,23 +171,25 @@
      and a backlink to the function and the file."
   (with-current-buffer (find-buffer-visiting f)
     (let ((org-src-mode (replace-regexp-in-string "-mode" "" (format "%s" major-mode)))
-	  (func-name (which-function)))
+          (func-name (which-function)))
       (ha/org-capture-fileref-snippet f "SRC" org-src-mode func-name))))
 
 (defun ha/org-capture-fileref-snippet (f type headers func-name)
   (let* ((code-snippet
-	  (buffer-substring-no-properties (mark) (- (point) 1)))
-	 (file-name (buffer-file-name))
-	 (file-base (file-name-nondirectory file-name))
-	 (line-number (line-number-at-pos (region-beginning)))
-	 (initial-txt (if (null func-name)
-			  (format "* Code Snippet\n+From: [[file:%s::%s][%s]]:"
-				  file-name line-number file-base)
-			(format "* Code Snippet\n+From [[file:%s::%s][%s]]\n In ~%s~:"
-				file-name line-number file-base
+          (buffer-substring-no-properties (mark) (- (point) 1)))
+         (file-name (buffer-file-name))
+         (file-base (file-name-nondirectory file-name))
+         (line-number (line-number-at-pos (region-beginning)))
+         (initial-txt (if (null func-name)
+                          (format "* Code Snippet\n+From: [[file:%s::%s][%s]]:"
+                                  file-name line-number file-base)
+                        (format "* Code Snippet\n+From [[file:%s::%s][%s]]\n In ~%s~:"
+                                file-name line-number file-base
                                 func-name))))
     (format "%s
 
 #+BEGIN_%s %s
 %s
 #+END_%s" initial-txt type headers code-snippet type)))
+
+(provide 'org-config)

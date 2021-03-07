@@ -1,7 +1,8 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(require 'package-config)
+
 (use-package general
-  :demand t
   :init
   (setq general-override-states '(insert
                                   emacs
@@ -15,24 +16,19 @@
   (defconst local-leader ","))
 
 (use-package evil
-  :demand t
-  :after general
   :custom
   (evil-undo-system 'undo-redo)
 
-  :general
-  (:states 'normal :prefix leader "h" help-map)
-  (:states 'normal
+  :init
+  (setq evil-want-keybinding nil)
+  (general-define-key :keymaps 'help-map "F" #'describe-face)
+  (general-define-key :states 'normal :prefix leader "h" help-map)
+  (general-define-key :states 'normal
            "]e" #'flymake-goto-next-error
            "[e" #'flymake-goto-prev-error
            ",d" #'flymake-show-diagnostics-buffer
            "]q" #'next-error            ; compile window / search results
            "[q" #'previous-error)       ; compile window / search results
-
-  :bind (:map help-map ("F" . describe-face))
-
-  :init
-  (setq evil-want-keybinding nil)
 
   :config
   ;; clipboard
@@ -46,10 +42,9 @@
   (evil-mode))
 
 (use-package evil-collection
-  :demand t
   :after evil
   :init
-  (setq evil-collection-setup-minibuffer nil
+  (setq evil-collection-setup-minibuffer nil ; off for selectrum
         evil-collection-company-use-tng t
         evil-collection-term-sync-state-and-mode-p t
         evil-collection-want-unimpaired-p nil
@@ -60,5 +55,12 @@
   (evil-collection-init))
 
 (use-package evil-commentary
+  :general
+  (:states 'normal "gc" #'evil-commentary)
+  (:states 'normal "gy" #'evil-commentary-yank)
+  ("s-/" #'evil-commentary-line)
+
   :config
   (evil-commentary-mode))
+
+(provide 'evil-config)

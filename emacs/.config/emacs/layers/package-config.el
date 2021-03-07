@@ -1,3 +1,5 @@
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
 ;; straight config
 (setq straight-repository-branch "develop"
       straight-use-package-by-default t)
@@ -17,3 +19,5 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+
+(provide 'package-config)

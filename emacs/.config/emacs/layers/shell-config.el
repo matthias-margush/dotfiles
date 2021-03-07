@@ -1,15 +1,17 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'package-config)
+
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
-(define-key comint-mode-map (kbd "s-h") #'consult-history)
+;(define-key comint-mode-map (kbd "s-h") #'consult-history)
 
-(use-package exec-path-from-shell
-  :init
-  (setq exec-path-from-shell-check-startup-files nil)
-  :config
-  (exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell
+;;   :init
+;;   (setq exec-path-from-shell-check-startup-files nil)
+;;   :config
+;;   (exec-path-from-shell-initialize))
 
 (defun eshell-clear ()
   "Clear the eshell buffer."
@@ -84,3 +86,5 @@
 ;; (setq eshell-review-quick-commands nil)
 ;; (setq eshell-smart-space-goes-to-end t)
 ;; (add-hook 'eshell-mode-hook 'eshell-smart-initialize)
+
+(provide 'shell-config)

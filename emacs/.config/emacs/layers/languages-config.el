@@ -1,4 +1,6 @@
-;; -*- lexical-binding: t; -*-
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
 
 ;;;  which-func mode
 (which-func-mode)
@@ -93,3 +95,5 @@
   (setq sqlformat-command 'pgformatter))
 
 (use-package feature-mode)
+
+(provide 'languages-config)

@@ -1,134 +1,19 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(setq frame-alist
-      '((top . 100)
-        (left . 1000)
-        (width . 90)
-        (height . 60)
-        (internal-border-width . 20)
-        (vertical-scroll-bars . nil)))
-(setq default-frame-alist frame-alist
-      initial-frame-alist frame-alist)
+;; (profiler-start 'cpu)
+;; (add-hook 'after-init-hook #'profiler-report)
 
-(setq ffap-machine-p-known 'reject) 	; don't complete links
-(setq max-specpdl-size 13000)           ; bigger stack
+;; (set-face-attribute 'variable-pitch nil :font "Open Sans Condensed-16")
+;; (set-face-attribute 'fixed-pitch nil :font "Hasklug Nerd Font Mono-10")
+            ;; (set-face-attribute 'default nil :font "Hasklug Nerd Font Mono-10")
 
-;; Visual cleanup
-(defun suppress-messages (func &rest args)
-  "Suppress message output from FUNC."
-  ;; Some packages are too noisy.
-  ;; https://superuser.com/questions/669701/emacs-disable-some-minibuffer-messages
-  (cl-flet ((silence (&rest args1) (ignore)))
-    (advice-add 'message :around #'silence)
-    (unwind-protect
-        (apply func args)
-      (advice-remove 'message #'silence))))
+(add-to-list 'load-path
+             (file-name-as-directory
+              (expand-file-name "layers" user-emacs-directory)))
 
-;; Suppress "Cleaning up the recentf...done (0 removed)"
-(advice-add 'recentf-cleanup :around #'suppress-messages)
-(advice-add 'recentf-load-list :around #'suppress-messages)
+;; (require 'gcmh)
+                                        ; first
 
-;; surpress "package cl is deprecated"
-(setq byte-compile-warnings '(cl-functions))
-
-(fringe-mode '(8 . 4))
-(scroll-bar-mode -1)
-(setq-default truncate-lines t)
-(setq ring-bell-function 'ignore)
-(setq frame-title-format '("\n"))
-(setq initial-scratch-message "")
-(setq ns-use-proxy-icon nil)
-(tool-bar-mode -1)
-(setq-default fringe-indicator-alist nil)
-(defun display-startup-echo-area-message ()
-  "Redefine to clean up echo area message."
-  (message ""))
-
-(setq mac-option-modifier 'meta)
-(global-set-key (kbd "s-}") #'ns-prev-frame)
-(global-set-key (kbd "s-{") #'ns-next-frame)
-(global-set-key (kbd "s-t") #'make-frame)
-
-(load "~/.config/emacs/layers/straight" nil t)
-
-(use-package construction-paper-theme
-  :custom
-  (window-divider-default-right-width 100)
-
-  :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
-
-  :init
-  (defun me/modeline-style-line (&optional arg)
-    "Style the mode line a simple line."
-    (let ((box-color "#BC7C49"))
-
-      ;; #DDDBD6
-      ;; #f0ecea
-      ;; #EBDCD0
-
-      (set-face-attribute
-       'window-divider nil
-       :background box-color
-       :foreground box-color
-       :underline nil
-       :box `(:line-width 1 :color ,box-color) :height 0.1)
-
-
-      (set-face-attribute
-       'mode-line nil
-       :inherit 'default
-       :underline t
-       :foreground box-color
-       :box `(:line-width 1 :color ,box-color) :height 0.1)
-
-      (set-face-attribute
-       'mode-line-inactive nil
-       :background nil
-       :foreground box-color
-       :underline t
-       :box `(:line-width 1 :color ,box-color) :height 0.1)
-
-      (set-face-attribute
-       'mode-line-inactive nil
-       :inherit 'default
-       :foreground box-color
-       :underline t
-       :box `(:line-width 1 :color ,box-color) :height 0.1)))
-
-  (setq-default mode-line-format '(""))
-  (advice-add 'enable-theme :after #'me/modeline-style-line)
-  (add-to-list 'after-make-frame-functions #'me/modeline-style-line t)
-
-  :config
-  (require 'construction-paper-theme)
-  (construction-paper-theme-light))
-
-(defface header-line-path
-  '((t :inherit variable-pitch))
-  "Face for the header line path.")
-
-(which-func-mode)
-
-(setq-default
- header-line-format
- '((:propertize "⧉" face bold)
-   " "
-   (:propertize mode-line-buffer-identification face header-line-path)
-   (:propertize (:eval (me/echo-which-func)) face which-func)))
-
-(defun me/echo-which-func ()
-  "Which function string for display."
-  (if-let ((fn (which-function)))
-      (concat "   λ " fn)))
-
-(defun me/project-to-buffer-name ()
-  (if buffer-file-truename
-      (let* ((name buffer-file-truename)
-             (project (cdr-safe (project-current)))
-             (name (file-relative-name name project)))
-        (combine-and-quote-strings
-         (split-string name "/+")
-         " ⧸ "))
-    (buffer-name)))
-
-(setq-default mode-line-buffer-identification '(:eval (me/project-to-buffer-name)))
+(require 'tidyup-config)
+(require 'package-config)
+(require 'theme-config)

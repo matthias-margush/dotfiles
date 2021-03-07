@@ -1,3 +1,7 @@
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
+
+(require 'package-config)
+
 (use-package helpful
   :bind
   (:map help-map
@@ -14,3 +18,5 @@
 
   :config
   (which-key-mode))
+
+(provide 'help-config)

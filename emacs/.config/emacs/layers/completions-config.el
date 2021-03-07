@@ -1,5 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(require 'package-config)
+
 (use-package company
   :hook (after-init . global-company-mode)
   :bind (:map company-active-map
@@ -23,3 +25,5 @@
  ;;                              (not company-candidates))))
 
  (global-company-mode))
+
+(provide 'completions-config)
