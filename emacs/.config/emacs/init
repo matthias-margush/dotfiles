@@ -1,59 +1,24 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(require 'clojure-config)
+(require 'completions-config)
 (require 'dashboard-config)
 (require 'evil-config)
+(require 'folding-config)
+(require 'git-config)
+(require 'help-config)
+(require 'languages-config)
+(require 'lisp-config)
+(require 'neotree-config)
 (require 'org-config)
+(require 'projects-config)
 (require 'selections-config)
-(require 'completions-config)
+(require 'shell-config)
+(require 'snippets-config)
 (require 'tabbar-config)
 (require 'ui-config)
-(require 'shell-config)
-(require 'git-config)
-(require 'projects-config)
-(require 'neotree-config)
-(require 'lisp-config)
-(require 'languages-config)
-(require 'clojure-config)
-(require 'help-config)
 
-(use-package origami
-  :after evil
-  :general
-  (:states '(normal) "zo"
-           (lambda ()
-             (interactive)
-             (save-excursion
-               (goto-char (point-at-bol))
-               (goto-char (point-at-eol))
-               (origami-open-node (current-buffer) (point)))))
-  (:states '(normal) "zc"
-           (lambda ()
-             (interactive)
-             (save-excursion
-               (origami-forward-fold)
-               (goto-char (point-at-bol))
-               (goto-char (point-at-eol))
-               (origami-close-node (current-buffer) (point)))))
-  (:states '(normal) "za"
-           (lambda ()
-             (interactive)
-             (origami-forward-toggle-node (current-buffer) (point))))
-  ;; (:states '(normal) "<tab>"
-  ;;          (lambda ()
-  ;;            (interactive)
-  ;;            (save-excursion
-  ;;              (origami-forward-toggle-node (current-buffer) (point)))))
 
-  ;; (:states '(normal) "S-<tab>" #'origami-recursively-toggle-node)
-
-  (:states '(normal) "zA" #'origami-recursively-toggle-node)
-  (:states '(normal) "zO" #'origami-recursively-toggle-node)
-  (:states '(normal) "zC" #'origami-recursively-toggle-node)
-  (:states '(normal) "zM" #'origami-toggle-all-nodes)
-  (:states '(normal) "zR" #'origami-toggle-all-nodes)
-
-  :config
-  (global-origami-mode))
 
 (use-package envrc
   :config (envrc-global-mode))

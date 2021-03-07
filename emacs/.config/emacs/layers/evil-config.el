@@ -55,4 +55,9 @@
   :config
   (evil-commentary-mode))
 
+(use-package multi-line
+  :demand t                             ; sets up hooks in various modes
+  :general
+  (:states 'normal "gs" #'multi-line))
+
 (provide 'evil-config)

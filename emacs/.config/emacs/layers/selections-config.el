@@ -52,8 +52,10 @@
   :config
   (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
 
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-root-function #'projectile-project-root))
+  (setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project))))))
 
 (use-package marginalia
   :config
