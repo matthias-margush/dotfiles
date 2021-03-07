@@ -25,7 +25,12 @@
 
 (setq initial-major-mode 'fundamental-mode)
 
-;; (use-package editorconfig :config (editorconfig-mode))
+(use-package editorconfig
+  :init
+  ;; https://github.com/editorconfig/editorconfig-emacs/issues/244#issuecomment-783127682
+  (setq editorconfig--enable-20210221-testing t)
+
+  :config (editorconfig-mode))
 
 (use-package default-text-scale
   :bind (("s-=" . default-text-scale-increase)

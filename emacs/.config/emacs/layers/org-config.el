@@ -3,48 +3,10 @@
 (require 'package-config)
 (require 'evil-config)
 
-(defun me/deft ()
-  (interactive)
-  (if (fboundp 'spacebar-deft)
-      (spacebar-deft)
-    (deft))
-  (deft-filter-clear)
-  (evil-insert-state))
-
-(defun me/notes-switch-or-open (_)
-  "Switch to notes"
-  (interactive "P")
-  (let ((found nil))
-    (dolist (frame (frame-list))
-      (when-let (frame-project (frame-parameter frame 'me/project))
-	(when (and (not found) (string= "me/notes" frame-project))
-	  (setq found t)
-	  (make-frame-visible frame)
-	  (raise-frame frame)
-	  (select-frame frame))))
-
-    (unless found
-      (let ((new-frame (make-frame)))
-	(set-frame-parameter new-frame 'me/project "me/notes")))
-    (me/deft)))
-
-(with-eval-after-load 'org
-  (general-define-key
-   :states 'normal
-   :keymaps '(org-mode-map)
-   "s-j" #'org-next-link
-   "s-k" #'org-previous-link
-   "s-l" #'org-open-at-point
-   "<tab>" #'org-cycle
-   "S-<tab>" #'org-shifttab))
-
-(evil-add-command-properties #'org-open-at-point :jump t)
-(evil-define-key 'normal 'global (kbd "s-h") #'evil-jump-backward)
-
-;; Notes
 (use-package org
   :general
   (:states '(normal visual) :prefix leader "c" #'org-capture)
+  (:keymaps 'global :states 'normal "s-h" #'evil-jump-backward)
   (:keymaps 'org-mode-map
             "s-i" #'me/emphasize-italic
             "s-_" #'me/emphasize-underline
@@ -52,7 +14,12 @@
             "s-~" #'me/emphasize-code
             "s-=" #'me/emphasize-literal
             "s-b" #'me/emphasize-bold)
-
+  (:states 'normal :keymaps 'org-mode-map
+           "s-j" #'org-next-link
+           "s-k" #'org-previous-link
+           "s-l" #'org-open-at-point
+           "<tab>" #'org-cycle
+           "S-<tab>" #'org-shifttab)
   :custom
   (org-hide-leading-stars t)
   (org-hide-emphasis-markers t)
@@ -108,38 +75,68 @@
    plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.1/libexec/plantuml.jar")
 
   :config
+  (evil-add-command-properties #'org-open-at-point :jump t)
   (add-to-list 'org-file-apps '(t . emacs) t)
-  ;; (org-babel-do-load-languages
-  ;;  'org-babel-load-languages
-  ;;  '((ditaa . t)
-  ;;    (plantuml . t)
-  ;;    (gnuplot . t)
-  ;;    (shell . t)
-  ;;    (clojure . t)))
-  ;; (require 'ox-md)
-  )
 
-;; (use-package org-capture
-;;   :ensure nil
+  (setq org-capture-templates
+        `(("c" "Code")
 
-;;   :init
-;;   (setq org-capture-templates
-;;         `(("c" "Code")
+          ("cl" "snippet" entry
+           (file+headline me/project-notes-file "Snippets")
+           "%(ha/org-capture-code-snippet \"%F\")"
+           :empty-lines 1 :immediate-finish t)
 
-;;           ("cl" "snippet" entry
-;;            (file+headline me/project-notes-file "Snippets")
-;;            "%(ha/org-capture-code-snippet \"%F\")"
-;;            :empty-lines 1 :immediate-finish t)
+          ("cf" "snippet with notes" entry
+           (file+headline me/project-notes-file "Snippets")
+           "%(ha/org-capture-code-snippet \"%F\")\n\n%?"
+           :empty-lines 1)))
 
-;;           ("cf" "snippet with notes" entry
-;;            (file+headline me/project-notes-file "Snippets")
-;;            "%(ha/org-capture-code-snippet \"%F\")\n\n%?"
-;;            :empty-lines 1))))
+  (defun ha/org-capture-clip-snippet (f)
+    "Given a file, F, this captures the currently selected text
+     within an Org EXAMPLE block and a backlink to the file."
+    (with-current-buffer (find-buffer-visiting f)
+      (ha/org-capture-fileref-snippet f "EXAMPLE" "" nil)))
 
-;; (use-package ox-pandoc
-;;   :after exec-path-from-shell
-;;   :init
-;;   (setq org-pandoc-options '((standalone . t))))
+  (defun ha/org-capture-code-snippet (f)
+    "Given a file, F, this captures the currently selected text
+     within an Org SRC block with a language based on the current mode
+     and a backlink to the function and the file."
+    (with-current-buffer (find-buffer-visiting f)
+      (let ((org-src-mode (replace-regexp-in-string "-mode" "" (format "%s" major-mode)))
+            (func-name (which-function)))
+        (ha/org-capture-fileref-snippet f "SRC" org-src-mode func-name))))
+
+  (defun ha/org-capture-fileref-snippet (f type headers func-name)
+    (let* ((code-snippet
+            (buffer-substring-no-properties (mark) (- (point) 1)))
+           (file-name (buffer-file-name))
+           (file-base (file-name-nondirectory file-name))
+           (line-number (line-number-at-pos (region-beginning)))
+           (initial-txt (if (null func-name)
+                            (format "* Code Snippet\n+From: [[file:%s::%s][%s]]:"
+                                    file-name line-number file-base)
+                          (format "* Code Snippet\n+From [[file:%s::%s][%s]]\n In ~%s~:"
+                                  file-name line-number file-base
+                                  func-name))))
+      (format "%s
+
+#+BEGIN_%s %s
+%s
+#+END_%s" initial-txt type headers code-snippet type)))
+
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ditaa . t)
+     (plantuml . t)
+     (gnuplot . t)
+     (shell . t)
+     (clojure . t)))
+  (require 'ox-md))
+
+(use-package ox-pandoc
+  :init
+  (setq org-pandoc-options '((standalone . t))))
 
 (use-package orgraphy
   :straight (orgraphy :type git :host github :repo "matthias-margush/orgraphy")
@@ -147,49 +144,41 @@
   (orgraphy--init))
 
 (use-package deft
-  :commands (deft deft-filter-clear)
-  :bind
-  (:map global-map
-        ("s-d" . me/notes-switch-or-open))
+  :commands (deft)
+
+  :general
+  (:map 'global-map
+        "s-d" #'me/notes-switch-or-open)
   :init
   (setq deft-directory "~/Notes")
   (setq deft-auto-save-interval 0)
   (setq deft-extensions '("org"))
   (setq deft-default-extension "org")
   (setq deft-use-filename-as-title nil)
-  (setq deft-use-filter-string-for-filename t))
+  (setq deft-use-filter-string-for-filename t)
 
-(defun ha/org-capture-clip-snippet (f)
-  "Given a file, F, this captures the currently selected text
-     within an Org EXAMPLE block and a backlink to the file."
-  (with-current-buffer (find-buffer-visiting f)
-    (ha/org-capture-fileref-snippet f "EXAMPLE" "" nil)))
+  :config
+  (defun me/deft ()
+    (interactive)
+    (deft)
+    (deft-filter-clear)
+    (evil-insert-state))
 
-(defun ha/org-capture-code-snippet (f)
-  "Given a file, F, this captures the currently selected text
-     within an Org SRC block with a language based on the current mode
-     and a backlink to the function and the file."
-  (with-current-buffer (find-buffer-visiting f)
-    (let ((org-src-mode (replace-regexp-in-string "-mode" "" (format "%s" major-mode)))
-          (func-name (which-function)))
-      (ha/org-capture-fileref-snippet f "SRC" org-src-mode func-name))))
+  (defun me/notes-switch-or-open (_)
+    "Switch to notes"
+    (interactive "P")
+    (let ((found nil))
+      (dolist (frame (frame-list))
+        (when-let (frame-project (frame-parameter frame 'me/project))
+          (when (and (not found) (string= "me/notes" frame-project))
+            (setq found t)
+            (make-frame-visible frame)
+            (raise-frame frame)
+            (select-frame frame))))
 
-(defun ha/org-capture-fileref-snippet (f type headers func-name)
-  (let* ((code-snippet
-          (buffer-substring-no-properties (mark) (- (point) 1)))
-         (file-name (buffer-file-name))
-         (file-base (file-name-nondirectory file-name))
-         (line-number (line-number-at-pos (region-beginning)))
-         (initial-txt (if (null func-name)
-                          (format "* Code Snippet\n+From: [[file:%s::%s][%s]]:"
-                                  file-name line-number file-base)
-                        (format "* Code Snippet\n+From [[file:%s::%s][%s]]\n In ~%s~:"
-                                file-name line-number file-base
-                                func-name))))
-    (format "%s
-
-#+BEGIN_%s %s
-%s
-#+END_%s" initial-txt type headers code-snippet type)))
+      (unless found
+        (let ((new-frame (make-frame)))
+          (set-frame-parameter new-frame 'me/project "me/notes")))
+      (me/deft))))
 
 (provide 'org-config)

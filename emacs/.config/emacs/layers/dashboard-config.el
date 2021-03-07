@@ -13,8 +13,4 @@
 
 (setq initial-buffer-choice #'me/dashboard)
 
-;; (me/dashboard)
-
-;; (add-hook 'after-init-hook #'me/dashboard)
-
 (provide 'dashboard-config)

@@ -2,6 +2,37 @@
 
 (require 'package-config)
 
+(unless (display-graphic-p)
+  (menu-bar-mode -1))
+
+(global-set-key (kbd "s-}") #'ns-prev-frame)
+(global-set-key (kbd "s-{") #'ns-next-frame)
+(global-set-key (kbd "s-t") #'make-frame)
+
+(setq frame-alist
+  '((top . 100)
+    (left . 1000)
+    (width . 90)
+    (height . 60)
+    (internal-border-width . 20)
+    (vertical-scroll-bars . nil)
+    (font . "Hasklug Nerd Font Mono-10")))
+(setq default-frame-alist frame-alist
+      initial-frame-alist frame-alist)
+
+(add-hook 'after-init-hook
+          (lambda ()
+            (set-face-attribute 'variable-pitch nil :font "Open Sans Condensed-16")
+            (set-face-attribute 'fixed-pitch nil :font "Hasklug Nerd Font Mono-10")))
+
+(setq-default fringe-indicator-alist nil) ; fringe wrap arrows
+(fringe-mode '(8 . 4))                  ; fringe
+(scroll-bar-mode -1)                    ; scrollbars
+(setq frame-title-format '("\n"))       ; frame titles
+(setq initial-scratch-message "")       ; scratch buffer content
+(setq ns-use-proxy-icon nil)            ; frame icon
+(tool-bar-mode -1)                      ; toolbar
+
 (use-package construction-paper-theme
   :custom
   (window-divider-default-right-width 100)

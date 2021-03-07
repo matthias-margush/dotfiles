@@ -7,12 +7,6 @@
 
 ;(define-key comint-mode-map (kbd "s-h") #'consult-history)
 
-;; (use-package exec-path-from-shell
-;;   :init
-;;   (setq exec-path-from-shell-check-startup-files nil)
-;;   :config
-;;   (exec-path-from-shell-initialize))
-
 (defun eshell-clear ()
   "Clear the eshell buffer."
   (interactive)
