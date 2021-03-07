@@ -2,15 +2,6 @@
 
 (require 'package-config)
 
-;;;  which-func mode
-(which-func-mode)
-(setq me/which-map (make-sparse-keymap))
-
-(general-define-key
- :states 'normal
- :prefix leader
- "w" me/which-map)
-
 (use-package lsp-mode
   :hook ((go-mode . lsp))
 

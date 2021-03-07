@@ -6,6 +6,7 @@
   :hook
   ((emacs-lisp-mode . lispy-mode)
    (lisp-mode . lispy-mode))
+
   :commands lispy-mode
 
   :init

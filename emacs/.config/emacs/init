@@ -18,8 +18,6 @@
 (require 'tabbar-config)
 (require 'ui-config)
 
-
-
 (use-package envrc
   :config (envrc-global-mode))
 

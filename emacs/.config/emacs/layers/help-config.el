@@ -3,12 +3,12 @@
 (require 'package-config)
 
 (use-package helpful
-  :bind
-  (:map help-map
-        ("f" . helpful-callable)
-        ("v" . helpful-variable)
-        ("k" . helpful-key)
-        ("C" . helpful-command)))
+  :general
+  (:keymaps 'help-map
+            "f" #'helpful-callable
+            "v" #'helpful-variable
+            "k" #'helpful-key
+            "C" #'helpful-command))
 
 (use-package which-key
   :init
