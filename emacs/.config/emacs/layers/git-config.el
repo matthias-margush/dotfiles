@@ -3,11 +3,14 @@
 (require 'package-config)
 
 (use-package magit
-  :commands (magit-status magit-blame-addition git-link)
-  :general (:states '(normal) :prefix leader "g" git-map)
-  :bind (:map git-map
-              ("g" . magit-status)
-              ("b" . magit-blame-addition))
+  :commands (magit-status magit-blame-addition)
+
+  :general
+  (:states '(normal) :prefix leader "g" git-map)
+  (:keymaps 'git-map
+            "g" #'magit-status
+            "b" #'magit-blame-addition)
+
   :init
   (setq git-map (make-sparse-keymap))
   (remove-hook 'magit-section-highlight-hook #'magit-section-highlight)
@@ -18,6 +21,7 @@
 (use-package forge :after markdown)
 
 (use-package git-link
+  :commands (git-link)
   :general
   (:states 'visual :prefix leader "gl" #'git-link)
 
@@ -28,7 +32,8 @@
   :general
   (:keymaps 'normal
             "]g" 'diff-hl-next-hunk
-            "[g" 'diff-hl-previous-hunk)
+            "[g" 'diff-hl-previous-hunk
+            "gh" 'diff-hl-diff-goto-hunk)
 
   :hook
   ((magit-pre-refresh . diff-hl-magit-pre-refresh)
