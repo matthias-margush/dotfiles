@@ -6,7 +6,7 @@
   :init
   (when (and (executable-find "fish")
              (require 'fish-completion nil t))
-    (setq shell-file-name "/usr/local/bin/fish")
+    ;; (setq shell-file-name "/usr/local/bin/fish")
     (global-fish-completion-mode)))
 
 (setq shell-prompt-pattern "^❯ *")
@@ -24,22 +24,20 @@
     (erase-buffer)
     (eshell-send-input)))
 
-(add-hook 'eshell-mode-hook
-          #'(lambda ()
-	            (local-set-key (kbd "s-k") #'eshell-clear)
-	            (local-set-key (kbd "s-h") #'consult-history)))
+(defalias 'e #'find-file-other-window)
 
-(add-hook 'eshell-mode-hook
-          (lambda ()
-            (general-define-key
-             :states 'insert
-             :keymaps '(eshell-mode-map)
-             "M-p" #'eshell-previous-input
-             "M-n" #'eshell-next-input)
-            (add-to-list 'eshell-visual-commands "ssh")
-            (add-to-list 'eshell-visual-commands "tail")
-            (add-to-list 'eshell-visual-commands "docker")
-            (add-to-list 'eshell-visual-commands "top")))
+(defun me/eshell-rc ()
+  (setenv "PAGER" "cat")
+  (setenv "MANPAGER" "cat")
+  (local-set-key (kbd "s-k") #'eshell-clear)
+  (local-set-key (kbd "s-h") #'consult-history)
+  (general-define-key
+   :states 'insert
+   :keymaps '(eshell-mode-map)
+   "M-p" #'eshell-previous-input
+   "M-n" #'eshell-next-input))
+
+(add-hook 'eshell-mode-hook #'me/eshell-rc)
 
 (when (require 'ansi-color nil t)
   (defun my-colorize-compilation-buffer ()

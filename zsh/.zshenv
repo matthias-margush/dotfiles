@@ -15,3 +15,4 @@ fi
 
 test -f ~/.localenv && source ~/.localenv
 
+PROMPT='❯ '

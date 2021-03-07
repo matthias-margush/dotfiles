@@ -19,6 +19,8 @@
 (require 'tabbar-config)
 (require 'ui-config)
 
+(server-start)
+
 (use-package envrc
   :config (envrc-global-mode))
 

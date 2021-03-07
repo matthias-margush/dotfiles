@@ -5,7 +5,12 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-eval "$(starship init zsh)"
+precmd() {
+  print ""
+  print -rD "$PWD"
+}
+
+PROMPT='❯ '
 
 source "${HOME}/bin/antigen.zsh"
 
@@ -21,6 +26,8 @@ export MODE_INDICATOR=
 
 if [ "$INSIDE_EMACS" != "" ]
 then
+  PAGER=cat
+  MANPAGER=cat
   bindkey -e
   set -o emacs
 else
@@ -103,6 +110,3 @@ function zle-keymap-select zle-line-init zle-line-finish
 zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
-
-#eval "$(rbenv init -)"
-
