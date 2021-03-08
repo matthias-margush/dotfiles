@@ -20,6 +20,7 @@
            "s-l" #'org-open-at-point
            "<tab>" #'org-cycle
            "S-<tab>" #'org-shifttab)
+
   :custom
   (org-hide-leading-stars t)
   (org-hide-emphasis-markers t)
@@ -224,7 +225,5 @@ at the first function to return non-nil.")
         (let ((new-frame (make-frame)))
           (set-frame-parameter new-frame 'me/project "me/notes")))
       (me/deft))))
-
-
 
 (provide 'org-config)
