@@ -6,15 +6,8 @@
 (global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
 
 ;; History
-(savehist-mode 1) ;; minibuffer history
+(savehist-mode) ;; minibuffer history
 (recentf-mode)
-
-;; (setq header-line-format (me/tab-echo))
-;; (setq header-line-format (projectile-project-name))
-;; (set-face-attribute 'header-line nil :underline (face-foreground 'default))
-
-;; (defun me/header-line ()
-;;   (concat " . " (which-function)))
 
 (defun show-file-name ()
   "Show the full path file name."

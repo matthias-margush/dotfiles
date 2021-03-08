@@ -79,8 +79,8 @@
 (setq frame-title-format
       '(""
         (:eval
-         (let ((project-name (me/project-name)))
-           (if project-name
-               (format "%s" project-name))))))
+         (if-let ((project-name (me/project-name)))
+             (format "%s" project-name)
+           "%b"))))
 
 (provide 'projects-config)

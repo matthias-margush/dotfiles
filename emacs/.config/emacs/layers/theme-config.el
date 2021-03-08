@@ -28,7 +28,6 @@
 (setq-default fringe-indicator-alist nil) ; fringe wrap arrows
 (scroll-bar-mode -1)
                                         ; scrollbars
-(setq frame-title-format '("\n"))       ; frame titles
 (setq initial-scratch-message "")       ; scratch buffer content
 (setq ns-use-proxy-icon nil)            ; frame icon
 (tool-bar-mode -1)                      ; toolbar
