@@ -90,4 +90,7 @@
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))
 
+(use-package fish-mode
+  :mode (("\\.fish\\'" . fish-mode)))
+
 (provide 'languages-config)
