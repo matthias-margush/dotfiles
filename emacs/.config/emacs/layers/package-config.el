@@ -2,7 +2,8 @@
 
 ;; straight config
 (setq straight-repository-branch "develop"
-      straight-use-package-by-default t)
+      straight-use-package-by-default t
+      straight-check-for-modifications nil)
 
 ;; straight bootstrap
 (defvar bootstrap-version)

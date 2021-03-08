@@ -60,4 +60,14 @@
   :general
   (:states 'normal "gs" #'multi-line))
 
+(use-package iedit
+  :general
+  (:keymaps 'global-map "C-;" #'iedit-mode)
+  (:keymaps 'isearch-mode-map "C-;" #'iedit-mode-from-isearch)
+  (:keymaps 'esc-map "C-;" #'iedit-execute-last-modification)
+  (:keymaps 'help-map "C-;" #'iedit-mode-toggle-on-function)
+
+  :init
+  (setq iedit-toggle-key-default nil))
+
 (provide 'evil-config)

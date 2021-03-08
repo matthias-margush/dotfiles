@@ -68,7 +68,8 @@
 (defun me/tabs-refresh ()
   (interactive)
   (unless (current-message)
-    (message (me/tab-echo))))
+    (let ((message-log-max nil))
+      (message (me/tab-echo)))))
 
 (add-hook 'after-init-hook
 	  (lambda ()

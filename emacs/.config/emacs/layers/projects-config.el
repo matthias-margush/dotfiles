@@ -51,7 +51,7 @@
         (project (or project (cdr-safe (project-current)))))
     (dolist (frame (frame-list))
       (when-let (frame-project (frame-parameter frame 'me/project))
-        (when (and (not found) (string= project frame-project))
+        (when (and frame-project (not found) (string= project frame-project))
           (setq found t)
           (make-frame-visible frame)
           (raise-frame frame)
@@ -80,8 +80,8 @@
       '(""
         (:eval
          (let ((project-name (me/project-name)))
-           (if (not (string= "" project-name))
-               (format project-name)
-             (format (frame-parameter nil 'me/project-name)))))))
+           (if (not project-name)
+               (format "%s" project-name)
+             (format "%s" (frame-parameter nil 'me/project-name)))))))
 
 (provide 'projects-config)

@@ -8,8 +8,8 @@
 (use-package envrc
   :config (envrc-global-mode))
 
-(use-package exec-path-from-shell
-  :demand t
-  :config (exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell
+;;   :demand t
+;;   :config (exec-path-from-shell-initialize))
 
 (provide 'env-config)

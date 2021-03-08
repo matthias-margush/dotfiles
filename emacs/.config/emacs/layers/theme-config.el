@@ -26,8 +26,8 @@
             (set-face-attribute 'fixed-pitch nil :font "Hasklug Nerd Font Mono-10")))
 
 (setq-default fringe-indicator-alist nil) ; fringe wrap arrows
-(fringe-mode '(8 . 4))                  ; fringe
-(scroll-bar-mode -1)                    ; scrollbars
+(scroll-bar-mode -1)
+                                        ; scrollbars
 (setq frame-title-format '("\n"))       ; frame titles
 (setq initial-scratch-message "")       ; scratch buffer content
 (setq ns-use-proxy-icon nil)            ; frame icon

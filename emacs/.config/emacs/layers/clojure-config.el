@@ -2,6 +2,6 @@
 
 (require 'package-config)
 
-(use-package cider)
+(use-package cider :defer t)
 
 (provide 'clojure-config)

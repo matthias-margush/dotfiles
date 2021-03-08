@@ -63,13 +63,6 @@ at the first function to return non-nil.")
         (add-to-list 'org-babel-load-languages (cons lang t)))
       t))
 
-  (defadvice org-babel-execute-src-block (around load-language nil activate)
-    "Load language if needed"
-    (let ((language (org-element-property :language (org-element-at-point))))
-      (unless (cdr (assoc (intern language) org-babel-load-languages))
-        (add-to-list 'org-babel-load-languages (cons (intern language) t))
-        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
-      ad-do-it))
 
   (defun me/emphasize-bold () (interactive "P") (org-emphasize ?*))
   (defun me/emphasize-code () (interactive "P") (org-emphasize ?~))
@@ -117,6 +110,14 @@ at the first function to return non-nil.")
    plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.1/libexec/plantuml.jar")
 
   :config
+  (defadvice org-babel-execute-src-block (around load-language nil activate)
+    "Load language if needed"
+    (let ((language (org-element-property :language (org-element-at-point))))
+      (unless (cdr (assoc (intern language) org-babel-load-languages))
+        (add-to-list 'org-babel-load-languages (cons (intern language) t))
+        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
+      ad-do-it))
+
   (evil-add-command-properties #'org-open-at-point :jump t)
   (add-to-list 'org-file-apps '(t . emacs) t)
 
@@ -177,6 +178,7 @@ at the first function to return non-nil.")
   (require 'ox-md))
 
 (use-package ox-pandoc
+  :defer t
   :init
   (setq org-pandoc-options '((standalone . t))))
 
