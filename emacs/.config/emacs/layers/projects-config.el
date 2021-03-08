@@ -80,8 +80,7 @@
       '(""
         (:eval
          (let ((project-name (me/project-name)))
-           (if (not project-name)
-               (format "%s" project-name)
-             (format "%s" (frame-parameter nil 'me/project-name)))))))
+           (if project-name
+               (format "%s" project-name))))))
 
 (provide 'projects-config)
