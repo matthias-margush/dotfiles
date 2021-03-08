@@ -34,17 +34,20 @@
   (evil-mode))
 
 (use-package evil-collection
-  :after evil
-  :init
-  (setq evil-collection-setup-minibuffer nil ; off for selectrum
-        evil-collection-company-use-tng t
-        evil-collection-term-sync-state-and-mode-p t
-        evil-collection-want-unimpaired-p nil
-	evil-kill-on-visual-paste nil
-        evil-collection-key-blacklist '("SPC")
-        evil-collection-setup-debugger-keys t)
-  :config
-  (evil-collection-init))
+    :after evil
+
+    :custom
+    ((evil-collection-company-use-tng t))
+
+    :init
+    (setq evil-collection-setup-minibuffer nil ; off for selectrum
+          evil-collection-term-sync-state-and-mode-p t
+          evil-collection-want-unimpaired-p nil
+	  evil-kill-on-visual-paste nil
+          evil-collection-key-blacklist '("SPC")
+          evil-collection-setup-debugger-keys t)
+    :config
+    (evil-collection-init))
 
 (use-package evil-commentary
   :general
