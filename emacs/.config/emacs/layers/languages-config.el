@@ -87,4 +87,7 @@
 
 (use-package feature-mode)
 
+(use-package dockerfile-mode
+  :mode (("Dockerfile\\'" . dockerfile-mode)))
+
 (provide 'languages-config)
