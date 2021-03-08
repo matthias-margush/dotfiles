@@ -41,13 +41,6 @@
 
 (use-package rainbow-mode)
 
-(require 'dired-x)
-(add-hook 'dired-load-hook
-          (lambda ()
-            (dired-omit-mode)
-            (require 'dired-x)))
-(setq dired-omit-mode t)
-
 ;;; unbind annoying keys
 (unbind-key (kbd "s-m"))
 (unbind-key (kbd "s-l"))

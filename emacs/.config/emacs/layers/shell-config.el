@@ -70,12 +70,10 @@
          "\n❯ ")))
 (setq eshell-prompt-regexp "^❯ ")
 
-(require 'dired-x)
-(add-hook 'dired-load-hook
+(add-hook 'dired-mode-hook
 	  (lambda ()
-	    (dired-omit-mode)
-	    (require 'dired-x)))
-(setq dired-omit-mode t)
+            (require 'dired-x)
+            (dired-omit-mode)))
 
 ;; brew install coreutils
 (setq insert-directory-program "/usr/local/bin/gls")
