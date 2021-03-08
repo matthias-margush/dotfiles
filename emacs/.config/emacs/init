@@ -8,6 +8,7 @@
 (require 'git-config)
 (require 'header-line-config)
 (require 'help-config)
+(require 'keys-config)
 (require 'languages-config)
 (require 'lisp-config)
 (require 'neotree-config)
