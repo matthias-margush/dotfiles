@@ -27,17 +27,20 @@
     (eshell-send-input)))
 
 (defalias 'e #'find-file-other-window)
+(defalias 'v #'eshell-exec-visual)
 
 (defun me/eshell-rc ()
   (setenv "PAGER" "cat")
   (setenv "MANPAGER" "cat")
   (local-set-key (kbd "s-k") #'eshell-clear)
   (local-set-key (kbd "s-h") #'consult-history)
+
   (general-define-key
    :states 'insert
    :keymaps '(eshell-mode-map)
    "M-p" #'eshell-previous-input
-   "M-n" #'eshell-next-input))
+   "M-n" #'eshell-next-input
+   "s-h" #'consult-history))
 
 (add-hook 'eshell-mode-hook #'me/eshell-rc)
 
