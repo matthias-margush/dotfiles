@@ -18,6 +18,7 @@
 (require 'shell-config)
 (require 'snippets-config)
 (require 'tabbar-config)
+(require 'toggles-config)
 (require 'ui-config)
 
 (use-package esup)

@@ -70,4 +70,6 @@
   :init
   (setq iedit-toggle-key-default nil))
 
+(use-package hercules :commands hercules-def)
+
 (provide 'evil-config)
