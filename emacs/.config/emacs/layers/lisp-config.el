@@ -33,7 +33,9 @@
     ",ee" #'eval-last-sexp
     ",ef" #'eval-defun
     ">" #'me/lispyville->
-    "<" #'me/lispyville-<)
+    "<" #'me/lispyville-<
+    ",t(" #'me/toggle-lispyville
+    ",t)" #'me/toggle-lispyville)
 
   (:states 'visual
     :keymaps '(lisp-mode-map emacs-lisp-mode-map)
@@ -46,12 +48,17 @@
   :init
   (setq
     lispyville-insert-states nil
-    lispyville-key-theme '(operators     ; evil ops like yank, delete
-                            c-w          ; delete backward word
+    lispyville-key-theme '(operators    ; evil ops like yank, delete
+                            c-w         ; delete backward word
                             additional-motions
                             additional
                             additional-insert
                             escape))
+
+  (defun me/toggle-lispyville ()
+    (interactive)
+    (call-interactively 'lispyville-mode)
+    (call-interactively 'lispy-mode))
 
   (evil-define-command me/lispyville-> (count)
     (interactive "<c>")
