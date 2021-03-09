@@ -7,6 +7,7 @@
   :general
   (:states '(normal visual) :prefix leader "c" #'org-capture)
   (:keymaps 'global :states 'normal "s-h" #'evil-jump-backward)
+  (:keymaps 'org-mode-map :states 'normal :prefix local-leader "tt" #'org-todo)
   (:keymaps 'org-mode-map
             "s-i" #'me/emphasize-italic
             "s-_" #'me/emphasize-underline
