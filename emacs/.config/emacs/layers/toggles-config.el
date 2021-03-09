@@ -8,6 +8,6 @@
 (define-key me/toggles-map (kbd "v") #'visible-mode)
 (define-key me/toggles-map (kbd "w") #'whitespace-mode)
 
-(general-define-key :states 'normal :prefix leader "T" me/toggles-map)
+(general-define-key :states 'normal :prefix leader "t" me/toggles-map)
 
 (provide 'toggles-config)
