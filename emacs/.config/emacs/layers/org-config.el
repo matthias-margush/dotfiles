@@ -16,6 +16,8 @@
             "s-=" #'me/emphasize-literal
             "s-b" #'me/emphasize-bold)
   (:states 'normal :keymaps 'org-mode-map
+           "C-<return>" #'me/org-insert-heading
+           "s-<return>" #'me/org-insert-todo
            "s-j" #'org-next-link
            "s-k" #'org-previous-link
            "s-l" #'org-open-at-point
@@ -31,6 +33,17 @@
   (org-mode . visual-line-mode)
 
   :init
+  (defun me/org-insert-heading ()
+    (interactive)
+    (org-insert-heading-respect-content)
+    (evil-append-line 1))
+
+  (defun me/org-insert-todo (arg &optional force-heading)
+    (interactive "P")
+    (goto-char (point-at-bol))
+    (org-insert-todo-heading arg force-heading)
+    (evil-append-line 1))
+
   (defvar +org-babel-load-functions ()
     "A list of functions executed to load the current executing src block. They
 take one argument (the language specified in the src block, as a string). Stops
