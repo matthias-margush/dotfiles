@@ -26,7 +26,7 @@
 (use-package consult
   :general
   (:states 'normal :prefix leader "SPC" #'consult-buffer)
-  (:states 'normal :prefix leader "/" #'consult-git-grep)
+  (:states 'normal :prefix leader "/" #'me/grep)
   (:states 'normal "s-:" #'execute-extended-command)
   (:states 'normal :prefix leader "m" #'consult-mode-command)
   (:states 'normal :prefix leader "j" #'consult-imenu)
@@ -36,6 +36,13 @@
   ("s-F" . counsel-git-grep)
 
   :init
+  (defun me/grep ()
+    "Git or rip grep"
+    (interactive)
+    (if (vc-root-dir)
+      (consult-git-grep)
+      (consult-ripgrep)))
+
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
   ;; `consult-register-store' and the Emacs built-ins.
