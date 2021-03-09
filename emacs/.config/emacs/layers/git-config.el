@@ -9,17 +9,18 @@
   :commands (magit-status magit-blame-addition)
 
   :general
+  (:keymaps 'magit-mode-map "SPC" nil)  ; magit overrides leader
   (:states '(normal) :prefix leader "g" git-map)
   (:keymaps 'git-map
-            "g" #'magit-status
-            "b" #'magit-blame-addition)
+    "g" #'magit-status
+    "b" #'magit-blame-addition)
 
   :init
   (setq git-map (make-sparse-keymap))
   (remove-hook 'magit-section-highlight-hook #'magit-section-highlight)
   (remove-hook 'magit-section-highlight-hook #'magit-diff-highlight)
   (setq magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
-        magit-diff-refine-hunk 'all))
+    magit-diff-refine-hunk 'all))
 
 (use-package forge :after markdown)
 
@@ -34,18 +35,18 @@
 (use-package diff-hl
   :general
   (:keymaps 'normal
-            "]g" 'diff-hl-next-hunk
-            "[g" 'diff-hl-previous-hunk
-            "gh" 'diff-hl-diff-goto-hunk)
+    "]g" 'diff-hl-next-hunk
+    "[g" 'diff-hl-previous-hunk
+    "gh" 'diff-hl-diff-goto-hunk)
 
   :hook
   ((magit-pre-refresh . diff-hl-magit-pre-refresh)
-   (magit-post-refresh . diff-hl-magit-post-refresh)
-   (dired-mode . diff-hl-dired-mode))
+    (magit-post-refresh . diff-hl-magit-post-refresh)
+    (dired-mode . diff-hl-dired-mode))
 
   :init
   (setq diff-hl-draw-borders nil
-        diff-hl-side 'right)
+    diff-hl-side 'right)
 
   :config
   (global-diff-hl-mode)
