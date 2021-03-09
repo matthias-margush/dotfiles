@@ -28,7 +28,7 @@
                       `(,(me/project-root))
                       '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
           (if (and notes (file-exists-p notes))
-              (find-file notes)))))))
+            (find-file notes)))))))
 
 (defun me/project-open-notes (project)
   "Open a project notes file when opening a project."

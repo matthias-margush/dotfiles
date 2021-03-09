@@ -80,4 +80,12 @@
 
 (use-package hercules :commands hercules-def)
 
+(use-package drag-stuff
+  :general
+  (:states '(normal visual)
+    "M-k" #'drag-stuff-up
+    "M-j" #'drag-stuff-down
+    "M-l" #'drag-stuff-right
+    "M-h" #'drag-stuff-left))
+
 (provide 'evil-config)
