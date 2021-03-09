@@ -54,6 +54,8 @@
   :config
   (evil-collection-init))
 
+(use-package evil-surround :config (global-evil-surround-mode))
+
 (use-package evil-commentary
   :general
   (:states 'normal "gc" #'evil-commentary)
