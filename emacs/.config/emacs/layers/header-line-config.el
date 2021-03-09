@@ -11,12 +11,13 @@
  '((:propertize "⧉" face bold)
    " "
    (:propertize mode-line-buffer-identification face header-line-path)
+   mode-line-process
    (:propertize (:eval (me/echo-which-func)) face which-func)))
 
 (defun me/echo-which-func ()
   "Which function string for display."
-  (if-let ((fn (which-function)))
-      (concat "   λ " fn)))
+  (when-let ((fn (which-function)))
+    (concat "   λ " fn)))
 
 (defun me/project-to-buffer-name ()
   (if buffer-file-truename
