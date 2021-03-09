@@ -3,6 +3,7 @@
 (require 'package-config)
 
 (use-package magit
+  :defer 2
   :commands (magit-status magit-blame-addition)
 
   :general
