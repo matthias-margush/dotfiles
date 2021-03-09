@@ -10,7 +10,10 @@
 
   :general
   (:keymaps 'magit-mode-map "SPC" nil)  ; magit overrides leader
-  (:states '(normal) :prefix leader "g" git-map)
+  (:keymaps 'with-editor-mode-map :states 'normal ",cc" #'with-editor-finish)
+  (:keymaps 'with-editor-mode-map :states 'normal ",ck" #'with-editor-cancel)
+  (:states 'normal :prefix leader "g" git-map)
+
   (:keymaps 'git-map
     "g" #'magit-status
     "b" #'magit-blame-addition)
