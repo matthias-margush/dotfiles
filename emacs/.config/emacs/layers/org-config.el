@@ -12,7 +12,7 @@
             "s-i" #'me/emphasize-italic
             "s-_" #'me/emphasize-underline
             "s--" #'me/emphasize-strike
-            "s-~" #'me/emphasize-code
+            "s-`" #'me/emphasize-code
             "s-=" #'me/emphasize-literal
             "s-b" #'me/emphasize-bold)
   (:states 'normal :keymaps 'org-mode-map
@@ -79,12 +79,12 @@ at the first function to return non-nil.")
       t))
 
 
-  (defun me/emphasize-bold () (interactive "P") (org-emphasize ?*))
-  (defun me/emphasize-code () (interactive "P") (org-emphasize ?~))
-  (defun me/emphasize-italic () (interactive "P") (org-emphasize ?/))
-  (defun me/emphasize-literal () (interactive "P") (org-emphasize ?=))
-  (defun me/emphasize-strike () (interactive "P") (org-emphasize ?+))
-  (defun me/emphasize-underline () (interactive "P") (org-emphasize ?_))
+  (defun me/emphasize-bold () (interactive) (org-emphasize ?*))
+  (defun me/emphasize-code () (interactive) (org-emphasize ?~))
+  (defun me/emphasize-italic () (interactive) (org-emphasize ?/))
+  (defun me/emphasize-literal () (interactive) (org-emphasize ?=))
+  (defun me/emphasize-strike () (interactive) (org-emphasize ?+))
+  (defun me/emphasize-underline () (interactive) (org-emphasize ?_))
 
   (setq org-modules '())
   (setq org-agenda-inhibit-startup t)
