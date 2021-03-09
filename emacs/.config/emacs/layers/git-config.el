@@ -2,8 +2,10 @@
 
 (require 'package-config)
 
+(setq vc-follow-symlinks t)
+
 (use-package magit
-  :defer 2
+  :defer 3
   :commands (magit-status magit-blame-addition)
 
   :general
