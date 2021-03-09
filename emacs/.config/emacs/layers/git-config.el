@@ -14,6 +14,16 @@
   (:keymaps 'with-editor-mode-map :states 'normal ",ck" #'with-editor-cancel)
   (:states 'normal :prefix leader "g" git-map)
 
+  ;;  smerge
+  (:keymaps 'smerge-mode-map :prefix local-leader "," #'smerge-next)
+  (:keymaps 'smerge-mode-map :states 'normal "]n" #'smerge-next)
+  (:keymaps 'smerge-mode-map :states 'normal "[n" #'smerge-prev)
+  (:keymaps 'smerge-mode-map :states 'normal "]]" #'smerge-next)
+  (:keymaps 'smerge-mode-map :states 'normal "[[" #'smerge-prev)
+  (:keymaps 'smerge-mode-map :prefix local-leader "u" #'smerge-keep-upper)
+  (:keymaps 'smerge-mode-map :prefix local-leader "l" #'smerge-keep-lower)
+  (:keymaps 'smerge-mode-map :prefix local-leader "a" #'smerge-keep-all)
+
   (:keymaps 'git-map
     "g" #'magit-status
     "b" #'magit-blame-addition)
