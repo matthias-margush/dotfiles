@@ -8,7 +8,7 @@
 
 (setq-default
  header-line-format
- '((:propertize "⧉" face bold)
+ '((:propertize "⧉" face '(:weight bold :height 2.0))
    " "
    (:propertize mode-line-buffer-identification face header-line-path)
    mode-line-process
