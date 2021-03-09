@@ -12,6 +12,11 @@
 
 (setq shell-prompt-pattern "^❯ *")
 
+(eval-after-load "term"
+  '(define-key term-raw-map (kbd "s-v") 'term-paste))
+
+(setq explicit-shell-file-name "/bin/zsh")
+
 ;; (add-hook 'shell-mode-hook (lambda () (setq comint-process-echoes t)))
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)

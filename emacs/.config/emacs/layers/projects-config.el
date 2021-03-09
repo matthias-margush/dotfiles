@@ -70,17 +70,29 @@
  :prefix leader
  "p" project-prefix-map)
 
+(setq me/shell-map (make-sparse-keymap))
+(define-key me/shell-map "v" #'vterm)
+(define-key me/shell-map "e" #'eshell)
+(define-key me/shell-map "s" #'shell)
+(define-key me/shell-map "t" #'term)
+
 (general-define-key
- :keymaps 'project-prefix-map
- "p" #'me/project-switch-or-open
- "n" #'me/project-notes
- "t" #'me/sidebar)
+  :states 'normal
+  :prefix leader
+  "x" me/shell-map)
+
+(general-define-key
+  :keymaps 'project-prefix-map
+  "p" #'me/project-switch-or-open
+  "n" #'me/project-notes
+  "t" #'me/sidebar
+  "x" me/shell-map)
 
 (setq frame-title-format
-      '(""
-        (:eval
-         (if-let ((project-name (me/project-name)))
-             (format "%s" project-name)
-           "%b"))))
+  '(""
+     (:eval
+       (if-let ((project-name (me/project-name)))
+         (format "%s" project-name)
+         "%b"))))
 
 (provide 'projects-config)
