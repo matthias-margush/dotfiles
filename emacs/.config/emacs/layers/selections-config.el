@@ -39,8 +39,10 @@
   (defun me/grep ()
     "Git or rip grep"
     (interactive)
-    (if (vc-root-dir)
-      (consult-git-grep)
+    (if (or (vc-root-dir)
+            (and (me/project-name)
+                 (file-exists-p (concat (me/project-name) ".git"))))
+        (consult-git-grep)
       (consult-ripgrep)))
 
   ;; Optionally configure the register formatting. This improves the register
@@ -67,22 +69,21 @@
             (car (project-roots project))))))
 
 (use-package marginalia
-    :config
+  :config
   (marginalia-mode))
 
 (use-package embark
-    :bind
+  :bind
   ("C-S-a" . embark-act)
   (:map minibuffer-local-map
-        ("C-c C-o" . embark-export)
-        ("<tab>" . embark-act)))
+        ("C-c C-o" . embark-export)))
 
 (use-package embark-consult
-    :after (embark consult)
-    :demand t              ; only necessary if you have the hook below
-    ;; if you want to have consult previews as you move around an
-    ;; auto-updating embark collect buffer
-    :hook
-    (embark-collect-mode . embark-consult-preview-minor-mode))
+  :after (embark consult)
+  :demand t              ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (provide 'selections-config)
