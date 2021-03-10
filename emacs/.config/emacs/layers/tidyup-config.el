@@ -5,6 +5,7 @@
 (setq-default indent-tabs-mode nil)
 (setq max-specpdl-size 13000)           ; bigger stack
 (setq ffap-machine-p-known 'reject) 	; don't magically try to complete links
+(setq history-length 1000)              ; bigger histories
 
 ;;; Clean up noisy functions
 (defun me/suppress-messages (func &rest args)
