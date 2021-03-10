@@ -2,6 +2,8 @@
 
 (require 'evil-config)
 
+(define-key isearch-mode-map (kbd "s-v") #'isearch-yank-kill)
+
 (general-define-key
  :states '(normal visual)
  :prefix leader
