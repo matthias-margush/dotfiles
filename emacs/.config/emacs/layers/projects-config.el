@@ -71,10 +71,41 @@
  "p" project-prefix-map)
 
 (setq me/shell-map (make-sparse-keymap))
-(define-key me/shell-map "v" #'vterm)
-(define-key me/shell-map "e" #'eshell)
-(define-key me/shell-map "s" #'shell)
-(define-key me/shell-map "t" #'term)
+(define-key me/shell-map "v" #'me/project-vterm)
+(define-key me/shell-map "e" #'project-eshell)
+(define-key me/shell-map "s" #'project-shell)
+(define-key me/shell-map "t" #'me/project-term)
+
+(setq explicit-shell-file-name "/bin/zsh")
+
+(defun me/project-vterm (&optional arg)
+  (interactive "P")
+  (let* ((default-directory (project-root (project-current t)))
+         (vterm-buffer-name
+          (concat "*" (file-name-nondirectory
+                       (directory-file-name
+                        (file-name-directory default-directory)))
+                  "-vterm*")))
+    (vterm--internal #'pop-to-buffer arg)))
+
+(defun me/project-term (program)
+  (interactive (list (read-from-minibuffer "Run program: "
+					   (or explicit-shell-file-name
+					       (getenv "ESHELL")
+					       shell-file-name))))
+  (let* ((default-directory (project-root (project-current t)))
+         (default-project-term-name
+          (concat "*" (file-name-nondirectory
+                       (directory-file-name
+                        (file-name-directory default-directory)))
+                  "-term*"))
+         (term-buffer (make-term default-project-term-name program)))
+    (if (and term-buffer (not current-prefix-arg))
+        (pop-to-buffer term-buffer)
+        (set-buffer term-buffer)
+        (term-mode)
+        (term-char-mode)
+        (switch-to-buffer term-buffer))))
 
 (general-define-key
   :states 'normal
