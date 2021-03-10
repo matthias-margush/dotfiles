@@ -39,7 +39,7 @@
   (evil-mode))
 
 (use-package evil-collection
-  :after (evil company)
+  :after evil
 
   :custom
   ((evil-collection-company-use-tng t))
