@@ -8,7 +8,7 @@
 
 (setq-default
  header-line-format
- '((:propertize "⧉" face '(:weight bold :height 2.0))
+ '((:propertize "⧉" face (:weight bold :height 2.0))
    " "
    (:propertize mode-line-buffer-identification face header-line-path)
    mode-line-process
@@ -20,13 +20,13 @@
     (concat "   λ " fn)))
 
 (defun me/project-to-buffer-name ()
-  (if buffer-file-truename
-      (let* ((name buffer-file-truename)
-             (project (cdr-safe (project-current)))
-             (name (file-relative-name name project)))
-        (combine-and-quote-strings
-         (split-string name "/+")
-         " ⧸ "))
+  (when-let ((filename (or buffer-file-truename default-directory)))
+    (let* ((name filename)
+           (project (cdr-safe (project-current)))
+           (name (file-relative-name name project)))
+      (combine-and-quote-strings
+       (split-string name "/+")
+       " ⧸ "))
     (if-let (prompt (minibuffer-prompt))
         prompt
       (buffer-name))))
