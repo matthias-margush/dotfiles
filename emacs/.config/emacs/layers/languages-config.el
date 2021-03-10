@@ -52,8 +52,8 @@
   :init
   (defun me/go-editor-settings ()
     ;; (setq flycheck-checker 'gometalinter)
-    (add-hook 'before-save-hook #'eglot-format-buffer -10 t)
-    (add-hook 'before-save-hook #'eglot-organize-imports t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t)
+    (add-hook 'before-save-hook #'lsp-format-buffer -10 t)
     (electric-pair-mode))
 
   (eval-after-load "go-mode" '(setq go-mode-map (make-sparse-keymap))))
