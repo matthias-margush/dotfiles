@@ -23,6 +23,9 @@
            "s-l" #'org-open-at-point
            "<tab>" #'org-cycle
            "S-<tab>" #'org-shifttab)
+  (:states 'insert :keymaps 'org-mode-map
+           "C-<return>" #'me/org-insert-heading
+           "s-<return>" #'me/org-insert-todo)
 
   :custom
   (org-hide-leading-stars t)
