@@ -42,7 +42,7 @@
   :after evil
 
   :custom
-  ((evil-collection-company-use-tng t))
+  ((evil-collection-company-use-tng nil)) ; not working with lsp
 
   :init
   (setq evil-collection-setup-minibuffer nil ; off for selectrum
