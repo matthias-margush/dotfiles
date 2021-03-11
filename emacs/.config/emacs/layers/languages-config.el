@@ -2,6 +2,12 @@
 
 (require 'package-config)
 
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode))
+
+(use-package tree-sitter-langs)
+
 (use-package lsp-mode
   :hook ((go-mode . lsp))
 
