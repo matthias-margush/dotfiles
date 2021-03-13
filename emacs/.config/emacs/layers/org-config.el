@@ -11,9 +11,7 @@
   (:keymaps 'org-mode-map
             "s-i" #'me/emphasize-italic
             "s-_" #'me/emphasize-underline
-            "s--" #'me/emphasize-strike
             "s-`" #'me/emphasize-code
-            "s-=" #'me/emphasize-literal
             "s-b" #'me/emphasize-bold)
   (:states 'normal :keymaps 'org-mode-map
            "C-<return>" #'me/org-insert-heading
