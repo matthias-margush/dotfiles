@@ -3,6 +3,8 @@
 (require 'package-config)
 
 (use-package selectrum
+  :demand t
+
   :init
   (setq selectrum-count-style nil)
 

@@ -34,7 +34,7 @@
 
 (use-package construction-paper-theme
   :custom
-  (window-divider-default-right-width 100)
+  (window-divider-default-right-width 4)
 
   :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
 
@@ -56,14 +56,15 @@
        :inherit 'default
        :underline t
        :foreground box-color
+       :background box-color
        :box `(:line-width 1 :color ,box-color) :height 0.1)
 
       (set-face-attribute
        'mode-line-inactive nil
-       :background nil
+       :background box-color
        :foreground box-color
        :underline t
-       :box `(:line-width 1 :color ,box-color) :height 0.1)
+       :box `(:line-width 1 :color ,box-color) :height 0.2)
 
       (set-face-attribute
        'mode-line-inactive nil
@@ -77,6 +78,7 @@
   (add-to-list 'after-make-frame-functions #'me/modeline-style-line t)
 
   :config
+  (window-divider-mode)
   (require 'construction-paper-theme)
   (construction-paper-theme-light))
 
