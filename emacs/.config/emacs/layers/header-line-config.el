@@ -6,18 +6,34 @@
 
 (which-func-mode)
 
+(defun mode-line-render (left right)
+  (let* ((available-width (- (window-width) (length left) )))
+    (format "%s%s" left right)))
+
 (setq-default
  header-line-format
- '((:propertize "⧉" face (:weight bold :height 2.0))
-   " "
-   (:propertize mode-line-buffer-identification face header-line-path)
-   mode-line-process
-   (:propertize (:eval (me/echo-which-func)) face which-func)))
+ `((:eval (mode-line-render
+           (format-mode-line
+            (list
+             (propertize "⊷" 'face '(:weight bold :height 2.0))
+             " "
+             (propertize (me/project-to-buffer-name) 'face 'header-line-path)))
+           (format-mode-line
+            (list
+             ""
+             mode-line-process
+             ;; (propertize "⊷ " 'face '(:weight bold :height 2.0))
+             (propertize (me/echo-which-func) 'face 'which-func)
+             ;; (propertize " ⊷" 'face '(:weight bold :height 2.0))
+             ))))))
+
+(setq line-spacing 0.1)
 
 (defun me/echo-which-func ()
   "Which function string for display."
-  (when-let ((fn (which-function)))
-    (concat "   λ " fn)))
+  (if-let ((fn (which-function)))
+      (concat "   λ " fn)
+    ""))
 
 (defun me/project-to-buffer-name ()
   (when-let ((filename (or buffer-file-truename default-directory)))
