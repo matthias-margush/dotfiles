@@ -11,7 +11,7 @@
 
   :config
   (define-key evil-insert-state-map (kbd "C-n") nil)
-  (evil-define-key 'insert global-map (kbd "C-SPC") #'company-complete)
+  (evil-define-key 'insert global-map (kbd "C-x C-o") #'company-complete)
 
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
