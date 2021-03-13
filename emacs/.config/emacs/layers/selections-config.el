@@ -50,7 +50,7 @@
   ;; `consult-register-store' and the Emacs built-ins.
   (setq register-preview-delay 0
         register-preview-function #'consult-register-format)
-  (setq consult-narrow-key "<")
+  (setq consult-narrow-key (kbd "TAB"))
 
   ;; Optionally tweak the register preview window.
   ;; This adds thin lines, sorting and hides the mode line of the window.
@@ -61,7 +61,14 @@
         xref-show-definitions-function #'consult-xref)
 
   :config
-  (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
+  (define-key consult-narrow-map (vconcat consult-narrow-key (kbd "TAB")) #'consult-narrow-help)
+
+  (dolist (src consult-buffer-sources)
+    (if (or (eq src 'consult--source-project-buffer)
+            (eq src 'consult--source-bookmark)
+            (eq src 'consult--source-project-file))
+       (set src (plist-put (symbol-value src) :hidden nil))
+      (set src (plist-put (symbol-value src) :hidden t))))
 
   (setq consult-project-root-function
         (lambda ()

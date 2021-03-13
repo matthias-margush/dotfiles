@@ -113,11 +113,13 @@
   "x" me/shell-map)
 
 (general-define-key
-  :keymaps 'project-prefix-map
-  "p" #'me/project-switch-or-open
-  "n" #'me/project-notes
-  "t" #'me/sidebar
-  "x" me/shell-map)
+ :keymaps 'project-prefix-map
+ "p" #'me/project-switch-or-open
+ "n" #'me/project-notes
+ "t" #'me/sidebar
+ "x" me/shell-map
+ "f" nil
+ "b" nil)
 
 (setq frame-title-format
   '(""
