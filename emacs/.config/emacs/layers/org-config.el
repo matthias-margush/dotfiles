@@ -243,4 +243,7 @@ at the first function to return non-nil.")
           (set-frame-parameter new-frame 'me/project "me/notes")))
       (me/deft))))
 
+(use-package org-superstar
+  :hook (org-mode . org-superstar-mode))
+
 (provide 'org-config)
