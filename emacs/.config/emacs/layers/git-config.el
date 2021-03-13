@@ -46,6 +46,7 @@
   (:map git-map ("l" . git-link)))
 
 (use-package diff-hl
+  :demand t
   :general
   (:keymaps 'normal
     "]g" 'diff-hl-next-hunk
