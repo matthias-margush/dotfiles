@@ -20,4 +20,8 @@
 
 (straight-use-package 'use-package)
 
+(add-to-list 'imenu-generic-expression
+             '("Used Packages"
+               "\\(^\\s-*(use-package +\\)\\(\\_<.+\\_>\\)" 2))
+
 (provide 'package-config)
