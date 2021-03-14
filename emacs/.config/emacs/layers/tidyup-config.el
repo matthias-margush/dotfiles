@@ -38,6 +38,8 @@
 (setq bidi-paragraph-direction 'left-to-right)
 (setq bidi-inhibit-bpa t)
 
+(superword-mode)
+
 (setq mac-option-modifier 'meta)
 
 (provide 'tidyup-config)
