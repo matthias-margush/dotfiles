@@ -10,9 +10,11 @@
  "," #'narrow-or-widen-dwim)
 
 (general-define-key
- :states '(normal visual)
+ :states '(normal)
  :prefix leader
- "w" evil-window-map)
+ "w" evil-window-map
+ "bn" #'bookmark-set
+ "TAB" #'evil-switch-to-windows-last-buffer)
 
 (defun narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
