@@ -33,7 +33,7 @@
   :general
   (:states 'normal :prefix leader "SPC" #'consult-buffer)
   (:states 'normal :prefix leader "/" #'me/grep)
-  (:states 'normal "s-:" #'execute-extended-command)
+  (:states '(normal insert) "s-:" #'execute-extended-command)
   (:states 'normal :prefix leader "m" #'consult-mode-command)
   (:states 'normal :prefix leader "j" #'consult-imenu)
   (:states 'normal :prefix leader ":" #'consult-goto-line)
