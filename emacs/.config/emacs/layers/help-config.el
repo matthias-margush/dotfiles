@@ -14,7 +14,8 @@
   :init
   (setq which-key-show-early-on-C-h t
         which-key-idle-delay 2.0
-        which-key-allow-evil-operators t)
+        which-key-allow-evil-operators t
+        which-key-popup-type 'minibuffer)
 
   :config
   (which-key-mode))
