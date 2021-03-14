@@ -15,9 +15,9 @@
 
   (setq selectrum-count-style nil)
   (setq selectrum-num-candidates-displayed 100)
-  (setq selectrum-fix-vertical-window-height t)
+  (setq selectrum-fix-vertical-window-height nil)
   (setq selectrum-completing-read-multiple-show-help t)
-  (setq selectrum-max-window-height 15)
+  (setq selectrum-max-window-height nil)
   (setq selectrum-extend-current-candidate-highlight t)
   (setq magit-completing-read-function #'selectrum-completing-read)
 
