@@ -2,17 +2,48 @@
 
 (require 'package-config)
 
+(use-package posframe)
+
 (use-package selectrum
   :demand t
 
   :init
+  (setq selectrum-display-action '(display-buffer-show-in-posframe))
+
+  (defun me/posframe-poshandler-frame-bottom-center (info)
+    "Posframe's position handler.
+
+ Get a position which let posframe stay onto its parent-frame's
+ bottom center.  The structure of INFO can be found in docstring of
+ `posframe-show'."
+    (cons (/ (- (plist-get info :parent-frame-width)
+                (plist-get info :posframe-width))
+             2)
+          (- (plist-get info :parent-frame-height)
+             (plist-get info :posframe-height)
+             (plist-get info :header-line-height))))
+
+  (defun display-buffer-show-in-posframe (buffer _alist)
+    (frame-root-window
+     (posframe-show
+      buffer
+      :min-height 15
+      :min-width (frame-width)
+      :border-color "#dddddd"
+      :fit-frame-to-buffer t
+      :border-width 2
+      :left-fringe 8
+      :respect-header-line t
+      :lines-truncate t
+      :right-fringe 8
+      :poshandler #'me/posframe-poshandler-frame-bottom-center)))
+
+  (add-hook 'minibuffer-exit-hook 'posframe-delete-all)
+
   (setq selectrum-count-style nil)
-
-  (setq selectrum-display-action
-        '(display-buffer-in-side-window
-          (side . bottom)
-          (slot . -1)))
-
+  (setq selectrum-num-candidates-displayed 100)
+  (setq selectrum-fix-vertical-window-height t)
+  (setq selectrum-completing-read-multiple-show-help t)
   (setq selectrum-max-window-height 15)
   (setq selectrum-extend-current-candidate-highlight t)
   (setq magit-completing-read-function #'selectrum-completing-read)
@@ -69,7 +100,7 @@
     (if (or (eq src 'consult--source-project-buffer)
             (eq src 'consult--source-bookmark)
             (eq src 'consult--source-project-file))
-       (set src (plist-put (symbol-value src) :hidden nil))
+        (set src (plist-put (symbol-value src) :hidden nil))
       (set src (plist-put (symbol-value src) :hidden t))))
 
   (setq consult-project-root-function
