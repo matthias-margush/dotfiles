@@ -9,6 +9,11 @@
  :prefix local-leader
  "," #'narrow-or-widen-dwim)
 
+(general-define-key
+ :states '(normal visual)
+ :prefix leader
+ "w" evil-window-map)
+
 (defun narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
 Dwim means: region, org-src-block, org-subtree, or
