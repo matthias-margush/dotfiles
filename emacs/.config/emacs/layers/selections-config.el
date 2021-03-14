@@ -96,12 +96,37 @@
   :config
   (define-key consult-narrow-map (vconcat consult-narrow-key (kbd "TAB")) #'consult-narrow-help)
 
+  (setq me/consult-source-project-files
+    `(:name     "Project Files"
+                :narrow   ?p
+                :category project
+                :face     consult-file
+                :history  file-name-history
+                :items    ,#'me/project-files
+                :enabled   ,(lambda () (and consult-project-root-function
+                                            recentf-mode))
+                :action   ,#'consult--file-action))
+
+  (setq consult-buffer-sources
+        '(consult--source-hidden-buffer
+          consult--source-bookmark
+          consult--source-project-buffer
+          me/consult-source-project-files
+          consult--source-buffer))
+
   (dolist (src consult-buffer-sources)
     (if (or (eq src 'consult--source-project-buffer)
             (eq src 'consult--source-bookmark)
-            (eq src 'consult--source-project-file))
+            (eq src 'me/consult-source-project-files))
         (set src (plist-put (symbol-value src) :hidden nil))
       (set src (plist-put (symbol-value src) :hidden t))))
+
+  (add-to-list 'consult-buffer-sources #'me/consult-source-project-files)
+
+
+  (defun me/project-files ()
+    (let ((project (project-current)))
+      (project-files project (list (project-root project))))   )
 
   (setq consult-project-root-function
         (lambda ()

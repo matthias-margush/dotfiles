@@ -118,7 +118,8 @@
  "p" #'me/project-switch-or-open
  "t" #'me/sidebar
  "x" me/shell-map
- "b" nil)
+ "b" nil
+ "f" nil)
 
 (setq frame-title-format
   '(""
