@@ -18,8 +18,8 @@
 (defun me/neotree-toggle ()
   "Open NeoTree using the git root."
   (interactive)
-  (if (fboundp 'projectile-project-root)
-      (let ((project-dir (projectile-project-root))
+  (if (fboundp 'me/project-root)
+      (let ((project-dir (me/project-root))
 	    (file-name (buffer-file-name)))
 	(neotree-toggle)
 	(if project-dir
@@ -46,7 +46,6 @@
       (setq frame-resize-pixelwise t)
       (if (neo-global--window-exists-p) ; then close
         (let ((neo-width (window-total-width (neo-global--get-window))))
-
           (me/neotree-toggle)
 
           (set-frame-position
@@ -68,8 +67,6 @@
              (selected-frame)
              (- left (+ neo-width (* 2 border)))
              y)
-
-            ;; (set-frame-height (selected-frame) height nil t)
 
             (set-frame-width
              (selected-frame)

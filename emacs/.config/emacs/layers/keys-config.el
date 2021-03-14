@@ -6,8 +6,8 @@
 
 (general-define-key
  :states '(normal visual)
- :prefix leader
- "n" #'narrow-or-widen-dwim)
+ :prefix local-leader
+ "," #'narrow-or-widen-dwim)
 
 (defun narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
