@@ -78,4 +78,4 @@
 (require 'construction-paper-theme)
 (construction-paper-theme-light)
 
-(provide 'theme-config)
+(provide 'configure-theme)

@@ -1,8 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(require 'package-config)
-(require 'org-config)
-
 (defun me/dashboard ()
   "Startup file"
   (let ((projects (expand-file-name "~/project.org")))
@@ -13,4 +10,4 @@
 
 (setq initial-buffer-choice #'me/dashboard)
 
-(provide 'dashboard-config)
+(provide 'configure-dashboard)

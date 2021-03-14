@@ -2,7 +2,7 @@
 
 ;;; Clean up superflous visual elements, messages, and behavioral defaults
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)     ; use spaces to indent
 (setq max-specpdl-size 13000)           ; bigger stack
 (setq ffap-machine-p-known 'reject) 	; don't magically try to complete links
 (setq history-length 1000)              ; bigger histories
@@ -38,8 +38,6 @@
 (setq bidi-paragraph-direction 'left-to-right)
 (setq bidi-inhibit-bpa t)
 
-(superword-mode)
+(setq mac-option-modifier 'meta)        ; meta key
 
-(setq mac-option-modifier 'meta)
-
-(provide 'tidyup-config)
+(provide 'configure-tidyup)

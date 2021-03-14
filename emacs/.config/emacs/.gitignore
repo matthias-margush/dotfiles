@@ -3,3 +3,5 @@ projects
 /bookmarks
 .lsp-session*
 /var
+/.mc-lists.el
+/elpa

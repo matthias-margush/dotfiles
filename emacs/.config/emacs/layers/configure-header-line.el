@@ -49,4 +49,4 @@
 
 (setq-default mode-line-buffer-identification '(:eval (me/project-to-buffer-name)))
 
-(provide 'header-line-config)
+(provide 'configure-header-line)

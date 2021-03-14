@@ -1,10 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(require 'package-config)
-
-(use-package imenu-list
-  :general
-  (:states 'normal :prefix leader "v" #'imenu-list-smart-toggle))
+(mm/package 'imenu-list)
+(global-set-key (kbd "s-3") #'imenu-list-smart-toggle)
 
 (defun me/project-name ()
   (cdr-safe (project-current)))
@@ -62,13 +59,7 @@
         (set-frame-parameter new-frame 'me/project project)
         (me/project-open-notes project)))))
 
-(unbind-key (kbd "C-SPC"))
-(global-set-key (kbd "C-SPC C-SPC") #'me/project-switch-or-open)
-
-(general-define-key
- :states 'normal
- :prefix leader
- "p" project-prefix-map)
+(global-set-key (kbd "s-p") project-prefix-map)
 
 (setq me/shell-map (make-sparse-keymap))
 (define-key me/shell-map "v" #'me/project-vterm)
@@ -107,25 +98,11 @@
         (term-char-mode)
         (switch-to-buffer term-buffer))))
 
-(general-define-key
- :states 'normal
- :prefix leader
- "x" me/shell-map
- "n" #'me/project-notes)
-
-(general-define-key
- :keymaps 'project-prefix-map
- "p" #'me/project-switch-or-open
- "t" #'me/sidebar
- "x" me/shell-map
- "b" nil
- "f" nil)
-
 (setq frame-title-format
-  '(""
-     (:eval
-       (if-let ((project-name (me/project-name)))
-         (format "%s" project-name)
-         "%b"))))
+      '(""
+        (:eval
+         (if-let ((project-name (me/project-name)))
+             (format "%s" project-name)
+           "%b"))))
 
-(provide 'projects-config)
+(provide 'configure-projects)

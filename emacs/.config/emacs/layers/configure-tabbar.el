@@ -1,15 +1,13 @@
 ; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-(require 'package-config)
+;; (use-package better-jumper              ; per-window & tab jump list
+;;   :init
+;;   (with-eval-after-load 'evil-maps
+;;     (define-key evil-motion-state-map (kbd "C-o") #'better-jumper-jump-backward)
+;;     (define-key evil-motion-state-map (kbd "C-i") #'better-jumper-jump-forward))
 
-(use-package better-jumper              ; per-window & tab jump list
-  :init
-  (with-eval-after-load 'evil-maps
-    (define-key evil-motion-state-map (kbd "C-o") #'better-jumper-jump-backward)
-    (define-key evil-motion-state-map (kbd "C-i") #'better-jumper-jump-forward))
-
-  :config
-  (better-jumper-mode))
+;;   :config
+;;   (better-jumper-mode))
 
 (defface spacebar-active
   '((t :inherit variable-pitch))
@@ -111,21 +109,21 @@
   (tab-bar-select-tab (length (funcall tab-bar-tabs-function)))
   (me/tabs-refresh))
 
-(evil-define-key 'normal 'global (kbd "gt") #'me/tab-next)
-(evil-define-key 'normal 'global (kbd "gT") #'me/tab-prev)
-(evil-define-key 'normal 'global (kbd "g SPC") #'me/tabs-refresh)
-(define-key evil-window-map (kbd "C-t") #'me/tab-new)
-(define-key evil-window-map (kbd "C-q") #'me/tab-close)
+;; (evil-define-key 'normal 'global (kbd "gt") #'me/tab-next)
+;; (evil-define-key 'normal 'global (kbd "gT") #'me/tab-prev)
+;; (evil-define-key 'normal 'global (kbd "g SPC") #'me/tabs-refresh)
+;; (define-key evil-window-map (kbd "C-t") #'me/tab-new)
+;; (define-key evil-window-map (kbd "C-q") #'me/tab-close)
 
 ;; (define-key evil-motion-state-map (kbd "g`") #'eyebrowse-last-window-config)
-(evil-ex-define-cmd "tabn[ext]" #'me/tab-next)
-(evil-ex-define-cmd "tabp[revious]" #'me/tab-prev)
-(evil-ex-define-cmd "tabN[ext]" #'me/tab-prev)
-(evil-ex-define-cmd "tabr[ewind]" #'me/tab-first)
-(evil-ex-define-cmd "tabf[irst]" #'me/tab-first)
-(evil-ex-define-cmd "tabl[ast]" #'me/tab-last)
-(evil-ex-define-cmd "tabnew" #'me/tab-new)
-(evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
-(evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
+;; (evil-ex-define-cmd "tabn[ext]" #'me/tab-next)
+;; (evil-ex-define-cmd "tabp[revious]" #'me/tab-prev)
+;; (evil-ex-define-cmd "tabN[ext]" #'me/tab-prev)
+;; (evil-ex-define-cmd "tabr[ewind]" #'me/tab-first)
+;; (evil-ex-define-cmd "tabf[irst]" #'me/tab-first)
+;; (evil-ex-define-cmd "tabl[ast]" #'me/tab-last)
+;; (evil-ex-define-cmd "tabnew" #'me/tab-new)
+;; (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
+;; (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
 
-(provide 'tabbar-config)
+(provide 'configure-tabbar)

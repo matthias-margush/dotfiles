@@ -2,6 +2,6 @@
 
 (require 'package-config)
 
-(use-package cider :defer t)
+(use-package xkcd :commands xkcd)
 
-(provide 'clojure-config)
+(provide xkcd-config)

@@ -1,19 +1,14 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(require 'package-config)
+(mm/package 'neotree)
 
-(use-package neotree
-  :hook
-  (neotree-mode . hl-line-mode)
+(global-set-key (kbd "s-1") #'me/sidebar)
+(add-hook 'neotree-mode-hook #'hl-line-mode)
+(setq neo-smart-open t)
+(setq neo-theme 'icons
+      neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$"))
 
-  :custom
-  (neo-smart-open t)
-
-  :init
-  (setq neo-theme 'icons
-        neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$")))
-
-(use-package all-the-icons)
+(mm/package 'all-the-icons)
 
 (defun me/neotree-toggle ()
   "Open NeoTree using the git root."
@@ -53,8 +48,6 @@
             (+ left neo-width (* 2 border))
             y)
 
-          ;; (set-frame-height (selected-frame) (- 3 height) nil t)
-
           (set-frame-width
             (selected-frame)
             (- width neo-width (* 3 border))
@@ -74,4 +67,4 @@
              nil t))))
       (set-frame-height (selected-frame) height nil t))))
 
-(provide 'neotree-config)
+(provide 'configure-neotree)

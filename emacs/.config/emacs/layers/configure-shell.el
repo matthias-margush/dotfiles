@@ -1,15 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(require 'package-config)
-(require 'evil-config)
-
-(use-package fish-completion
-  :init
-  (when (and (executable-find "fish")
-             (require 'fish-completion nil t))
-    ;; (setq shell-file-name "/usr/local/bin/fish")
-    (global-fish-completion-mode)))
-
 (setq shell-prompt-pattern "^❯ *")
 
 (eval-after-load "term"
@@ -40,12 +30,13 @@
   (local-set-key (kbd "s-k") #'eshell-clear)
   (local-set-key (kbd "s-h") #'consult-history)
 
-  (general-define-key
-   :states 'insert
-   :keymaps '(eshell-mode-map)
-   "M-p" #'eshell-previous-input
-   "M-n" #'eshell-next-input
-   "s-h" #'consult-history))
+  ;; (general-define-key
+  ;;  :states 'insert
+  ;;  :keymaps '(eshell-mode-map)
+  ;;  "M-p" #'eshell-previous-input
+  ;;  "M-n" #'eshell-next-input
+  ;;  "s-h" #'consult-history)
+  )
 
 (add-hook 'eshell-mode-hook #'me/eshell-rc)
 
@@ -56,18 +47,13 @@
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
-(use-package with-editor
-  :hook (;; (shell-mode . with-editor-export-editor)
-	 ;; (term-mode . with-editor-export-editor)
-	 (eshell-mode . with-editor-export-editor)))
+(mm/package 'with-editor)
+(add-hook 'shell-mode-hook #'with-editor-export-editor)
+(add-hook 'term-mode-hook #'with-editor-export-editor)
+(add-hook 'eshell-mode-hook #'with-editor-export-editor)
 
-(use-package vterm
-  :general
-  (states 'insert :keymaps '(vterm-mode-map)
-          "s-[" #'vterm-send-escape)
-
-  :init
-  (setq vterm-always-compile-module t))
+(mm/package 'vterm)
+(setq vterm-always-compile-module t)
 
 ;;  prompt
 (setq eshell-prompt-function
@@ -97,4 +83,4 @@
 ;; (setq eshell-smart-space-goes-to-end t)
 ;; (add-hook 'eshell-mode-hook 'eshell-smart-initialize)
 
-(provide 'shell-config)
+(provide 'configure-shell)

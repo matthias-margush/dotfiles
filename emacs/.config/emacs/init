@@ -1,36 +1,33 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(require 'clojure-config)
-(require 'completions-config)
-(require 'dashboard-config)
-(require 'evil-config)
-(require 'folding-config)
-(require 'git-config)
-(require 'header-line-config)
-(require 'help-config)
-(require 'keys-config)
-(require 'languages-config)
-(require 'lisp-config)
-(require 'neotree-config)
-(require 'org-config)
-(require 'projects-config)
-(require 'selections-config)
-(require 'shell-config)
-(require 'snippets-config)
-(require 'tabbar-config)
-(require 'toggles-config)
-(require 'ui-config)
-
-(use-package esup)
+(require 'configure-clojure)
+(require 'configure-completion)
+(require 'configure-dashboard)
+(require 'configure-folding)
+(require 'configure-git)
+(require 'configure-help)
+(require 'configure-languages)
+(require 'configure-lisp)
+(require 'configure-neotree)
+(require 'configure-org)
+(require 'configure-projects)
+(require 'configure-selections)
+(require 'configure-shell)
+(require 'configure-snippets)
+(require 'configure-tabbar)
+(require 'configure-toggles)
+(require 'configure-ui)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-  '(inhibit-startup-screen t)
-  '(org-hide-emphasis-markers t)
-  '(org-hide-leading-stars t))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
+ '(org-hide-emphasis-markers t)
+ '(org-hide-leading-stars t)
+ '(package-selected-packages
+    '(expand-region multiple-cursors default-text-scale orgraphy all-the-icons neotree origami cider fish-mode dockerfile-mode feature-mode sqlformat vimrc-mode adoc-mode yaml-mode gotest go-mode lsp-mode yasnippet-snippets yasnippet which-key helpful diff-hl git-link magit with-editor vterm selectrum-prescient rainbow-mode org-superstar multi-line marginalia lispy imenu-list envrc embark-consult editorconfig deft company adaptive-wrap)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
