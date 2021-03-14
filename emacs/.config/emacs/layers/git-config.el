@@ -15,7 +15,6 @@
   (:states 'normal :prefix leader "g" git-map)
 
   ;;  smerge
-  (:keymaps 'smerge-mode-map :prefix local-leader "," #'smerge-next)
   (:keymaps 'smerge-mode-map :states 'normal "]n" #'smerge-next)
   (:keymaps 'smerge-mode-map :states 'normal "[n" #'smerge-prev)
   (:keymaps 'smerge-mode-map :states 'normal "]]" #'smerge-next)
