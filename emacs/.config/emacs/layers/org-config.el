@@ -6,7 +6,6 @@
 (use-package org
   :general
   (:states '(normal visual) :prefix leader "c" #'org-capture)
-  (:keymaps 'global :states 'normal "s-h" #'evil-jump-backward)
   (:keymaps 'org-mode-map :states 'normal :prefix local-leader "tt" #'org-todo)
   (:keymaps 'org-mode-map
             "s-i" #'me/emphasize-italic
@@ -16,9 +15,15 @@
   (:states 'normal :keymaps 'org-mode-map
            "C-<return>" #'me/org-insert-heading
            "s-<return>" #'me/org-insert-todo
-           "s-j" #'org-next-link
-           "s-k" #'org-previous-link
-           "s-l" #'org-open-at-point
+           "s-J" #'org-next-link
+           "s-K" #'org-previous-link
+           "s-L" #'org-open-at-point
+
+           "s-j" #'org-forward-heading-same-level
+           "s-k" #'org-backward-heading-same-level
+           "s-h" #'outline-up-heading
+           "s-l" #'outline-next-heading
+
            "<tab>" #'org-cycle
            "S-<tab>" #'org-shifttab)
   (:states 'insert :keymaps 'org-mode-map
