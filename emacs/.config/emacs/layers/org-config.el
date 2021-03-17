@@ -212,6 +212,7 @@ at the first function to return non-nil.")
   :commands (deft)
 
   :general
+  ("s-<return>" #'deft-new-file)
   (:map 'global-map
         "s-d" #'me/notes-switch-or-open)
   :init
