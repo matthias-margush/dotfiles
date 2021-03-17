@@ -75,6 +75,7 @@
 (define-key me/shell-map "e" #'project-eshell)
 (define-key me/shell-map "s" #'project-shell)
 (define-key me/shell-map "t" #'me/project-term)
+(global-set-key (kbd "s-\\") #'project-eshell)
 
 (setq explicit-shell-file-name "/bin/zsh")
 
