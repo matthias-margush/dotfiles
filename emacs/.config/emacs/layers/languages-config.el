@@ -32,6 +32,9 @@
          ("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode))
   :general
+  (:keymaps 'markdown-mode-map
+            "s-i" #'markdown-insert-italic
+            "s-b" #'markdown-insert-bold)
   (:states '(normal) :keymaps 'markdown-mode-map "s-j" #'markdown-next-link)
   (:states '(normal) :keymaps 'markdown-mode-map "s-k" #'markdown-previous-link)
   (:states '(normal) :keymaps 'markdown-mode-map "s-l" #'markdown-follow-thing-at-point)
