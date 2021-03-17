@@ -1,14 +1,1 @@
-/emacs/.config/emacs/.cache/
-/emacs/.config/emacs/.emacs.desktop
 *.lock
-/emacs/.config/emacs/amx-items
-/emacs/.config/emacs/eshell/
-/emacs/.config/emacs/forge-database.sqlite
-/emacs/.config/emacs/history
-/emacs/.config/emacs/ido.last
-/emacs/.config/emacs/transient/
-/emacs/.config/emacs/straight/
-/emacs/.config/emacs/smex-items
-/emacs/.config/emacs/recentf
-/emacs/.config/emacs/projectile.cache
-/emacs/.config/emacs/projectile-bookmarks.eld
