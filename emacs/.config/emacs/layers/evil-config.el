@@ -25,11 +25,13 @@
   (:keymaps 'help-map "F" #'describe-face)
   (:states 'normal :prefix leader "h" help-map)
   (:states 'normal
-    "]e" #'flymake-goto-next-error
-    "[e" #'flymake-goto-prev-error
-    ",d" #'flymake-show-diagnostics-buffer
-    "]q" #'next-error       ; compile window / search results
-    "[q" #'previous-error)
+           "]e" #'flymake-goto-next-error
+           "[e" #'flymake-goto-prev-error
+           ",d" #'flymake-show-diagnostics-buffer
+           "]q" #'next-error         ; compile window / search results
+           "[q" #'previous-error
+           "]]" #'evil-forward-section-begin
+           "[[" #'evil-backward-section-begin)
 
   :init
   (setq evil-want-keybinding nil)
