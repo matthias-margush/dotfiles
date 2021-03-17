@@ -20,6 +20,7 @@
 (require 'tabbar-config)
 (require 'toggles-config)
 (require 'ui-config)
+(require 'kube-config)
 
 (use-package esup)
 
