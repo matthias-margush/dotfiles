@@ -10,22 +10,24 @@
   (let* ((available-width (- (window-width) (length left) )))
     (format "%s%s" left right)))
 
-(setq-default
- header-line-format
- `((:eval (mode-line-render
-           (format-mode-line
-            (list
-             (propertize "⊷" 'face '(:weight bold :height 2.0))
-             " "
-             (propertize (me/project-to-buffer-name) 'face 'header-line-path)))
-           (format-mode-line
-            (list
-             ""
-             mode-line-process
-             ;; (propertize "⊷ " 'face '(:weight bold :height 2.0))
-             (propertize (me/echo-which-func) 'face 'which-func)
-             ;; (propertize " ⊷" 'face '(:weight bold :height 2.0))
-             ))))))
+(add-hook 'after-init-hook
+          (lambda ()
+            (setq-default
+             header-line-format
+             `((:eval (mode-line-render
+                       (format-mode-line
+                        (list
+                         (propertize "⊷" 'face '(:weight bold :height 2.0))
+                         " "
+                         (propertize (me/project-to-buffer-name) 'face 'header-line-path)))
+                       (format-mode-line
+                        (list
+                         ""
+                         mode-line-process
+                         ;; (propertize "⊷ " 'face '(:weight bold :height 2.0))
+                         (propertize (me/echo-which-func) 'face 'which-func)
+                         ;; (propertize " ⊷" 'face '(:weight bold :height 2.0))
+                         ))))))))
 
 (setq line-spacing 0.1)
 
