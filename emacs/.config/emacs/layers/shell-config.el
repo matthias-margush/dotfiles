@@ -24,6 +24,9 @@
 (define-key comint-mode-map (kbd "s-h") #'consult-history)
 (define-key comint-mode-map (kbd "s-k") #'comint-clear-buffer)
 
+(setq eshell-buffer-maximum-lines (* 1024 10))
+(add-hook 'eshell-output-filter-functions #'eshell-truncate-buffer)
+
 (defun eshell-clear ()
   "Clear the eshell buffer."
   (interactive)
