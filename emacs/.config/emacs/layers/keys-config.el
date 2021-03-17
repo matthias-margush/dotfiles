@@ -3,6 +3,7 @@
 (require 'evil-config)
 
 (define-key isearch-mode-map (kbd "s-v") #'isearch-yank-kill)
+(global-set-key (kbd "S-s-<return>") #'toggle-frame-fullscreen)
 
 (general-define-key
  :states '(normal visual)
