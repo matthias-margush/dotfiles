@@ -41,7 +41,7 @@
   :init
   (defun me/modeline-style-line (&optional arg)
     "Style the mode line a simple line."
-    (let ((box-color "#BC7C49"))
+    (let ((box-color "##312E2A"))
 
       (set-face-attribute
        'window-divider nil
