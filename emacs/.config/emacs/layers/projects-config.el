@@ -118,9 +118,7 @@
  :keymaps 'project-prefix-map
  "p" #'me/project-switch-or-open
  "t" #'me/sidebar
- "x" me/shell-map
- "b" nil
- "f" nil)
+ "x" me/shell-map)
 
 (setq frame-title-format
   '(""
