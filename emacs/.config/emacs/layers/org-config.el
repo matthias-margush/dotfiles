@@ -11,7 +11,8 @@
             "s-i" #'me/emphasize-italic
             "s-_" #'me/emphasize-underline
             "s-`" #'me/emphasize-code
-            "s-b" #'me/emphasize-bold)
+            "s-b" #'me/emphasize-bold
+            "s-|" #'org-table-create)
   (:states 'normal :keymaps 'org-mode-map
            "C-<return>" #'me/org-insert-heading
            "s-<return>" #'me/org-insert-todo
