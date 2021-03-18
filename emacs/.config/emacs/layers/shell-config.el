@@ -3,6 +3,15 @@
 (require 'package-config)
 (require 'evil-config)
 
+(defun me/eshell-set-buffer-name-to-process-name (process)
+  (rename-buffer (format "*%s*" process)))
+
+(defun me/eshell-revert-buffer-name (process status)
+  (rename-buffer (format "*%s (%s)*" process (string-trim status))))
+
+(add-hook 'eshell-exec-hook #'me/eshell-set-buffer-name-to-process-name)
+(add-hook 'eshell-kill-hook #'me/eshell-revert-buffer-name)
+
 (use-package fish-completion
   :init
   (when (and (executable-find "fish")
