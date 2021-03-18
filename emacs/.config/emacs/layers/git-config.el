@@ -3,6 +3,7 @@
 (require 'package-config)
 
 (setq vc-follow-symlinks t)
+(setq ediff-window-setup-function #'ediff-setup-windows-plain)
 
 (use-package magit
   :defer 3
