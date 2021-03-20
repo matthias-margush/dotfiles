@@ -11,6 +11,7 @@
 
   :init
   (setq neo-theme 'icons
+        neo-window-fixed-size nil
         neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$")))
 
 (use-package all-the-icons)
