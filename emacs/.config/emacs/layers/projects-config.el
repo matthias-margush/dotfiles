@@ -42,25 +42,29 @@
                     '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
         (if (and notes (file-exists-p notes))
             (find-file notes)
-          (project-find-file project))))))
+            (find-file project))))))
 
 (defun me/project-switch-or-open (&optional project)
   "Switch project"
   (interactive (list (project-prompt-project-dir)))
-  (let ((found nil)
-        (project (or project (cdr-safe (project-current)))))
-    (dolist (frame (frame-list))
-      (when-let (frame-project (frame-parameter frame 'me/project))
-        (when (and frame-project (not found) (string= project frame-project))
-          (setq found t)
-          (make-frame-visible frame)
-          (raise-frame frame)
-          (select-frame frame))))
+  (let ((project (or project (cdr-safe (project-current)))))
+    (me/project-open-notes project))
+  ;; (let ((found nil)
+  ;;       (project (or project (cdr-safe (project-current)))))
+  ;;   (me/project-open-notes project)
+  ;;   (dolist (frame (frame-list))
+  ;;     (when-let (frame-project (frame-parameter frame 'me/project))
+  ;;       (when (and frame-project (not found) (string= project frame-project))
+  ;;         (setq found t)
+  ;;         (make-frame-visible frame)
+  ;;         (raise-frame frame)
+  ;;         (select-frame frame))))
 
-    (unless found
-      (let ((new-frame (make-frame)))
-        (set-frame-parameter new-frame 'me/project project)
-        (me/project-open-notes project)))))
+  ;;   (unless found
+  ;;     (let ((new-frame (make-frame)))
+  ;;       (set-frame-parameter new-frame 'me/project project)
+  ;;       (me/project-open-notes project))))
+  )
 
 (unbind-key (kbd "C-SPC"))
 (global-set-key (kbd "C-SPC C-SPC") #'me/project-switch-or-open)
@@ -117,7 +121,7 @@
 (general-define-key
  :keymaps 'project-prefix-map
  "p" #'me/project-switch-or-open
- "t" #'me/sidebar
+ "t" #'me/neotree-toggle
  "x" me/shell-map)
 
 (setq frame-title-format
