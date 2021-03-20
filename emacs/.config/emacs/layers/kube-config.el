@@ -4,7 +4,7 @@
   :commands (kubernetes-overview))
 
 (use-package kubernetes-evil
-  :ensure t
-  :after kubernetes)
+  :init
+  (add-hook 'kubernetes-overview-mode-hook (lambda () (require 'kubernetes-evil))))
 
 (provide 'kube-config)
