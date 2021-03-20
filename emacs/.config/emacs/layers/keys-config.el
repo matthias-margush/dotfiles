@@ -5,6 +5,12 @@
 (define-key isearch-mode-map (kbd "s-v") #'isearch-yank-kill)
 (global-set-key (kbd "S-s-<return>") #'toggle-frame-fullscreen)
 
+(defun me/launch-emacs-instance ()
+  (interactive)
+  (shell-command "open -n -a Emacs.app"))
+
+(global-set-key (kbd "s-N") #'me/launch-emacs-instance)
+
 (general-define-key
  :states '(normal visual)
  :prefix local-leader
