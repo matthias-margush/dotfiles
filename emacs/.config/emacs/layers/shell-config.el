@@ -21,7 +21,13 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
-(define-key comint-mode-map (kbd "s-h") #'consult-history)
+(defun me/comint-clear-buffer-and-show-history ()
+  "Clear the buffer and pull up history"
+  (interactive)
+  (comint-clear-buffer)
+  (consult-history))
+
+(define-key comint-mode-map (kbd "s-h") #'me/comint-clear-buffer-and-show-history)
 (define-key comint-mode-map (kbd "s-k") #'comint-clear-buffer)
 
 (setq eshell-buffer-maximum-lines (* 1024 10))
@@ -37,18 +43,24 @@
 (defalias 'e #'find-file-other-window)
 (defalias 'v #'eshell-exec-visual)
 
+(defun me/eshell-clear-buffer-and-show-history ()
+  "Clear the buffer and pull up history"
+  (interactive)
+  (eshell-clear)
+  (consult-history))
+
 (defun me/eshell-rc ()
   (setenv "PAGER" "cat")
   (setenv "MANPAGER" "cat")
   (local-set-key (kbd "s-k") #'eshell-clear)
-  (local-set-key (kbd "s-h") #'consult-history)
+  (local-set-key (kbd "s-h") #'me/eshell-clear-buffer-and-show-history)
 
   (general-define-key
    :states 'insert
    :keymaps '(eshell-mode-map)
    "M-p" #'eshell-previous-input
    "M-n" #'eshell-next-input
-   "s-h" #'consult-history))
+   "s-h" #'me/eshell-clear-buffer-and-show-history))
 
 (add-hook 'eshell-mode-hook #'me/eshell-rc)
 
