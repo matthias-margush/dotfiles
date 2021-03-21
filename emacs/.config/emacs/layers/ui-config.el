@@ -6,8 +6,11 @@
 (global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
 
 ;; History
-(savehist-mode) ;; minibuffer history
-(recentf-mode)
+(run-with-idle-timer
+ 5 nil
+ (lambda ()
+   (savehist-mode) ;; minibuffer history
+   (recentf-mode)))
 
 (defun show-file-name ()
   "Show the full path file name."
@@ -19,6 +22,7 @@
 (setq initial-major-mode 'fundamental-mode)
 
 (use-package editorconfig
+  :defer 3
   :init
   ;; https://github.com/editorconfig/editorconfig-emacs/issues/244#issuecomment-783127682
   (setq editorconfig--enable-20210221-testing t)
@@ -32,7 +36,8 @@
          ("s-0" . default-text-scale-reset))
   :config (default-text-scale-mode t))
 
-(use-package rainbow-mode)
+(use-package rainbow-mode
+    :commands rainbow-mode)
 
 ;;; unbind annoying keys
 (unbind-key (kbd "s-m"))

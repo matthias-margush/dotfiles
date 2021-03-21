@@ -132,9 +132,14 @@ grayed out.")
   ;; (profile-fun "~/.config/emacs/layers/org-config.el")
   ;; (profile-fun "~/.config/emacs/layers/theme-config.el")
   ;; (profile-fun "~/.config/emacs/layers/env-config.el")
-  (profile-fun "~/.config/emacs/layers/evil-config.el")
-  (profile-fun "~/.config/emacs/layers/shell-config.el")
-  (profile-fun "~/.config/emacs/init"))
+  ;; (profile-fun "~/.config/emacs/layers/evil-config.el")
+  ;; (profile-fun "~/.config/emacs/layers/shell-config.el")
+  ;; (profile-fun "~/.config/emacs/layers/languages-config.el")
+  ;; (profile-fun "~/.config/emacs/layers/git-config.el")
+  ;; (profile-fun "~/.config/emacs/layers/ui-config.el")
+  ;; (profile-fun "~/.config/emacs/layers/selections-config.el")
+  (profile-fun "~/.config/emacs/init")
+  )
 
 ;; Helper functions
 

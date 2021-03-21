@@ -7,7 +7,7 @@ export PATH="$HOME/code/emacs/nextstep/Emacs.app/Contents/MacOS:$PATH"
 export GOPATH=~/go
 export EDITOR=nvim
 export ALTERNATE_EDITOR=""
-alias emacs=Emacs
+# alias emacs=Emacs
 
 if [ "$INSIDE_EMACS" != "" ]
 then

@@ -1,5 +1,6 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+
 (require 'clojure-config)
 (require 'completions-config)
 (require 'dashboard-config)
@@ -21,6 +22,8 @@
 (require 'toggles-config)
 (require 'ui-config)
 (require 'kube-config)
+
+;; (use-package esup)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.

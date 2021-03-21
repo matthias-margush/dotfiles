@@ -3,12 +3,13 @@
 (require 'package-config)
 (require 'evil-config)
 
-(use-package fish-completion
-  :init
-  (when (and (executable-find "fish")
-             (require 'fish-completion nil t))
-    ;; (setq shell-file-name "/usr/local/bin/fish")
-    (global-fish-completion-mode)))
+;; slow
+;; (use-package fish-completion
+;;   :init
+;;   (when (and (executable-find "fish")
+;;              (require 'fish-completion nil t))
+;;     ;; (setq shell-file-name "/usr/local/bin/fish")
+;;     (global-fish-completion-mode)))
 
 (setq shell-prompt-pattern "^❯ *")
 
@@ -105,7 +106,8 @@
 (setq eshell-banner-message "")
 (setq eshell-cd-shows-directory nil)
 
-(require 'eshell)
+(run-with-idle-timer 5 nil (lambda () (require 'eshell)))
+
 ;; (require 'em-smart)
 ;; (setq eshell-where-to-jump 'begin)
 ;; (setq eshell-review-quick-commands nil)

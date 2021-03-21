@@ -2,11 +2,12 @@
 
 (require 'package-config)
 
-(use-package tree-sitter
-  :config
-  (global-tree-sitter-mode))
+;; treesitter is slow
+;; (use-package tree-sitter
+;;   :config
+;;   (global-tree-sitter-mode))
 
-(use-package tree-sitter-langs)
+;; (use-package tree-sitter-langs)
 
 (use-package lsp-mode
   :hook ((go-mode . lsp))
@@ -85,8 +86,7 @@
   :mode (("\\.adoc\\'" . adoc-mode)))
 
 (use-package vimrc-mode
-  :ensure t
-  :mode ("\\.vim\\'"))
+  :mode ("\\.vim\\'" . vimrc-mode))
 
 ;; (use-package sql-indent)
 (use-package sqlformat
@@ -94,7 +94,8 @@
   :init
   (setq sqlformat-command 'pgformatter))
 
-(use-package feature-mode)
+(use-package feature-mode
+  :mode (("\\.feature\\'" . feature-mode)))
 
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))

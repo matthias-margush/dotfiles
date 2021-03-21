@@ -4,7 +4,7 @@
 (require 'evil-config)
 
 (use-package company
-  :demand t
+  :defer 3
 
   :init
   (setq company-selection-wrap-around t)

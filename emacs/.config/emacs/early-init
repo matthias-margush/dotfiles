@@ -8,7 +8,18 @@
              (file-name-as-directory
               (expand-file-name "layers" user-emacs-directory)))
 
-(require 'env-config)
+(if (and (fboundp 'native-comp-available-p)
+       (native-comp-available-p))
+  (message "Native compilation is available")
+(message "Native complation is *not* available"))
+
+(if (functionp 'json-serialize)
+  (message "Native JSON is available")
+  (message "Native JSON is *not* available"))
+
+(setq comp-deferred-compilation t)
+
 (require 'package-config)
+(require 'env-config)
 (require 'theme-config)
 (require 'tidyup-config)

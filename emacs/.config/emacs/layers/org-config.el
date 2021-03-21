@@ -5,12 +5,14 @@
 
 (use-package org
   :general
-  (:states '(normal visual) :prefix leader "c" #'org-capture)
+  (:states '(normal visual) :prefix leader
+           "c" #'org-capture
+           "l" #'org-store-link
+           "a" #'org-agenda)
   (:keymaps 'org-mode-map :states 'normal :prefix local-leader "tt" #'org-todo)
   (:keymaps 'org-mode-map
             "s-i" #'me/emphasize-italic
             "s-_" #'me/emphasize-underline
-            "s-`" #'me/emphasize-code
             "s-b" #'me/emphasize-bold
             "s-|" #'org-table-create)
   (:states 'normal :keymaps 'org-mode-map
@@ -198,6 +200,13 @@ at the first function to return non-nil.")
      (shell . t)
      (clojure . t)))
   (require 'ox-md))
+
+(use-package evil-org
+  :after org
+  :hook (org-mode . evil-org-mode)
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package ox-pandoc
   :defer t
