@@ -5,8 +5,7 @@
 (use-package posframe)
 
 (use-package selectrum
-    :defer 1
-  ;; :demand t
+  :demand t
 
   :init
   (setq selectrum-display-action
