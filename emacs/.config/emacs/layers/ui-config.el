@@ -12,12 +12,12 @@
    (savehist-mode) ;; minibuffer history
    (recentf-mode)))
 
-(defun show-file-name ()
-  "Show the full path file name."
-  (interactive)
-  (message "[%s] %s" (line-number-at-pos) (buffer-file-name)))
+    (defun me/show-file-name ()
+      "Show the file name and line number."
+      (interactive)
+      (message "[%s] %s" (line-number-at-pos) (buffer-file-name)))
 
-(global-set-key (kbd "C-S-G") #'show-file-name)
+    (global-set-key (kbd "C-S-G") #'me/show-file-name)
 
 (setq initial-major-mode 'fundamental-mode)
 
