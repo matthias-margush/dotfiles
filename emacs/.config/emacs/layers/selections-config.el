@@ -99,7 +99,7 @@
 
   (defun me/project-files ()
     (let ((project (project-current)))
-      (project-files project (list (project-root project))))   )
+      (project-files project (list (project-root project)))))
 
   (setq consult-project-root-function
         (lambda ()
