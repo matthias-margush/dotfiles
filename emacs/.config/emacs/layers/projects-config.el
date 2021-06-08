@@ -18,7 +18,7 @@
 
 ;; Declare directories with ".project" as a project
 (cl-defmethod project-root ((project (head local)))
-  (or (cdr project) ""))
+  (or (cdr project) default-directory))
 
 (defun me/project-try-local (dir)
   "Determine if DIR is a non-Git project.
@@ -26,7 +26,8 @@ DIR must include a .project file to be considered a project."
   (let ((root (locate-dominating-file dir ".project")))
     (cons 'local root)))
 
-(add-hook 'project-find-functions #'me/project-try-local)
+(require 'project)
+(setq project-find-functions '(project-try-vc me/project-try-local))
 
 (defun me/project-notes ()
   "Open a project notes file when opening a project."

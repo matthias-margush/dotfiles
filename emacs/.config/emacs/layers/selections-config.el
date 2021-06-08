@@ -15,7 +15,7 @@
 
   (setq selectrum-count-style nil)
   (setq selectrum-num-candidates-displayed 100)
-  (setq selectrum-fix-vertical-window-height nil)
+  (setq selectrum-fix-vertical-window-height 30)
   (setq selectrum-completing-read-multiple-show-help t)
   (setq selectrum-max-window-height nil)
   (setq selectrum-extend-current-candidate-highlight t)
