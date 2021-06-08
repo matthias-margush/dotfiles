@@ -58,7 +58,7 @@ Plug 'ntpeters/vim-better-whitespace' | runtime better-whitespace.vim
 Plug 'tommcdo/vim-lion'               | runtime lion.vim
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-sandwich'         | runtime sandwich.vim
-Plug 'bhurlow/vim-parinfer'           | runtime parinfer.vim
+" Plug 'bhurlow/vim-parinfer'           | runtime parinfer.vim
 Plug 'wellle/targets.vim'
 Plug 'chrisbra/NrrwRgn'
 Plug 'AndrewRadev/splitjoin.vim'

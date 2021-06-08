@@ -1,8 +1,8 @@
-augroup ParinferBuffer
-	autocmd! * <buffer>
-	autocmd InsertEnter <buffer> ToggleParinferMode
-	autocmd InsertLeave <buffer> ToggleParinferMode
-augroup END
+" augroup ParinferBuffer
+" 	autocmd! * <buffer>
+" 	autocmd InsertEnter <buffer> ToggleParinferMode
+" 	autocmd InsertLeave <buffer> ToggleParinferMode
+" augroup END
 " nnoremap <silent><buffer> <lt><lt> :ToggleParinferMode<cr><lt><lt>:ToggleParinferMode<cr>
 " nnoremap <silent><buffer> >> :ToggleParinferMode<cr>>>:ToggleParinferMode<cr>
 " nnoremap <silent><buffer> dd :ToggleParinferMode<cr>dd:ToggleParinferMode<cr>
