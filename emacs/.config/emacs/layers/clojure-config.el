@@ -2,6 +2,9 @@
 
 (require 'package-config)
 
-(use-package cider :defer t)
+(use-package cider
+  :defer t
+  :init
+  (setq cider-clojure-cli-global-options "-A:dev"))
 
 (provide 'clojure-config)
