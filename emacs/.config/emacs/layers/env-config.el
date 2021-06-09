@@ -5,6 +5,9 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/opt/ruby/bin"))
+(setq exec-path (append exec-path '("/usr/local/opt/ruby/bin")))
+
 (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/bin")))
 (setq exec-path (append exec-path `(,(expand-file-name "~/bin"))))
 

@@ -48,7 +48,8 @@
         markdown-header-scaling t
         markdown-display-remote-images t
         markdown-make-gfm-checkboxes-buttons t
-        markdown-asymmetric-header t)
+        markdown-asymmetric-header t
+        markdown-display-remote-images t)
   :config
   (add-to-list 'markdown-code-lang-modes '("yaml" . yaml-mode))
   (add-to-list 'markdown-gfm-additional-languages '("yaml" . yaml-mode)))

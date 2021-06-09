@@ -5,7 +5,7 @@
 
 (defun me/dashboard ()
   "Startup file"
-  (let ((projects (expand-file-name "~/project.org")))
+  (let ((projects (expand-file-name "~/Notes/projects.org")))
     (if projects
         (progn
           (find-file projects))

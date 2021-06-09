@@ -1,8 +1,10 @@
 *~
+.cpcache
 .session.vim
 .DS_Store
 .undodir/
 Icon*
+.project
 project.org
 project.md
 .projectile

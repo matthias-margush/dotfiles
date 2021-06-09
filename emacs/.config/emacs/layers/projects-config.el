@@ -98,6 +98,7 @@ DIR must include a .project file to be considered a project."
 
 (defun me/project-vterm (&optional arg)
   (interactive "P")
+  (require 'vterm)
   (let* ((default-directory (project-root (project-current t)))
          (vterm-buffer-name
           (concat "*" (file-name-nondirectory

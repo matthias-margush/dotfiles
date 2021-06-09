@@ -1,7 +1,6 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 
-(require 'clojure-config)
 (require 'completions-config)
 (require 'dashboard-config)
 (require 'evil-config)
@@ -12,6 +11,7 @@
 (require 'keys-config)
 (require 'languages-config)
 (require 'lisp-config)
+(require 'clojure-config)
 (require 'neotree-config)
 (require 'org-config)
 (require 'projects-config)
