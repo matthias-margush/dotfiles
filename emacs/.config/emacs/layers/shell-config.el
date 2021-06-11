@@ -83,7 +83,8 @@
           "s-[" #'vterm-send-escape)
 
   :init
-  (setq vterm-always-compile-module t))
+  (setq vterm-always-compile-module t
+        vterm-clear-scrollback-when-clearing t))
 
 ;;  prompt
 (setq eshell-prompt-function
