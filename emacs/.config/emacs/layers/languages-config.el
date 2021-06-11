@@ -9,6 +9,10 @@
 
 ;; (use-package tree-sitter-langs)
 
+(use-package flymake-shellcheck
+  :hook ((sh-mode . flymake-shellcheck-load)
+         (sh-mode . flymake-mode)))
+
 (use-package lsp-mode
   :hook ((go-mode . lsp))
 
