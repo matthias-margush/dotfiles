@@ -69,7 +69,9 @@
   (interactive)
   (unless (current-message)
     (let ((message-log-max nil))
-      (message (me/tab-echo)))))
+      (message (me/tab-echo))
+      )
+     ))
 
 (add-hook 'after-init-hook
 	  (lambda ()
@@ -86,7 +88,28 @@
   "Switch to the next tab."
   (interactive "P")
   (tab-bar-switch-to-next-tab)
-  (me/tabs-refresh))
+
+  (me/tabs-refresh)
+ ;; (let ((current-window (selected-window)))
+ ;;      ;; (message "window exists? %s" (neo-global--window-exists-p))
+ ;;      (when (and (fboundp #'neo-global--window-exists-p)
+ ;;                 neo-global--window
+ ;;                 ;; (neo-global--window-exists-p)
+ ;;                 )
+
+ ;;        (message "neo window: %s: %s: %s"
+ ;;                 neo-global--window
+ ;;                 (window-buffer neo-global--window)
+ ;;                 (neo-global--get-buffer))
+
+ ;;        ;; (and (not (null (window-buffer neo-global--window)))
+ ;;       ;; (eql (window-buffer neo-global--window) (neo-global--get-buffer)))
+ ;;        ;; (neotree-toggle)
+ ;;        ;; (neo-buffer--refresh t )
+ ;;        (neotree-refresh t)
+ ;;        (select-window current-window)
+ ;;        ))
+ )
 
 (defun me/tab-prev (_)
   "Switch to the previous tab."
