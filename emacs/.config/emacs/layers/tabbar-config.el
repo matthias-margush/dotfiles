@@ -69,9 +69,7 @@
   (interactive)
   (unless (current-message)
     (let ((message-log-max nil))
-      (message (me/tab-echo))
-      )
-     ))
+      (message (me/tab-echo)))))
 
 (add-hook 'after-init-hook
 	  (lambda ()

@@ -22,25 +22,25 @@
         lispy-safe-paste t
         lisy-safe-actions-no-pull-delimiters-into-comments t)
   :config
-  (lisp-mode)
   (lispy-set-key-theme '(parinfer)))
 
 
 (use-package lispyville
   :general
   (:states 'normal
-    :keymaps '(lisp-mode-map emacs-lisp-mode-map)
-    ",eb" #'eval-buffer
-    ",ee" #'eval-last-sexp
-    ",ef" #'eval-defun
-    ">" #'me/lispyville->
-    "<" #'me/lispyville-<
-    ",t(" #'me/toggle-lispyville
-    ",t)" #'me/toggle-lispyville)
+           :keymaps '(lisp-mode-map emacs-lisp-mode-map)
+           ">" #'me/lispyville->
+           "<" #'me/lispyville-<
+           ",t(" #'me/toggle-lispyville
+           ",t)" #'me/toggle-lispyville
+           :keymaps '(lisp-mode-map emacs-lisp-mode-map)
+           ",eb" #'eval-buffer
+           ",ee" #'eval-last-sexp
+           ",ef" #'eval-defun)
 
   (:states 'visual
-    :keymaps '(lisp-mode-map emacs-lisp-mode-map)
-    ",er" #'eval-region)
+           :keymaps '(lisp-mode-map emacs-lisp-mode-map)
+           ",er" #'eval-region)
 
   :hook
   ((emacs-lisp-mode . lispyville-mode)
@@ -49,13 +49,13 @@
 
   :init
   (setq
-    lispyville-insert-states nil
-    lispyville-key-theme '(operators    ; evil ops like yank, delete
-                            c-w         ; delete backward word
-                            additional-motions
-                            additional
-                            additional-insert
-                            escape))
+   lispyville-insert-states nil
+   lispyville-key-theme '(operators    ; evil ops like yank, delete
+                          c-w         ; delete backward word
+                          additional-motions
+                          additional
+                          additional-insert
+                          escape))
 
   (defun me/toggle-lispyville ()
     (interactive)
@@ -66,24 +66,24 @@
     (interactive "<c>")
     (setq count (or count 1))
     (cond ((looking-at lispy-left)
-            (lispy-barf count))
-      ((looking-at lispy-right)
-        (forward-char)
-        (lispy-slurp count)
-        (backward-char))
-      (t (call-interactively 'evil-shift-right)))
+           (lispy-barf count))
+          ((looking-at lispy-right)
+           (forward-char)
+           (lispy-slurp count)
+           (backward-char))
+          (t (call-interactively 'evil-shift-right)))
     (lispyville--maybe-enter-special t))
 
   (evil-define-command me/lispyville-< (count)
     (interactive "<c>")
     (setq count (or count 1))
     (cond ((looking-at lispy-left)
-            (lispy-slurp count))
-      ((looking-at lispy-right)
-        (forward-char)
-        (lispy-barf count)
-        (backward-char))
-      (t (call-interactively evil-shift-left)))
+           (lispy-slurp count))
+          ((looking-at lispy-right)
+           (forward-char)
+           (lispy-barf count)
+           (backward-char))
+          (t (call-interactively evil-shift-left)))
     (lispyville--maybe-enter-special t)))
 
 (provide 'lisp-config)
