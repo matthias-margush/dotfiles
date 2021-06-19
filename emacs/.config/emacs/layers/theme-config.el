@@ -11,12 +11,15 @@
 
 (setq frame-alist
   '((top . 100)
-    (left . 1000)
+    (left . 1200)
     (width . 90)
     (height . 60)
     (internal-border-width . 20)
     (vertical-scroll-bars . nil)
     (font . "Hasklug Nerd Font Mono-10")))
+(setq-default left-margin-width 3
+              right-margin-width 3)
+(set-window-buffer nil (current-buffer))
 (setq default-frame-alist frame-alist
       initial-frame-alist frame-alist)
 
@@ -34,14 +37,15 @@
 
 (use-package construction-paper-theme
   :custom
-  (window-divider-default-right-width 4)
+  (window-divider-default-right-width 1)
+  (window-divider-default-bottom-width 1)
 
   :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
 
   :init
   (defun me/modeline-style-line (&optional arg)
     "Style the mode line a simple line."
-    (let ((box-color "#312E2A"))
+    (let ((box-color "#A19E7A"))
 
       (set-face-attribute
        'window-divider nil
@@ -64,7 +68,7 @@
        :background box-color
        :foreground box-color
        :underline t
-       :box `(:line-width 1 :color ,box-color) :height 0.2)
+       :box `(:line-width 1 :color ,box-color) :height 0.1)
 
       (set-face-attribute
        'mode-line-inactive nil

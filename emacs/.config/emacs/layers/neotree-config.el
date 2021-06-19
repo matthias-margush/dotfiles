@@ -10,7 +10,7 @@
   (neo-smart-open t)
 
   :init
-  (setq neo-theme 'icons
+  (setq neo-theme 'ascii
         neo-window-fixed-size nil
         neo-autorefresh t
         neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$")))

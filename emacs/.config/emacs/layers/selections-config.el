@@ -32,7 +32,7 @@
 (use-package consult
   :general
   (:states 'normal :prefix leader "SPC" #'consult-buffer)
-  (:states 'normal :prefix leader "/" #'me/grep)
+  (:states 'normal :prefix leader "/" #'consult-ripgrep)
   (:states '(normal insert) "s-:" #'execute-extended-command)
   (:states 'normal :prefix leader "m" #'consult-mode-command)
   (:states 'normal :prefix leader "j" #'consult-imenu)
@@ -42,14 +42,8 @@
   ("s-F" . counsel-git-grep)
 
   :init
-  (defun me/grep ()
-    "Git or rip grep"
-    (interactive)
-    (if (or (vc-root-dir)
-            (and (me/project-name)
-                 (file-exists-p (concat (me/project-name) ".git"))))
-        (consult-git-grep)
-      (consult-ripgrep)))
+  (setq consult-ripgrep-command 
+        "rg --trim --null --line-buffered --color=ansi --max-columns=1000 --hidden --no-heading --line-number . -e ARG OPTS")
 
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
@@ -85,7 +79,8 @@
           consult--source-bookmark
           consult--source-project-buffer
           me/consult-source-project-files
-          consult--source-buffer))
+          consult--source-buffer
+          consult--source-file))
 
   (dolist (src consult-buffer-sources)
     (if (or (eq src 'consult--source-project-buffer)

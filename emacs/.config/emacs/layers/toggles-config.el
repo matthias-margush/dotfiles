@@ -28,7 +28,9 @@
 (define-key me/toggles-map (kbd "m") #'smerge-mode)
 (define-key me/toggles-map (kbd "t") #'toggle-truncate-lines)
 (define-key me/toggles-map (kbd "p") #'me/toggle-pairing)
+(define-key me/toggles-map (kbd "s") #'evil-ex-nohighlight)
 
 (general-define-key :states 'normal :prefix leader "t" me/toggles-map)
+(general-define-key :states 'normal :prefix leader "s" #'evil-ex-nohighlight)
 
 (provide 'toggles-config)

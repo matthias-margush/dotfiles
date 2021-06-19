@@ -34,10 +34,24 @@
            "[[" #'evil-backward-section-begin)
 
   :init
-  (setq evil-want-keybinding nil)
-  (setq evil-search-module 'evil-search)
+  (defun me/paste ()
+    (interactive)
+    (evil-paste-from-register "+"))
+
+  ;; (global-superword-mode)
+  (setq evil-want-keybinding nil
+        evil-search-module 'evil-search
+        select-enable-clipboard nil)
   :config
+  (define-key evil-visual-state-map (kbd "s-c") "\"+y")
+  (define-key evil-visual-state-map (kbd "s-v") "\"+p")
+  (define-key evil-insert-state-map (kbd "s-v") [?\C-o?\"?+?p])
+  (define-key evil-normal-state-map (kbd "s-v") "\"+p")
   (evil-mode))
+
+(use-package xclip
+  :config
+  (xclip-mode))
 
 (use-package evil-collection
   :after evil
@@ -47,11 +61,11 @@
 
   :init
   (setq evil-collection-setup-minibuffer nil ; off for selectrum
-    evil-collection-term-sync-state-and-mode-p t
-    evil-collection-want-unimpaired-p nil
-    evil-kill-on-visual-paste nil
-    evil-collection-key-blacklist '("SPC")
-    evil-collection-setup-debugger-keys t)
+        evil-collection-term-sync-state-and-mode-p t
+        evil-collection-want-unimpaired-p nil
+        evil-kill-on-visual-paste nil
+        evil-collection-key-blacklist '("SPC")
+        evil-collection-setup-debugger-keys t)
   :config
   (evil-collection-init))
 

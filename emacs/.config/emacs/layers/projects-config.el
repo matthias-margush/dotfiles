@@ -41,7 +41,7 @@ DIR must include a .project file to be considered a project."
                       `(,(me/project-root))
                       '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
           (if (and notes (file-exists-p notes))
-            (find-file notes)))))))
+              (find-file notes)))))))
 
 (defun me/project-open-notes (project)
   "Open a project notes file when opening a project."
@@ -55,7 +55,7 @@ DIR must include a .project file to be considered a project."
                     '(".org" ".md" ".markdown" ".txt" ".adoc" ""))))
         (if (and notes (file-exists-p notes))
             (find-file notes)
-            (find-file project))))))
+          (find-file project))))))
 
 (defun me/project-switch-or-open (&optional project)
   "Switch project"
@@ -109,22 +109,22 @@ DIR must include a .project file to be considered a project."
 
 (defun me/project-term (program)
   (interactive (list (read-from-minibuffer "Run program: "
-					   (or explicit-shell-file-name
-					       (getenv "ESHELL")
-					       shell-file-name))))
+                                           (or explicit-shell-file-name
+                                               (getenv "ESHELL")
+                                               shell-file-name))))
   (let* ((default-directory (project-root (project-current t)))
          (default-project-term-name
-          (concat "*" (file-name-nondirectory
-                       (directory-file-name
-                        (file-name-directory default-directory)))
-                  "-term*"))
+           (concat "*" (file-name-nondirectory
+                        (directory-file-name
+                         (file-name-directory default-directory)))
+                   "-term*"))
          (term-buffer (make-term default-project-term-name program)))
     (if (and term-buffer (not current-prefix-arg))
         (pop-to-buffer term-buffer)
-        (set-buffer term-buffer)
-        (term-mode)
-        (term-char-mode)
-        (switch-to-buffer term-buffer))))
+      (set-buffer term-buffer)
+      (term-mode)
+      (term-char-mode)
+      (switch-to-buffer term-buffer))))
 
 (general-define-key
  :states 'normal
@@ -139,10 +139,10 @@ DIR must include a .project file to be considered a project."
  "x" me/shell-map)
 
 (setq frame-title-format
-  '(""
-     (:eval
-       (if-let ((project-name (me/project-name)))
-         (format "%s" project-name)
-         "%b"))))
+      '(""
+        (:eval
+         (if-let ((project-name (me/project-name)))
+             (format "%s" project-name)
+           "%b"))))
 
 (provide 'projects-config)

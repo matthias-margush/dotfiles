@@ -87,6 +87,9 @@
          ("\\.yml\\'" . yaml-mode))
   :hook ((yaml-mode . hs-minor-mode)))
 
+(use-package flymake-yaml
+  :hook ((yaml-mode . flymake-yaml-load)))
+
 (use-package adoc-mode
   :mode (("\\.adoc\\'" . adoc-mode)))
 
