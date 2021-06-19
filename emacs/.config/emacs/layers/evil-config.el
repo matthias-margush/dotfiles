@@ -35,8 +35,7 @@
 
   :init
   (setq evil-want-keybinding nil)
-                                        ; compile window / search results
-
+  (setq evil-search-module 'evil-search)
   :config
   (evil-mode))
 
