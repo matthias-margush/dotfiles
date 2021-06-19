@@ -24,6 +24,7 @@
   :general
   (:keymaps 'help-map "F" #'describe-face)
   (:states 'normal :prefix leader "h" help-map)
+  
   (:states 'normal
            "]e" #'flymake-goto-next-error
            "[e" #'flymake-goto-prev-error
@@ -41,12 +42,12 @@
   ;; (global-superword-mode)
   (setq evil-want-keybinding nil
         evil-search-module 'evil-search
-        select-enable-clipboard nil)
+        select-enable-clipboard t)
   :config
-  (define-key evil-visual-state-map (kbd "s-c") "\"+y")
-  (define-key evil-visual-state-map (kbd "s-v") "\"+p")
-  (define-key evil-insert-state-map (kbd "s-v") [?\C-o?\"?+?p])
-  (define-key evil-normal-state-map (kbd "s-v") "\"+p")
+  ;; (define-key evil-visual-state-map (kbd "s-c") "\"+y")
+  ;; (define-key evil-visual-state-map (kbd "s-v") "\"+p")
+  ;; (define-key evil-insert-state-map (kbd "s-v") [?\C-o?\"?+?p])
+  ;; (define-key evil-normal-state-map (kbd "s-v") "\"+p")
   (evil-mode))
 
 (use-package xclip
