@@ -54,7 +54,7 @@
            (parts (split-string path "/+"))
            (name (car (last parts)))
            (parts (butlast parts))
-           (display-name (concat (combine-and-quote-strings parts " ▶ ") name)))
+           (display-name (concat (combine-and-quote-strings parts " ▶ ") " ▶ " name)))
       (if-let (prompt (minibuffer-prompt))
           prompt
         display-name))))
