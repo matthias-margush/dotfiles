@@ -5,6 +5,36 @@
 
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
+;;;  yaml
+(add-hook 'yaml-mode-hook #'me/yaml-folding)
+
+(defun me/yaml-folding ()
+  (interactive)
+  (outline-minor-mode)
+  (hs-minor-mode -1)
+  (setq outline-regexp
+        (rx
+         (seq
+	  bol
+	  (group (zero-or-more "  ")
+	         (or (group
+		      (seq (or (seq "\"" (*? (not (in "\"" "\n"))) "\"")
+			       (seq "'" (*? (not (in "'" "\n"))) "'")
+			       (*? (not (in ":" "\n"))))
+			   ":"
+			   (?? (seq
+			        (*? " ")
+			        (or (seq "&" (one-or-more nonl))
+				    (seq ">-")
+				    (seq "|"))
+			        eol))))
+		     (group (seq
+			     "- "
+			     (+ (not (in ":" "\n")))
+			     ":"
+			     (+ nonl)
+			     eol))))))))
+
 ;; (use-package origami
 ;;   :general
 ;;   (:keymaps 'prog-mode-map :states '(normal) "zo" #'me/forward-open-node)
