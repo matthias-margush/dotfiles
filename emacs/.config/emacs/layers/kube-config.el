@@ -3,7 +3,9 @@
 (require 'evil-config)
 
 (use-package kubernetes
+  :straight (kubernetes :type git :host github :repo "kubernetes-el/kubernetes-el")
   :commands (kubernetes-overview)
+  :custom (kubernetes-pods-display-completed t)
   ;; :hook (kubernetes-overview-mode . me/enter-kubernetes-mode)
 
   :general
