@@ -14,7 +14,8 @@
          (sh-mode . flymake-mode)))
 
 (use-package lsp-mode
-  :hook ((go-mode . lsp))
+  :hook ((go-mode . lsp)
+         (markdown-mode . lsp))
 
   :general
   (:states '(normal) :keymaps 'lsp-mode-map "gd" #'lsp-find-definition)
