@@ -1,5 +1,14 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
+(setq desktop-save-mode t
+  desktop-load-locked-desktop t
+  desktop-restore-eager 10)
+
+(add-hook 'after-init-hook #'desktop-read)
+
+;(desktop-read)
+
+(setq warning-minimum-level :emergency)
 (setq me/gc-cons-threshold gc-cons-threshold)
 (setq gc-cons-threshold 100000000)
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold me/gc-cons-threshold)))

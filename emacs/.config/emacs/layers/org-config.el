@@ -34,14 +34,23 @@
            "s-<return>" #'me/org-insert-todo)
 
   :custom
-  (org-hide-leading-stars t)
+  (org-hide-leading-stars nil)
   (org-hide-emphasis-markers t)
 
   :hook
   (org-babel-after-execute . org-redisplay-inline-images)
   (org-mode . visual-line-mode)
+  ;; (org-mode . org-indent-mode)
+  ;; (org-mode . buffer-face-mode)
+  (org-mode . flyspell-mode)
+  ;; (org-mode . me/org-faces)
 
   :init
+  (defun me/org-faces ()
+    (interactive)
+    (set-face-attribute 'default nil :font me/variable-pitch)
+    (set-face-attribute 'variable-pitch nil :font me/variable-pitch))
+
   (defun me/org-insert-heading ()
     (interactive)
     (org-insert-heading-respect-content)
@@ -128,6 +137,8 @@ at the first function to return non-nil.")
    org-pretty-entities t
    org-projectile-file "TODO.org"
    org-src-fontify-natively t
+   org-src-tab-acts-natively t
+   org-edit-src-content-indentation 0
    org-src-window-setup 'current-window
    org-want-todo-bindings t
    plantuml-jar-args '("-charset" "UTF-8" "-config" "~/code/dot/plantuml.txt")
@@ -258,6 +269,11 @@ at the first function to return non-nil.")
       (me/deft))))
 
 (use-package org-superstar
-  :hook (org-mode . org-superstar-mode))
+  :hook (org-mode . org-superstar-mode)
+  :init
+  (setq org-superstar-special-todo-items 'hide
+        org-hide-leading-stars nil
+        ;; org-supserstar-leading-bullet ?\s
+        org-indent-mode-turns-on-hiding-stars t))
 
 (provide 'org-config)

@@ -149,4 +149,8 @@
 (evil-ex-define-cmd "tabe[dit]" #'me/tab-new)
 (evil-ex-define-cmd "tabc[lose]" #'me/tab-close)
 
+(global-set-key (kbd "s-}") #'me/tab-next)
+(global-set-key (kbd "s-{") #'me/tab-prev)
+(global-set-key (kbd "s-t") #'me/tab-new)
+
 (provide 'tabbar-config)

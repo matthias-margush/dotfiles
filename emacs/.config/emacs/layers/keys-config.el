@@ -16,6 +16,10 @@
  :prefix local-leader
  "," #'narrow-or-widen-dwim)
 
+(winner-mode)
+(define-key evil-window-map (kbd "u") #'winner-undo)
+(define-key evil-window-map (kbd "R") #'winner-redo)
+
 (general-define-key
  :states '(normal)
  :prefix leader

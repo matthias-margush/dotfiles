@@ -11,6 +11,6 @@
           (find-file projects))
         "*scratch*")))
 
-(setq initial-buffer-choice #'me/dashboard)
+;; (setq initial-buffer-choice #'me/dashboard)
 
 (provide 'dashboard-config)

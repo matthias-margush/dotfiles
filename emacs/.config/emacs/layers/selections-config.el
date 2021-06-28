@@ -4,6 +4,31 @@
 
 (use-package posframe)
 
+(use-package mini-frame
+  :init
+  (set-face-attribute
+   'child-frame-border nil
+   :background "#EBEBA4")
+
+  (setq mini-frame-resize t
+        mini-frame-resize-max-height 40
+        mini-frame-resize-min-height nil
+        mini-frame-show-parameters
+        `((top . 0.00)
+          (left . 0.50)
+          (width . 0.83)
+          (height . 0.5)
+          (background-color . "#FFFFFA")
+          (internal-border-width . 0)
+          (alpha . (95 . 95))
+          (child-frame-border-width . 2)
+          ;; (vertical-scroll-bars . nil)
+          (font . ,me/fixed-pitch)))
+
+  :config
+  ;; (mini-frame-mode)
+  )
+
 (use-package selectrum
   :demand t
   :init
@@ -22,9 +47,9 @@
 
   (defun me/adjust-selectrum-window-size (original-fun window &optional height &rest args)
     "Increase the size to account for the header line."
-    (let ((dheight (or height (cdr
-                               (window-text-pixel-size
-                                window nil nil nil nil t)))))
+    (let ((dheight (+ 50 (or height (cdr
+                                     (window-text-pixel-size
+                                      window nil nil nil nil t))))))
       (apply original-fun window dheight args)))
 
   (advice-add
@@ -81,38 +106,21 @@
   :config
   (define-key consult-narrow-map (vconcat consult-narrow-key (kbd "TAB")) #'consult-narrow-help)
 
-  (setq me/consult-source-project-files
-    `(:name     "Project Files"
-                :narrow   ?p
-                :category project
-                :face     consult-file
-                :history  file-name-history
-                :items    ,#'me/project-files
-                :enabled   ,(lambda () (and consult-project-root-function
-                                            recentf-mode))
-                :action   ,#'consult--file-action))
-
   (setq consult-buffer-sources
         '(consult--source-hidden-buffer
           consult--source-bookmark
           consult--source-project-buffer
-          me/consult-source-project-files
-          consult--source-buffer
-          consult--source-file))
+          consult--source-project-file
+          consult--source-file
+          consult--source-buffer))
 
   (dolist (src consult-buffer-sources)
     (if (or (eq src 'consult--source-project-buffer)
             (eq src 'consult--source-bookmark)
-            (eq src 'me/consult-source-project-files))
+            (eq src 'consult--source-project-file)
+            (eq src 'consult--source-file))
         (set src (plist-put (symbol-value src) :hidden nil))
       (set src (plist-put (symbol-value src) :hidden t))))
-
-  (add-to-list 'consult-buffer-sources #'me/consult-source-project-files)
-
-
-  (defun me/project-files ()
-    (let ((project (project-current)))
-      (project-files project (list (project-root project)))))
 
   (setq consult-project-root-function
         (lambda ()

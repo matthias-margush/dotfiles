@@ -24,7 +24,7 @@
   :general
   (:keymaps 'help-map "F" #'describe-face)
   (:states 'normal :prefix leader "h" help-map)
-  
+
   (:states 'normal
            "]e" #'flymake-goto-next-error
            "[e" #'flymake-goto-prev-error

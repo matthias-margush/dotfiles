@@ -5,28 +5,28 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
-(global-set-key (kbd "s-}") #'ns-prev-frame)
-(global-set-key (kbd "s-{") #'ns-next-frame)
-(global-set-key (kbd "s-t") #'make-frame)
+(setq me/variable-pitch "Thasadith-12")
+(setq me/fixed-pitch "Hasklug Nerd Font Mono-10")
 
 (setq frame-alist
-  '((top . 100)
+  `((top . 100)
     (left . 1200)
     (width . 90)
     (height . 60)
-    (internal-border-width . 20)
+    (internal-border-width . 26)
     (vertical-scroll-bars . nil)
-    (font . "Hasklug Nerd Font Mono-10")))
-(setq-default left-margin-width 3
-              right-margin-width 3)
+    (font . ,me/fixed-pitch)))
+
+(setq-default left-margin-width 2
+              right-margin-width 2)
 (set-window-buffer nil (current-buffer))
 (setq default-frame-alist frame-alist
       initial-frame-alist frame-alist)
 
 (add-hook 'after-init-hook
           (lambda ()
-            (set-face-attribute 'variable-pitch nil :font "Open Sans Condensed-16")
-            (set-face-attribute 'fixed-pitch nil :font "Hasklug Nerd Font Mono-10")))
+            (set-face-attribute 'variable-pitch nil :font me/variable-pitch)
+            (set-face-attribute 'fixed-pitch nil :font me/fixed-pitch)))
 
 (setq-default fringe-indicator-alist nil) ; fringe wrap arrows
 (scroll-bar-mode -1)
@@ -45,7 +45,7 @@
   :init
   (defun me/modeline-style-line (&optional arg)
     "Style the mode line a simple line."
-    (let ((box-color "#A19E7A"))
+    (let ((box-color "#000000"))
 
       (set-face-attribute
        'window-divider nil

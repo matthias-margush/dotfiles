@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (defface header-line-path
-  '((t :inherit variable-pitch))
+  '((t :inherit header-line :height 1.0))
   "Face for the header line path.")
 
 (which-func-mode)
@@ -17,9 +17,9 @@
              `((:eval (mode-line-render
                        (format-mode-line
                         (list
-                         (propertize "◉" 'face '(:weight bold :height 1))
-                         " "
-                         (propertize (me/project-to-buffer-name) 'face 'header-line-path)))
+                         ;; (propertize "◉" 'face '(:weight bold :height 1.0))
+                         "  "
+                         (propertize (me/project-to-buffer-name) 'face '(:face header-line-path :weight normal))))
                        (format-mode-line
                         (list
                          ""
@@ -30,7 +30,7 @@
                          ;; (propertize " ⊷" 'face '(:weight bold :height 2.0))
                          ))))))))
 
-(setq line-spacing 0.1)
+;; (setq line-spacing 0.1)
 
 (defun me/narrowing-status ()
   "Narrowing status text for header line."
@@ -54,7 +54,7 @@
            (parts (split-string path "/+"))
            (name (car (last parts)))
            (parts (butlast parts))
-           (display-name (concat (combine-and-quote-strings parts " ▶ ") " ▶ " name)))
+           (display-name (concat "  " (combine-and-quote-strings parts " ⊸ ") " ⊸ " name)))
       (if-let (prompt (minibuffer-prompt))
           prompt
         display-name))))
