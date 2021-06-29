@@ -3,6 +3,7 @@
 ;; straight config
 (setq straight-repository-branch "develop"
       straight-use-package-by-default t
+      straight-vc-git-default-protocol 'ssh
       use-package-enable-imenu-support t)
 
 ;; straight bootstrap
