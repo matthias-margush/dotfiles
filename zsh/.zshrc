@@ -106,6 +106,7 @@ function zle-keymap-select zle-line-init zle-line-finish
       viins|main) print -n '\033[3 q';; # underline
   esac
 }
+export GPG_TTY=$(tty)
 
 zle -N zle-line-init
 zle -N zle-line-finish
