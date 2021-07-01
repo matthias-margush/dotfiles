@@ -1,10 +1,11 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
-(setq desktop-save-mode t
-  desktop-load-locked-desktop t
-  desktop-restore-eager 10)
+;; (setq desktop-save-mode t
+;;   desktop-load-locked-desktop t
+;;   desktop-restore-eager 10)
 
-(add-hook 'after-init-hook #'desktop-read)
+;; (add-hook 'after-init-hook #'desktop-read)
+
 (setenv "GPG_AGENT_INFO" nil)
 (setq epa-pinentry-mode 'loopback)
 

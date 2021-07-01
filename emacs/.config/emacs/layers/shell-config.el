@@ -11,14 +11,14 @@
 ;;     ;; (setq shell-file-name "/usr/local/bin/fish")
 ;;     (global-fish-completion-mode)))
 
-(setq shell-prompt-pattern "^❯ *")
+(setq shell-prompt-pattern "^❯ ")
 
 (eval-after-load "term"
   '(define-key term-raw-map (kbd "s-v") 'term-paste))
 
 (setq explicit-shell-file-name "/bin/zsh")
 
-;; (add-hook 'shell-mode-hook (lambda () (setq comint-process-echoes t)))
+(add-hook 'shell-mode-hook (lambda () (setq comint-process-echoes t)))
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
@@ -73,8 +73,9 @@
   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
 (use-package with-editor
-  :hook (;; (shell-mode . with-editor-export-editor)
+  :hook ((shell-mode . with-editor-export-editor)
 	 ;; (term-mode . with-editor-export-editor)
+	 (vterm-mode . with-editor-export-editor)
 	 (eshell-mode . with-editor-export-editor)))
 
 (use-package vterm

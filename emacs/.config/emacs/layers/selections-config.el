@@ -154,14 +154,17 @@
   :bind
   ("C-S-a" . embark-act)
   (:map minibuffer-local-map
-        ("C-c C-o" . embark-export)))
+        ("C-c C-o" . embark-export)
+        ("C-c C-a" . embark-act)))
+
+(use-package wgrep)
 
 (use-package embark-consult
   :after (embark consult)
-  :demand t              ; only necessary if you have the hook below
+  :demand t                ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
   ;; auto-updating embark collect buffer
   :hook
-  (embark-collect-mode . embark-consult-preview-minor-mode))
+  (embark-collect-mode . embark-consult-preview-at-point-mode))
 
 (provide 'selections-config)

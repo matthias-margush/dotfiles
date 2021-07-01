@@ -19,7 +19,8 @@
                         (list
                          ;; (propertize "◉" 'face '(:weight bold :height 1.0))
                          "  "
-                         (propertize (me/project-to-buffer-name) 'face '(:face header-line-path :weight normal))))
+                         ;; (propertize (me/project-to-buffer-name) 'face '(:face header-line-path :weight normal))
+                         (me/project-to-buffer-name)))
                        (format-mode-line
                         (list
                          ""
