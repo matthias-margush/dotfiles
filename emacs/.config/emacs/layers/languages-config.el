@@ -34,7 +34,10 @@
   (add-to-list 'lsp-language-id-configuration '(gfm-mode . "markdown")))
 
 (use-package markdown-mode
-  :hook ((markdown-mode . visual-line-mode))
+  :hook
+  ((markdown-mode . visual-line-mode)
+   (markdown-mode . markdown-toggle-inline-images))
+
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode))
