@@ -24,6 +24,10 @@
   :general
   (:keymaps 'help-map "F" #'describe-face)
   (:states 'normal :prefix leader "h" help-map)
+  (:states 'normal "s-+" #'evil-window-increase-height)
+  (:states 'normal "s-_" #'evil-window-decrease-height)
+  (:states 'normal "s->" #'evil-window-increase-width)
+  (:states 'normal "s-<" #'evil-window-decrease-width)
 
   (:states 'normal
            "]e" #'flymake-goto-next-error
