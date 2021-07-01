@@ -3,6 +3,27 @@
 (require 'package-config)
 (require 'evil-config)
 
+(setq
+ display-buffer-alist
+ `(("\\*\\(?:shell\\|compilation\\|.*vterm\\)\\*"
+    display-buffer-in-previous-window
+    (window-height . 20)
+    (preserve-size . (nil . nil))
+    (window-parameters . ((no-other-window . nil)
+                          (no-delete-other-windows . nil))))))
+
+;; (setq
+;;  display-buffer-alist
+;;  `(("\\*\\(?:shell\\|compilation\\|.*vterm\\)\\*"
+;;     display-buffer-in-side-window
+;;     (side . bottom)
+;;     (slot . -1)
+;;     (background-color . "red")
+;;     (window-height . 20)
+;;     (preserve-size . (nil . t))
+;;     (window-parameters . ((no-other-window . nil)
+;;                           (no-delete-other-windows . nil))))))
+
 ;; slow
 ;; (use-package fish-completion
 ;;   :init
@@ -75,15 +96,25 @@
 (use-package with-editor
   :hook ((shell-mode . with-editor-export-editor)
 	 ;; (term-mode . with-editor-export-editor)
-	 (vterm-mode . with-editor-export-editor)
+	 ;; (vterm-mode . with-editor-export-editor)
 	 (eshell-mode . with-editor-export-editor)))
 
 (use-package vterm
+  :hook (vterm-mode . me/term-background-color)
   :general
   (states 'insert :keymaps '(vterm-mode-map)
           "s-[" #'vterm-send-escape)
 
   :init
+  (defun me/term-background-color ()
+    (setq-local header-line-format '(" "))
+    (linum-mode -1)
+    (let ((bg "#EEF4FF"))
+      (set (make-local-variable 'face-remapping-alist)
+           `((default :background ,bg)
+             (header-line :background ,bg)
+             (linum :background ,bg)))))
+
   (setq vterm-always-compile-module t
         vterm-clear-scrollback-when-clearing t))
 
