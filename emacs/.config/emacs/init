@@ -23,9 +23,9 @@
 (require 'ui-config)
 (require 'kube-config)
 
-;; (setq desktop-save-mode t
-;;   desktop-load-locked-desktop t
-;;   desktop-restore-eager 10)
+(setq desktop-save-mode t
+  desktop-load-locked-desktop t
+  desktop-restore-eager 10)
 
 ;; (add-hook 'after-init-hook #'desktop-read)
 

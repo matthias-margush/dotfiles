@@ -2,6 +2,13 @@
 
 ;;; Clean up superflous visual elements, messages, and behavioral defaults
 
+(setq scroll-margin 0
+      scroll-conservatively 101
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01
+      scroll-preserve-screen-position nil
+      auto-window-vscroll nil)
+
 (setq-default indent-tabs-mode nil)
 (setq max-specpdl-size 13000)           ; bigger stack
 (setq ffap-machine-p-known 'reject) 	; don't magically try to complete links

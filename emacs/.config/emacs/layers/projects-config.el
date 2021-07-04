@@ -10,8 +10,9 @@
   (cdr-safe (project-current)))
 
 (defun me/project-root ()
-  (file-name-as-directory
-   (cdr-safe (project-current))))
+  (when-let ((current-project (cdr-safe (project-current))))
+    (file-name-as-directory
+     current-project)))
 
 (defun me/project-p ()
   (project-current))

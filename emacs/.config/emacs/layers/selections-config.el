@@ -26,16 +26,16 @@
           (font . ,me/fixed-pitch)))
 
   :config
-  ;; (mini-frame-mode)
+  (mini-frame-mode)
   )
 
 (use-package selectrum
   :demand t
   :init
-  (setq selectrum-display-action
-        '(display-buffer-in-side-window
-          (side . bottom)
-          (slot . -1)))
+  ;; (setq selectrum-display-action
+  ;;       '(display-buffer-in-side-window
+  ;;         (side . bottom)
+  ;;         (slot . -1)))
 
   (setq selectrum-count-style nil)
   (setq selectrum-num-candidates-displayed 100)
@@ -52,9 +52,9 @@
                                       window nil nil nil nil t))))))
       (apply original-fun window dheight args)))
 
-  (advice-add
-   #'selectrum--set-window-height
-   :around #'me/adjust-selectrum-window-size)
+  ;; (advice-add
+  ;;  #'selectrum--set-window-height
+  ;;  :around #'me/adjust-selectrum-window-size)
 
   :config
   (selectrum-mode))

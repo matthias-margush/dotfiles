@@ -26,7 +26,15 @@
            ",eb" #'cider-load-buffer
            ",eB" #'cider-load-all-project-ns
            ",ef" #'cider-eval-defun-at-point)
+
+  :init
+  (setq clojure-align-forms-automatically nil)
+
   :config
+  (evil-add-command-properties #'cider-find-var :jump t)
+  (add-to-list 'clojure-align-binding-forms "let")
+
+
   ;; (general-define-key
   ;;  :keymaps '(cider-mode-map)
   ;;  :states '(normal visual)

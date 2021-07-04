@@ -3,14 +3,15 @@
 (require 'package-config)
 (require 'evil-config)
 
-(setq
- display-buffer-alist
- `(("\\*\\(?:shell\\|compilation\\|.*vterm\\)\\*"
-    display-buffer-in-previous-window
-    (window-height . 20)
-    (preserve-size . (nil . nil))
-    (window-parameters . ((no-other-window . nil)
-                          (no-delete-other-windows . nil))))))
+;; (setq
+;;  display-buffer-alist
+;;  `(("\\*\\(?:shell\\|compilation\\|.*vterm\\)\\*"
+;;     display-buffer-in-direction
+;;     ;; display-buffer-in-previous-window
+;;     (window-height . 20)
+;;     (preserve-size . (nil . nil))
+;;     (window-parameters . ((no-other-window . nil)
+;;                           (no-delete-other-windows . nil))))))
 
 ;; (setq
 ;;  display-buffer-alist

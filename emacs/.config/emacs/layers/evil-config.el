@@ -54,6 +54,10 @@
   ;; (define-key evil-normal-state-map (kbd "s-v") "\"+p")
   (evil-mode))
 
+(use-package evil-lion
+  :config
+  (evil-lion-mode))
+
 (use-package xclip
   :config
   (xclip-mode))

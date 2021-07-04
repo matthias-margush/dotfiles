@@ -45,7 +45,7 @@
     ;; (message "%s, %s, %s, %s" left top right bottom)
     (let ((width (- right left))
 	         (height (- bottom top (default-font-height) -1)))
-      (setq frame-resize-pixelwise t)
+      (setq frame-resize-pixelwise nil)
       (if (neo-global--window-exists-p) ; then close
         (let ((neo-width (window-total-width (neo-global--get-window))))
           (me/neotree-toggle)

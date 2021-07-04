@@ -2,6 +2,8 @@
 
 (require 'package-config)
 
+(use-package mustache-mode)
+
 ;; treesitter is slow
 ;; (use-package tree-sitter
 ;;   :config

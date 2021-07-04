@@ -4,6 +4,9 @@
 
 (use-package better-jumper              ; per-window & tab jump list
   :init
+  (setq better-jumper-use-evil-jump-advice t
+        better-jumper-add-jump-behavior 'replace)
+
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "C-o") #'better-jumper-jump-backward)
     (define-key evil-motion-state-map (kbd "C-i") #'better-jumper-jump-forward))

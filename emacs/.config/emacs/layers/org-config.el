@@ -39,7 +39,8 @@
 
   :hook
   (org-babel-after-execute . org-redisplay-inline-images)
-  (org-mode . visual-line-mode)
+  ;; (org-mode . visual-line-mode)
+  (org-mode . (lambda () (toggle-truncate-lines t)))
   ;; (org-mode . org-indent-mode)
   ;; (org-mode . buffer-face-mode)
   (org-mode . flyspell-mode)
@@ -235,7 +236,8 @@ at the first function to return non-nil.")
   :general
   ("s-<return>" #'deft-new-file)
   (:map 'global-map
-        "s-d" #'me/notes-switch-or-open)
+        "s-D" #'me/notes-switch-or-open
+        "s-d" #'me/notes)
   :init
   (setq deft-directory "~/Notes")
   (setq deft-auto-save-interval 0)
@@ -250,6 +252,10 @@ at the first function to return non-nil.")
     (deft)
     (deft-filter-clear)
     (evil-insert-state))
+
+  (defun me/notes ()
+    (interactive)
+    (find-file (expand-file-name "~/Notes/projects.org")))
 
   (defun me/notes-switch-or-open (_)
     "Switch to notes"

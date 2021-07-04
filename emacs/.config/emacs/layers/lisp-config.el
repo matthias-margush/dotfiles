@@ -28,7 +28,7 @@
 (use-package lispyville
   :general
   (:states 'normal
-           :keymaps '(lisp-mode-map emacs-lisp-mode-map)
+           :keymaps '(lisp-mode-map emacs-lisp-mode-map clojure-mode-map)
            ">" #'me/lispyville->
            "<" #'me/lispyville-<
            ",t(" #'me/toggle-lispyville
