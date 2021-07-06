@@ -27,8 +27,14 @@
 (define-key me/toggles-map (kbd "f") #'font-lock-mode)
 (define-key me/toggles-map (kbd "m") #'smerge-mode)
 (define-key me/toggles-map (kbd "t") #'toggle-truncate-lines)
-(define-key me/toggles-map (kbd "p") #'me/toggle-pairing)
+;; (define-key me/toggles-map (kbd "p") #'me/toggle-pairing)
 (define-key me/toggles-map (kbd "s") #'evil-ex-nohighlight)
+
+(setq me/profiler-map (make-sparse-keymap))
+(define-key me/profiler-map (kbd "b") (lambda () (interactive) (profiler-start 'cpu)))
+(define-key me/profiler-map (kbd "e") #'profiler-stop)
+(define-key me/profiler-map (kbd "r") #'profiler-reset)
+(define-key me/toggles-map (kbd "p") me/profiler-map)
 
 (general-define-key :states 'normal :prefix leader "t" me/toggles-map)
 (general-define-key :states 'normal :prefix leader "s" #'evil-ex-nohighlight)

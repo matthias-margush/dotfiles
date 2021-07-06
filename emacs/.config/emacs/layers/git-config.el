@@ -74,6 +74,9 @@
 
 (use-package diff-hl
   :defer 3
+  :init
+  (setq diff-hl-flydiff-delay 5)
+
   :general
   (:keymaps 'normal
             "]g" 'diff-hl-next-hunk
@@ -91,6 +94,7 @@
 
   :config
   (global-diff-hl-mode)
-  (diff-hl-flydiff-mode))
+  ;; (diff-hl-flydiff-mode) ; too slow
+  )
 
 (provide 'git-config)

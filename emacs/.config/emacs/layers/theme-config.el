@@ -47,9 +47,10 @@
 (use-package yascroll
   :demand t
   :init
-  (setq yascroll:scroll-bar 'text-area)
+  (setq yascroll:scroll-bar 'right-fringe)
   :config
-  (global-yascroll-bar-mode))
+  ;; (global-yascroll-bar-mode)
+  )
 
 (use-package accent-theme
   :demand t
