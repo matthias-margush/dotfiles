@@ -11,25 +11,25 @@
   :init
   (set-face-attribute
    'child-frame-border nil
-   :background "black")
+   :background accent-theme--background-dark)
 
-  (setq mini-frame-resize nil
-        mini-frame-resize-max-height 40
-        mini-frame-resize-min-height nil
+  (setq mini-frame-resize t
+        mini-frame-resize-max-height 1
+        mini-frame-resize-min-height 20
         mini-frame-show-parameters
-        `((top . -43)
+        `((top . 1)
           (left . 0.5)
-          (width . 0.9)
+          (width . 0.94)
           (height . 0.5)
           (background-color . ,accent-theme--background-dark)
-          (internal-border-width . 60)
+          (internal-border-width . 30)
           ;; (alpha . (95 . 95))
           (child-frame-border-width . nil)
           (vertical-scroll-bars . nil)
           (font . ,me/fixed-pitch)))
 
   :config
-  (mini-frame-mode)
+  ;; (mini-frame-mode)
   )
 
 (use-package selectrum

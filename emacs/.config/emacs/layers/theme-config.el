@@ -6,10 +6,11 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
-;; (setq me/variable-pitch "Thasadith-12")
+(setq me/variable-pitch "Thasadith-12")
 ;; (setq me/variable-pitch "Open Sans-12:antialias=none")
-(setq me/variable-pitch "Open Sans-12")
+;; ;; (setq me/variable-pitch "Open Sans-12")
 (setq me/fixed-pitch "Hasklug Nerd Font Mono-10")
+;; (setq me/fixed-pitch "DejaVuSansMono Nerd Font-10")
 
 (setq frame-alist
   `((top . 100)
@@ -32,7 +33,7 @@
             (set-face-attribute 'fixed-pitch nil :font me/fixed-pitch)))
 
 (setq-default fringe-indicator-alist nil) ; fringe wrap arrows
-(scroll-bar-mode t)
+(scroll-bar-mode -1)
                                         ; scrollbars
 (setq initial-scratch-message "")       ; scratch buffer content
 (setq ns-use-proxy-icon nil)            ; frame icon
@@ -43,6 +44,12 @@
 ;;   :straight (accent-theme :type built-in)
 ;;   )
 
+(use-package yascroll
+  :demand t
+  :init
+  (setq yascroll:scroll-bar 'text-area)
+  :config
+  (global-yascroll-bar-mode))
 
 (use-package accent-theme
   :demand t
@@ -55,9 +62,12 @@
   ;; :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
 
   :init
+  (setq-default mode-line-format '(""))
+
   (defun me/modeline-style-line (&optional arg)
     "Style the mode line a simple line."
-    (let ((box-color "#000000"))
+    (require 'accent-theme)
+    (let ((box-color accent-theme--background-medium))
 
       (set-face-attribute
        'window-divider nil
@@ -89,14 +99,14 @@
        :underline t
        :box `(:line-width 1 :color ,box-color) :height 0.1)))
 
-  (setq-default mode-line-format '(""))
   (advice-add 'enable-theme :after #'me/modeline-style-line)
-  (add-to-list 'after-make-frame-functions #'me/modeline-style-line t)
 
   :config
+  (add-to-list 'after-make-frame-functions #'me/modeline-style-line t)
+
   (window-divider-mode)
   ;; (require 'accent-theme)
-  (enable-theme 'accent-theme-light))
+  (enable-theme 'accent-light))
 
 
 (provide 'theme-config)
