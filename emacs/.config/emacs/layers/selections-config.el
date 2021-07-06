@@ -2,27 +2,30 @@
 
 (require 'package-config)
 
+(require 'theme-config)
+(require 'accent-theme)
+
 (use-package posframe)
 
 (use-package mini-frame
   :init
   (set-face-attribute
    'child-frame-border nil
-   :background "#EBEBA4")
+   :background "black")
 
-  (setq mini-frame-resize t
+  (setq mini-frame-resize nil
         mini-frame-resize-max-height 40
         mini-frame-resize-min-height nil
         mini-frame-show-parameters
-        `((top . 0.00)
-          (left . 0.50)
-          (width . 0.83)
+        `((top . -43)
+          (left . 0.5)
+          (width . 0.9)
           (height . 0.5)
-          (background-color . "#FFFFFA")
-          (internal-border-width . 0)
-          (alpha . (95 . 95))
-          (child-frame-border-width . 2)
-          ;; (vertical-scroll-bars . nil)
+          (background-color . ,accent-theme--background-dark)
+          (internal-border-width . 60)
+          ;; (alpha . (95 . 95))
+          (child-frame-border-width . nil)
+          (vertical-scroll-bars . nil)
           (font . ,me/fixed-pitch)))
 
   :config
