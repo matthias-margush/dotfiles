@@ -6,6 +6,9 @@
 
 ;; (add-hook 'after-init-hook #'desktop-read)
 
+(setq native-comp-async-report-warnings-errors nil
+      warning-minimum-level :error)
+
 (setenv "GPG_AGENT_INFO" nil)
 (setq epa-pinentry-mode 'loopback)
 
@@ -32,6 +35,6 @@
 (setq comp-deferred-compilation t)
 
 (require 'package-config)
+(require 'theme-early-config)
 (require 'env-config)
-(require 'theme-config)
 (require 'tidyup-config)

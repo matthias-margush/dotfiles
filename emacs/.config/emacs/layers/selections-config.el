@@ -2,7 +2,7 @@
 
 (require 'package-config)
 
-(require 'theme-config)
+(require 'theme-init-config)
 (require 'accent-theme)
 
 (use-package posframe)

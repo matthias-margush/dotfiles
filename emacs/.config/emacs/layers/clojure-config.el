@@ -47,6 +47,12 @@
   )
 
 (use-package cider
+  :commands (cider-jack-in
+             cider-jack-in-clj
+             cider-jack-in-cljs
+             cider-connect
+             cider-connect-clj
+             cider-connect-cljs)
   :init
   (setq cider-clojure-cli-global-options "-A:dev"
         cider-prompt-for-symbol nil

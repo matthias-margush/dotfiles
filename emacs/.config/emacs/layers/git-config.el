@@ -10,7 +10,6 @@
   (pinentry-start))
 
 (use-package magit
-  :demand t
   :commands (magit-status magit-blame-addition)
 
   :general
@@ -18,7 +17,7 @@
   (:states 'normal :prefix leader "g" git-map)
   (:keymaps 'magit-mode-map :states 'normal :prefix local-leader
             "r" #'github-review-forge-pr-at-point)
-  
+
   (:keymaps 'with-editor-mode-map :states 'normal ",cc" #'with-editor-finish)
   (:keymaps 'with-editor-mode-map :states 'normal ",ck" #'with-editor-cancel)
 

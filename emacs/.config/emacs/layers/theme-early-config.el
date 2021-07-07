@@ -44,16 +44,7 @@
 ;;   :straight (accent-theme :type built-in)
 ;;   )
 
-(use-package yascroll
-  :demand t
-  :init
-  (setq yascroll:scroll-bar 'right-fringe)
-  :config
-  ;; (global-yascroll-bar-mode)
-  )
-
 (use-package accent-theme
-  :demand t
   :straight (accent-theme :type git :host github :repo "matthias-margush/accent-theme-emacs")
 
   :custom
@@ -102,12 +93,20 @@
 
   (advice-add 'enable-theme :after #'me/modeline-style-line)
 
-  :config
+  :init
+  ;; (require 'accent-theme)
+  ;; (enable-theme 'accent-light)
   (add-to-list 'after-make-frame-functions #'me/modeline-style-line t)
-
   (window-divider-mode)
   ;; (require 'accent-theme)
-  (enable-theme 'accent-light))
+  )
 
+(use-package yascroll
+  :demand t
+  :init
+  (setq yascroll:scroll-bar 'right-fringe)
+  :config
+  ;; (global-yascroll-bar-mode)
+  )
 
-(provide 'theme-config)
+(provide 'theme-early-config)

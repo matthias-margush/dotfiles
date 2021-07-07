@@ -5,11 +5,11 @@
 (use-package mustache-mode)
 
 ;; treesitter is slow
-;; (use-package tree-sitter
-;;   :config
-;;   (global-tree-sitter-mode))
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode))
 
-;; (use-package tree-sitter-langs)
+(use-package tree-sitter-langs)
 
 (use-package flymake-shellcheck
   :hook ((sh-mode . flymake-shellcheck-load)
