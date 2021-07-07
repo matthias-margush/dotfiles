@@ -44,7 +44,8 @@
   (let ((fn (which-function)))
     (if (and fn (not (minibuffer-prompt)))
         (concat "   λ " fn)
-      "")))
+      "")
+    ))
 
 (defun me/project-to-buffer-name ()
   (when-let ((filename (or buffer-file-truename default-directory)))
@@ -56,9 +57,11 @@
            (name (car (last parts)))
            (parts (butlast parts))
            (display-name (concat "  " (combine-and-quote-strings parts " ⊸ ") " ⊸ " name)))
-      (if-let (prompt (minibuffer-prompt))
-          prompt
-        display-name))))
+      display-name
+      ;; (if-let (prompt (minibuffer-prompt)) ; doesn't work, loses minibuffer focus
+      ;;     prompt
+      ;;   display-name)
+      )))
 
 (setq-default mode-line-buffer-identification '(:eval (me/project-to-buffer-name)))
 

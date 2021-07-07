@@ -35,10 +35,10 @@
 (use-package selectrum
   :demand t
   :init
-  ;; (setq selectrum-display-action
-  ;;       '(display-buffer-in-side-window
-  ;;         (side . bottom)
-  ;;         (slot . -1)))
+  (setq selectrum-display-action
+        '(display-buffer-in-side-window
+          (side . bottom)
+          (slot . -1)))
 
   (setq selectrum-count-style nil)
   (setq selectrum-num-candidates-displayed 100)
