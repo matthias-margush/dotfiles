@@ -50,14 +50,14 @@
 
   (defun me/adjust-selectrum-window-size (original-fun window &optional height &rest args)
     "Increase the size to account for the header line."
-    (let ((dheight (+ 50 (or height (cdr
+    (let ((dheight (+ 40 (or height (cdr
                                      (window-text-pixel-size
                                       window nil nil nil nil t))))))
       (apply original-fun window dheight args)))
 
-  ;; (advice-add
-  ;;  #'selectrum--set-window-height
-  ;;  :around #'me/adjust-selectrum-window-size)
+  (advice-add
+   #'selectrum--set-window-height
+   :around #'me/adjust-selectrum-window-size)
 
   :config
   (selectrum-mode))

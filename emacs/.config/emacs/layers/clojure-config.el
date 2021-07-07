@@ -8,7 +8,19 @@
   (adoc-mode)
   (read-only-mode))
 
+(use-package flymake-joker)
+
+(use-package clj-refactor
+  :config
+  (cljr-add-keybindings-with-prefix "C-c r")
+  )
+
 (use-package clojure-mode
+  :hook ((clojure-mode . flymake-joker-clj-enable)
+         (clojurescript-mode . flymake-joker-cljs-enable)
+         (clojure-mode . flymake-mode)
+         (clojure-mode . clj-refactor-mode))
+
   :mode
   ("\\.\\(clj\\|dtm\\|edn\\)\\'" . clojure-mode)
   ("\\.cljc\\'" . clojurec-mode)
@@ -34,7 +46,6 @@
   (evil-add-command-properties #'cider-find-var :jump t)
   (add-to-list 'clojure-align-binding-forms "let")
 
-
   ;; (general-define-key
   ;;  :keymaps '(cider-mode-map)
   ;;  :states '(normal visual)
@@ -53,11 +64,15 @@
              cider-connect
              cider-connect-clj
              cider-connect-cljs)
+  ;; :generaelect
+  ;; (:states 'normal :keymaps '(cider--debug-mode-map)
+  ;;          "i" #'cider-debug-move-here)
   :init
   (setq cider-clojure-cli-global-options "-A:dev"
         cider-prompt-for-symbol nil
         cider-save-file-on-load t
         cider-repl-display-help-banner nil
         cider-repl-pop-to-buffer-on-connect nil))
+
 
 (provide 'clojure-config)

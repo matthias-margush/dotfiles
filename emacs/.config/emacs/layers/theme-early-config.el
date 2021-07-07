@@ -54,6 +54,13 @@
   ;; :straight (construction-paper-theme :type git :host github :repo "matthias-margush/construction-paper-emacs")
 
   :init
+  ;; (setq accent-theme-accent "#3c4c55")
+  ;; (setq accent-theme-accent "#8EAF6B")
+  ;; (setq accent-theme-accent "#db6c6c")
+  ;; (setq accent-theme-accent "#9A0000")
+  (setq accent-theme-accent "#B56764")
+  ;; (setq accent-theme-accent "#D86C6C")
+
   (setq-default mode-line-format '(""))
 
   (defun me/modeline-style-line (&optional arg)

@@ -17,7 +17,9 @@
 (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/go/bin")))
 (setq exec-path (append exec-path `(,(expand-file-name "~/go/bin"))))
 
-(use-package envrc                      ;; direnv
-  :config (envrc-global-mode))
+(use-package envrc ;; direnv
+  ;; :config
+  ;; (envrc-global-mode)
+  )
 
 (provide 'env-config)
