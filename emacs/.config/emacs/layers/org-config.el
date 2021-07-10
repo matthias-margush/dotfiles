@@ -226,6 +226,7 @@ at the first function to return non-nil.")
   (setq org-pandoc-options '((standalone . t))))
 
 (use-package orgraphy
+  :demand t
   :straight (orgraphy :type git :host github :repo "matthias-margush/orgraphy")
   :config
   (orgraphy--init))

@@ -18,7 +18,6 @@
 (use-package clojure-mode
   :hook ((clojure-mode . flymake-joker-clj-enable)
          (clojurescript-mode . flymake-joker-cljs-enable)
-         (clojure-mode . flymake-mode)
          (clojure-mode . clj-refactor-mode))
 
   :mode
@@ -43,8 +42,14 @@
   (setq clojure-align-forms-automatically nil)
 
   :config
+  (dolist (c (string-to-list ":_-?!#*"))
+    (modify-syntax-entry c "w" clojure-mode-syntax-table)
+    (modify-syntax-entry c "w" emacs-lisp-mode-syntax-table))
+
   (evil-add-command-properties #'cider-find-var :jump t)
   (add-to-list 'clojure-align-binding-forms "let")
+
+  (cider-debug-defun-at-point)
 
   ;; (general-define-key
   ;;  :keymaps '(cider-mode-map)
@@ -58,21 +63,65 @@
   )
 
 (use-package cider
+  :hook
+  ((cider--debug-mode . evil-normalize-keymaps)
+   (cider-mode . evil-normalize-keymaps))
+  
+  :general
+  (:states 'normal
+           :keymaps '(cider-mode-map)
+           ",td" #'cider-debug-defun-at-point)
   :commands (cider-jack-in
              cider-jack-in-clj
              cider-jack-in-cljs
              cider-connect
              cider-connect-clj
              cider-connect-cljs)
-  ;; :generaelect
-  ;; (:states 'normal :keymaps '(cider--debug-mode-map)
-  ;;          "i" #'cider-debug-move-here)
-  :init
+
+  :custom
+  (cider-debug-prompt-commands '((?c "continue" "continue")
+                                 (?C "continue-all" nil)
+                                 (?n "next" "next")
+                                 (?i "in" "in")
+                                 (?o "out" "out")
+                                 (?O "force-out" nil)
+                                 (?H "here" "here")
+                                 (?e "eval" "eval")
+                                 (?p "inspect" "inspect")
+                                 (?P "inspect-prompt" nil)
+                                 (?L "locals" "locals")
+                                 (?J "inject" "inject")
+                                 (?s "stacktrace" "stacktrace")
+                                 (?t "trace" "trace")
+                                 (?q "quit" "quit")))
+  :config
+  (evil-define-minor-mode-key 'normal 'cider--debug-mode
+    "b" 'cider-debug-defun-at-point
+    "c" 'cider-debug-mode-send-reply
+    "C" 'cider-debug-mode-send-reply
+    "n" 'cider-debug-mode-send-reply
+    "i" 'cider-debug-mode-send-reply
+    "o" 'cider-debug-mode-send-reply
+    "O" 'cider-debug-mode-send-reply
+    "H" 'cider-debug-move-here
+    "e" 'cider-debug-mode-send-reply
+    "p" 'cider-debug-mode-send-reply
+    "P" 'cider-debug-mode-send-reply
+    "L" 'cider-debug-mode-send-reply
+    "J" 'cider-debug-mode-send-reply
+    "s" 'cider-debug-mode-send-reply
+    "t" 'cider-debug-mode-send-reply
+    "q" 'cider-debug-mode-send-reply)
+
   (setq cider-clojure-cli-global-options "-A:dev"
+        cider-debug-prompt 'overlay
+        cider-debug-use-overlays t
         cider-prompt-for-symbol nil
-        cider-save-file-on-load t
         cider-repl-display-help-banner nil
-        cider-repl-pop-to-buffer-on-connect nil))
+        cider-repl-pop-to-buffer-on-connect nil
+        cider-save-file-on-load t
+        cider-test-default-exclude-selectors '("integration")))
+
 
 
 (provide 'clojure-config)

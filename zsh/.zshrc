@@ -79,7 +79,7 @@ fi
 
 if type direnv &> /dev/null
 then
-  eval "$(direnv hook zsh)"
+  # eval "$(direnv hook zsh)"
 fi
 
 function vterm_printf(){

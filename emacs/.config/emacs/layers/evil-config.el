@@ -46,7 +46,13 @@
   ;; (global-superword-mode)
   (setq evil-want-keybinding nil
         evil-search-module 'evil-search
+        ;; evil-search-module 'isearch
         select-enable-clipboard t)
+
+  (defalias #'forward-evil-word #'forward-evil-symbol)
+    ;; make evil-search-word look for symbol rather than word boundaries
+  (setq-default evil-symbol-word-search t)
+
   :config
   ;; (define-key evil-visual-state-map (kbd "s-c") "\"+y")
   ;; (define-key evil-visual-state-map (kbd "s-v") "\"+p")
@@ -74,7 +80,7 @@
         evil-collection-want-unimpaired-p nil
         evil-kill-on-visual-paste nil
         evil-collection-key-blacklist '("SPC")
-        evil-collection-setup-debugger-keys t)
+        evil-collection-setup-debugger-keys nil)
   :config
   (evil-collection-init))
 

@@ -119,7 +119,7 @@
 
   (dolist (src consult-buffer-sources)
     (if (or (eq src 'consult--source-project-buffer)
-            (eq src 'consult--source-bookmark)
+            ;; (eq src 'consult--source-bookmark)
             (eq src 'consult--source-project-file)
             (eq src 'consult--source-file))
         (set src (plist-put (symbol-value src) :hidden nil))
