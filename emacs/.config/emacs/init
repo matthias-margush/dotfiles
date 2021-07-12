@@ -28,14 +28,28 @@
 
 ;; (add-hook 'text-mode-hook 'flyspell-mode)
 ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(push '(foreground-color . :never) frameset-filter-alist)
+(push '(background-color . :never) frameset-filter-alist)
+(push '(font . :never) frameset-filter-alist)
+(push '(cursor-color . :never) frameset-filter-alist)
+(push '(background-mode . :never) frameset-filter-alist)
+(push '(ns-appearance . :never) frameset-filter-alist)
+(push '(background-mode . :never) frameset-filter-alist)
 
-;; (setq desktop-load-locked-desktop t
-;;       desktop-restore-eager 10)
-;; (desktop-save-mode)
+(defvar *me/desktop-save* nil
+  "Should I save the desktop when Emacs is shutting down?")
 
-;; (add-hook 'after-init-hook #'desktop-read)
+(add-hook 'desktop-after-read-hook
+          (lambda () (setq *me/desktop-save* t)))
 
-;; (desktop-read)
+(defun me/desktop-save ()
+  "Save desktop if loaded."
+  (when (bound-and-true-p *me/desktop-save*)
+    (let ((y-or-n-p (lambda () t)))
+      (desktop-save "~/.config/emacs" t t)))
+  t)
+
+(add-hook 'kill-emacs-query-functions #'me/desktop-save)
 
 ;; (use-package esup)
 

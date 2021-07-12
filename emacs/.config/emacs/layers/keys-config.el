@@ -20,11 +20,18 @@
 (define-key evil-window-map (kbd "u") #'winner-undo)
 (define-key evil-window-map (kbd "R") #'winner-redo)
 
+(defun me/open-messages ()
+  (interactive)
+  (split-window-below 40)
+  (other-window 1)
+  (switch-to-buffer "*Messages*"))
+
 (general-define-key
  :states '(normal)
  :prefix leader
  "w" evil-window-map
  "bn" #'bookmark-set
+ "bm" #'me/open-messages
  "TAB" #'evil-switch-to-windows-last-buffer)
 
 (defun narrow-or-widen-dwim (p)

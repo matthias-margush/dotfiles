@@ -29,14 +29,13 @@
   :general
   (:states 'normal
            :keymaps '(lisp-mode-map emacs-lisp-mode-map clojure-mode-map)
-           ">" #'me/lispyville->
-           "<" #'me/lispyville-<
            ",t(" #'me/toggle-lispyville
            ",t)" #'me/toggle-lispyville
            :keymaps '(lisp-mode-map emacs-lisp-mode-map)
            ",eb" #'eval-buffer
            ",ee" #'eval-last-sexp
-           ",ef" #'eval-defun)
+           ",ef" #'eval-defun
+           ",td" #'toggle-debug-on-error)
 
   (:states 'visual
            :keymaps '(lisp-mode-map emacs-lisp-mode-map)
@@ -50,11 +49,19 @@
   :init
   (setq
    lispyville-insert-states nil
-   lispyville-key-theme '(operators    ; evil ops like yank, delete
-                          c-w         ; delete backward word
-                          additional-motions
-                          additional
-                          additional-insert
+   lispyville-key-theme '(operators     ; evil ops like yank, delete
+                          c-w           ; c-w: delete backward word
+                          c-u    ; c-u: delete backward to indentation
+                          prettyify     ; tab: tab re-formats
+                          text-objects ; a=atom, l=list, x=sexp, f=function, c=comment S=string
+                          ;; atom-movement       ; move by atom
+                          additional-motions ; H, L, M-h, m-l, [, ], (, )
+                          commentary         ; gc, gy, s-/
+                          slurp              ; >, <
+                          barf               ; >, <
+                          ;; wrap          ; M-(, M-), M-[, M-], M-{, M-}
+                          additional ; M-j/M-k: drag -- M-J: join -- M-s/M-S -- split/join -- M-r/M-R: raise/raise list -- M-t: transpose, M-v convolute
+                          additional-insert ; M-i, M-a, M-o, M-O
                           escape))
 
   (defun me/toggle-lispyville ()

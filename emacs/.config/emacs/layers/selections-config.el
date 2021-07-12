@@ -33,7 +33,6 @@
   )
 
 (use-package selectrum
-  :demand t
   :init
   (setq selectrum-display-action
         '(display-buffer-in-side-window
@@ -67,10 +66,6 @@
   (selectrum-prescient-mode)
   (prescient-persist-mode))
 
-(defun me/messages ()
-  (interactive)
-  (split-window (selected-window) 20 'below)
-  (switch-to-buffer "*Messages*"))
 
 (use-package consult
   :general
@@ -84,7 +79,8 @@
   :bind
   ("s-F" . counsel-git-grep)
 
-  :init
+  :config
+  (setq consult-project-root-function #'me/project-root)
   (setq consult-find-command
         "fd --color=never --full-path ARG OPTS")
 
@@ -106,29 +102,59 @@
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
 
-  :config
-  (define-key consult-narrow-map (vconcat consult-narrow-key (kbd "TAB")) #'consult-narrow-help)
+  (setq consult--source-project-file
+        (plist-put consult--source-project-file :narrow '(?r . "Recent in Project")))
+  (setq consult--source-project-file
+        (plist-put consult--source-project-file :name "Project Recent"))
+  (setq consult--source-project-file
+        (plist-put consult--source-project-file :hidden nil))
+  (setq consult--source-file
+        (plist-put consult--source-file :narrow '(?R . "All Recent")))
+  (setq consult--source-file
+        (plist-put consult--source-file :name "All Recent"))
 
-  (setq consult-buffer-sources
-        '(consult--source-hidden-buffer
-          consult--source-bookmark
-          consult--source-project-buffer
-          consult--source-project-file
-          consult--source-file
-          consult--source-buffer))
+  (setq me/consult--source-project-files ;; all project files, not just recent
+        `(:name "Project Files"
+                :narrow   (?f . "Project")
+                :hidden   nil
+                :category file
+                :face     consult-file
+                :action   ,#'consult--file-action
+                :history  file-name-history
+                :state    ,#'consult--file-state
+                :enabled  ,(lambda () consult-project-root-function)
+                :items
+                ,(lambda ()
+                   (when-let (root (consult--project-root))
+                     (let ((len (length root))
+                           (inv-root (propertize root 'invisible t))
+                           (ht (consult--cached-buffer-file-hash)))
+                       (mapcar (lambda (x)
+                                 (concat inv-root (substring x len)))
+                               (project-files (project-current t) (list root))))))))
 
   (dolist (src consult-buffer-sources)
     (if (or (eq src 'consult--source-project-buffer)
             ;; (eq src 'consult--source-bookmark)
             (eq src 'consult--source-project-file)
-            (eq src 'consult--source-file))
+            ;; (eq src 'consult--source-file)
+            )
         (set src (plist-put (symbol-value src) :hidden nil))
       (set src (plist-put (symbol-value src) :hidden t))))
+
+  (setq consult-buffer-sources '(consult--source-hidden-buffer
+                                 consult--source-bookmark
+                                 consult--source-project-buffer
+                                 consult--source-project-file
+                                 me/consult--source-project-files ; recent
+                                 consult--source-buffer))
 
   (setq consult-project-root-function
         (lambda ()
           (when-let (project (project-current))
-            (expand-file-name (car (project-roots project)))))))
+            (expand-file-name (car (project-roots project))))))
+  :config
+  (define-key consult-narrow-map (vconcat consult-narrow-key (kbd "TAB")) #'consult-narrow-help))
 
 (use-package marginalia
   :config

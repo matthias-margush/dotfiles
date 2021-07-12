@@ -6,10 +6,11 @@
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
-(setq me/variable-pitch "Thasadith-12")
+(setq me/variable-pitch "Thasadith-12:antialias=true:hinting=false")
 ;; (setq me/variable-pitch "Open Sans-12:antialias=none")
 ;; ;; (setq me/variable-pitch "Open Sans-12")
-(setq me/fixed-pitch "Hasklug Nerd Font Mono-10")
+(setq me/fixed-pitch "Hasklug Nerd Font Mono-10:antialias=true=false")
+;; (setq me/fixed-pitch "Operator Mono-10:antialias=false:hinting=false")
 ;; (setq me/fixed-pitch "DejaVuSansMono Nerd Font-10")
 
 (setq frame-alist
@@ -30,7 +31,11 @@
 (add-hook 'after-init-hook
           (lambda ()
             (set-face-attribute 'variable-pitch nil :font me/variable-pitch)
-            (set-face-attribute 'fixed-pitch nil :font me/fixed-pitch)))
+            (set-face-attribute 'default nil :font me/fixed-pitch)
+            (set-face-attribute 'default nil :weight 'normal)
+            (set-face-attribute 'fixed-pitch nil :font me/fixed-pitch)
+            (set-face-attribute 'fixed-pitch nil :weight 'extra-light)))
+
 
 (setq-default fringe-indicator-alist nil) ; fringe wrap arrows
 (scroll-bar-mode -1)
@@ -55,6 +60,7 @@
 
   :init
   ;; (setq accent-theme-accent "#3c4c55")
+  ;; (setq accent-theme-accent "#00FF00")
   ;; (setq accent-theme-accent "#8EAF6B")
   ;; (setq accent-theme-accent "#db6c6c")
   ;; (setq accent-theme-accent "#9A0000")

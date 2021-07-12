@@ -5,12 +5,13 @@
 (global-set-key [wheel-right] (lambda () (interactive) (scroll-left 1)))
 (global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
 
+(recentf-mode)
+
 ;; History
 (run-with-idle-timer
  5 nil
  (lambda ()
-   (savehist-mode) ;; minibuffer history
-   (recentf-mode)))
+   (savehist-mode))) ;; minibuffer history
 
     (defun me/show-file-name ()
       "Show the file name and line number."

@@ -40,10 +40,10 @@
   :hook
   (org-babel-after-execute . org-redisplay-inline-images)
   ;; (org-mode . visual-line-mode)
-  (org-mode . (lambda () (toggle-truncate-lines t)))
+  (org-mode . (lambda () (me/toggle-truncate-lines t)))
   ;; (org-mode . org-indent-mode)
   ;; (org-mode . buffer-face-mode)
-  (org-mode . flyspell-mode)
+  (org-mode . me/flyspell-mode)
   ;; (org-mode . me/org-faces)
 
   :init

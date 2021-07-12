@@ -24,6 +24,14 @@
 
 (setq-default cursor-in-non-selected-windows nil)
 
+(defun spacebar--tab-name ()
+  "Return the project name as the tab name."
+  (if-let ((project-name (me/project-name)))
+      (car (last (butlast (split-string (me/project-name) "/+"))))
+    (tab-bar-tab-name-truncated)))
+
+(setq tab-bar-tab-name-function #'spacebar--tab-name)
+
 (defun me/tab-echo (&optional _)
   "Echo the tabs."
   (interactive "P")

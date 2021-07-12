@@ -108,18 +108,13 @@
 
   :init
   (defun me/term-background-color ()
-    (setq-local header-line-format '(" "))
+    ;; (setq-local header-line-format '(" "))
     (linum-mode -1)
-    (let ((bg accent-theme--inverted-background))
+    (let ((bg accent-theme--inverted-background-medium))
       (face-remap-add-relative 'default (list :background bg))
       (face-remap-add-relative 'header-line (list :background bg))
       (face-remap-add-relative 'linum (list :background bg))
-      ;; (set (make-local-variable 'face-remapping-alist)
-      ;;      ;; (list (list 'default :background bg)
-      ;;      ;;       (list 'header-line :background bg)
-      ;;      ;;       (list 'linum :background bg))
-      ;;      )
-      ))
+      (setq-local header-line-format '())))
 
   (setq vterm-always-compile-module t
         vterm-clear-scrollback-when-clearing t))

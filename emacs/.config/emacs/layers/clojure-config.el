@@ -3,11 +3,6 @@
 (require 'package-config)
 (require 'languages-config)
 
-(defadvice cider-clojuredocs
-    (after me/cider-clojuredocs-after activate)
-  (adoc-mode)
-  (read-only-mode))
-
 (use-package flymake-joker)
 
 (use-package clj-refactor
@@ -42,14 +37,17 @@
   (setq clojure-align-forms-automatically nil)
 
   :config
-  (dolist (c (string-to-list ":_-?!#*"))
-    (modify-syntax-entry c "w" clojure-mode-syntax-table)
-    (modify-syntax-entry c "w" emacs-lisp-mode-syntax-table))
+  ;; (dolist (c (string-to-list ":_-?!#*"))
+  ;;   (modify-syntax-entry c "w" clojure-mode-syntax-table)
+  ;;   (modify-syntax-entry c "w" emacs-lisp-mode-syntax-table))
 
   (evil-add-command-properties #'cider-find-var :jump t)
   (add-to-list 'clojure-align-binding-forms "let")
 
-  (cider-debug-defun-at-point)
+  (defadvice cider-clojuredocs
+      (after me/cider-clojuredocs-after activate)
+    (adoc-mode)
+    (read-only-mode))
 
   ;; (general-define-key
   ;;  :keymaps '(cider-mode-map)
@@ -66,7 +64,7 @@
   :hook
   ((cider--debug-mode . evil-normalize-keymaps)
    (cider-mode . evil-normalize-keymaps))
-  
+
   :general
   (:states 'normal
            :keymaps '(cider-mode-map)
