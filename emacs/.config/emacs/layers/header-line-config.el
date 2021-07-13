@@ -33,7 +33,7 @@ Containing LEFT, and RIGHT aligned respectively."
              header-line-format
              `((:eval (mode-line-render
                        (list
-                        "☰ "
+                        (propertize "☰ " 'face 'font-lock-keyword-face)
                         mode-line-process
                         (me/project-to-buffer-name)
                         (me/echo-which-func)

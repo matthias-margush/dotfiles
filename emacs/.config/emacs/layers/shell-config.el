@@ -112,9 +112,11 @@
     (linum-mode -1)
     (let ((bg accent-theme--inverted-background-medium))
       (face-remap-add-relative 'default (list :background bg))
-      (face-remap-add-relative 'header-line (list :background bg))
+      ;; (face-remap-add-relative 'header-line (list :background bg))
       (face-remap-add-relative 'linum (list :background bg))
-      (setq-local header-line-format '())))
+      (setq-local header-line-format
+                  '((:eval (propertize "☰ vterm" 'face 'font-lock-keyword-face))))
+      ))
 
   (setq vterm-always-compile-module t
         vterm-clear-scrollback-when-clearing t))
