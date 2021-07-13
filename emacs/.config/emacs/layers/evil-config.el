@@ -95,8 +95,12 @@
   :config
   (evil-commentary-mode))
 
+(use-package evil-visualstar
+  :config
+  (global-evil-visualstar-mode))
+
 (use-package multi-line
-  :demand t                         ; sets up hooks in various modes
+  :demand t                           ; sets up hooks in various modes
   :general
   (:states 'normal "gs" #'multi-line))
 
