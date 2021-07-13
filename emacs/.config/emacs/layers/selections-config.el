@@ -196,4 +196,9 @@
   :hook
   (embark-collect-mode . embark-consult-preview-at-point-mode))
 
+(use-package dumb-jump
+  :init
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
+
 (provide 'selections-config)
