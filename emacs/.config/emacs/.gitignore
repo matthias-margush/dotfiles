@@ -1,4 +1,6 @@
-eln-cache
+request/
+tramp
+url/
 tutorial
 xkcd
 .lsp-session*
