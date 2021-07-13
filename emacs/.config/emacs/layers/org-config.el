@@ -208,6 +208,7 @@ at the first function to return non-nil.")
    'org-babel-load-languages
    '((ditaa . t)
      (plantuml . t)
+     (mermaid . t)
      (gnuplot . t)
      (shell . t)
      (clojure . t)))
@@ -282,5 +283,9 @@ at the first function to return non-nil.")
         org-hide-leading-stars nil
         ;; org-supserstar-leading-bullet ?\s
         org-indent-mode-turns-on-hiding-stars t))
+
+(use-package mermaid-mode)
+
+(use-package ob-mermaid)
 
 (provide 'org-config)
