@@ -1,7 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (require 'package-config)
-(require 'evil-config)
+(require 'keys-config)
 
 (define-transient-command me/org-transient ()
   "Org Mode"
