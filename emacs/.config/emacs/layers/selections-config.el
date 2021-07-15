@@ -68,6 +68,10 @@
 
 
 (use-package consult
+  :bind (("s-l" . consult-buffer)
+         ("s-j" . consult-imenu)
+         ("s-F" . consult-ripgrep))
+
   :general
   (:states 'normal :prefix leader "SPC" #'consult-buffer)
   (:states 'normal :prefix leader "/" #'consult-ripgrep)
@@ -75,9 +79,6 @@
   (:states 'normal :prefix leader "m" #'consult-mode-command)
   (:states 'normal :prefix leader "j" #'consult-imenu)
   (:states 'normal :prefix leader ":" #'consult-line)
-
-  :bind
-  ("s-F" . counsel-git-grep)
 
   :config
   (setq consult-project-root-function #'me/project-root)

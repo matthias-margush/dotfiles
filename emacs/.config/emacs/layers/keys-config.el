@@ -2,6 +2,27 @@
 
 (require 'evil-config)
 
+(use-package transient
+  :init
+  (setq transient-show-popup 2.5))
+
+(define-transient-command me/jump-forward-transient ()
+  "Jump forward"
+  ["Jump forward"
+   ("s-E" "Error" flymake-goto-next-error)
+   ("s-}" "Result" next-error)
+   ("s-D" "Difference" diff-hl-next-hunk)])
+
+(define-transient-command me/jump-backward-transient ()
+  "Jump backward"
+  ["Jump backward"
+   ("s-E" "Error" flymake-goto-prev-error)
+   ("s-{" "Result" previous-error)
+   ("s-D" "Difference" diff-hl-previous-hunk)])
+
+(global-set-key (kbd "s-}") 'me/jump-forward-transient)
+(global-set-key (kbd "s-{") 'me/jump-backward-transient)
+
 (define-key isearch-mode-map (kbd "s-v") #'isearch-yank-kill)
 (global-set-key (kbd "S-s-<return>") #'toggle-frame-fullscreen)
 

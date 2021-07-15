@@ -1,9 +1,7 @@
 (require 'package-config)
 
 (use-package org-jira
-  :general
-  (:states 'normal :prefix leader "J" me/org-jira-map)
-
+  :bind ("C-M-s-j" . me/org-jira-map)
   :commands
   (org-jira-get-projects
    org-jira-browse-issue

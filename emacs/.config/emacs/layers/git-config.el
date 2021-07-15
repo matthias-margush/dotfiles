@@ -10,6 +10,11 @@
   (pinentry-start))
 
 (use-package magit
+  :bind (("s-k" . magit-file-dispatch)
+         ("M-s-k" . magit-dispatch)
+         ("C-M-s-k" . magit-status)
+         :map transient-base-map
+         ("<escape>" . transient-quit-one))
   :commands (magit-status magit-blame-addition)
 
   :general

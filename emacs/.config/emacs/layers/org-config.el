@@ -3,7 +3,16 @@
 (require 'package-config)
 (require 'evil-config)
 
+(define-transient-command me/org-transient ()
+  "Org Mode"
+  ["Org"
+   ("s-L" "Store Link" org-store-link)
+   ("s-A" "Agenda" org-agenda)
+   ("s-C" "Capture" org-capture)])
+
 (use-package org
+  :bind ("s-O" . me/org-transient)
+
   :general
   (:states '(normal visual) :prefix leader
            "c" #'org-capture

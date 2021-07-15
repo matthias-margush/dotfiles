@@ -3,6 +3,9 @@
 (require 'package-config)
 
 (use-package neotree
+  :bind
+  ("s-L" . me/neotree-toggle)
+
   :hook
   (neotree-mode . hl-line-mode)
 

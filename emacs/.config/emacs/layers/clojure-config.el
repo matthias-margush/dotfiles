@@ -50,18 +50,7 @@
   (defadvice cider-clojuredocs
       (after me/cider-clojuredocs-after activate)
     (adoc-mode)
-    (read-only-mode))
-
-  ;; (general-define-key
-  ;;  :keymaps '(cider-mode-map)
-  ;;  :states '(normal visual)
-  ;;  "K" #'cider-clojuredocs)
-
-  ;; (general-define-key
-  ;;  :states '(normal visual)
-  ;;  :prefix local-leader
-  ;;  "," #'narrow-or-widen-dwim)
-  )
+    (read-only-mode)))
 
 (use-package cider
   :hook

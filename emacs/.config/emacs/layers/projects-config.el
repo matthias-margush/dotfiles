@@ -88,6 +88,9 @@ DIR must include a .project file to be considered a project."
  :prefix leader
  "p" project-prefix-map)
 
+(global-set-key (kbd "s-p") project-prefix-map)
+(define-key project-prefix-map (kbd "n") #'me/project-notes)
+
 (setq me/shell-map (make-sparse-keymap))
 (define-key me/shell-map "v" #'me/project-vterm)
 (define-key me/shell-map "e" #'project-eshell)
