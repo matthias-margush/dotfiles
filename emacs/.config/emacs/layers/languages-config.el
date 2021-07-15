@@ -27,6 +27,9 @@
   (:states '(normal) :keymaps 'lsp-mode-map "==" #'lsp-format-buffer)
   (:states '(normal) :keymaps 'lsp-mode-map :prefix local-leader "sr" #'lsp-workspace-restart)
 
+  :init
+  (setq lsp-keymap-prefix "C-M-s-l")
+
   :config
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-completion-show-detail t
@@ -47,9 +50,9 @@
   (:keymaps 'markdown-mode-map
             "s-i" #'markdown-insert-italic
             "s-b" #'markdown-insert-bold)
-  (:states '(normal) :keymaps 'markdown-mode-map "s-j" #'markdown-next-link)
-  (:states '(normal) :keymaps 'markdown-mode-map "s-k" #'markdown-previous-link)
-  (:states '(normal) :keymaps 'markdown-mode-map "s-l" #'markdown-follow-thing-at-point)
+  ;; (:states '(normal) :keymaps 'markdown-mode-map "s-j" #'markdown-next-link)
+  ;; (:states '(normal) :keymaps 'markdown-mode-map "s-k" #'markdown-previous-link)
+  ;; (:states '(normal) :keymaps 'markdown-mode-map "s-l" #'markdown-follow-thing-at-point)
 
   :init
   (setq markdown-header-scaling t
@@ -62,6 +65,10 @@
         markdown-asymmetric-header t
         markdown-display-remote-images t)
   :config
+  (add-to-list 'markdown-code-lang-modes '("clojurescript" . clojurescript-mode))
+  (add-to-list 'markdown-gfm-additional-languages '("clojure" . clojurescript-mode))
+  (add-to-list 'markdown-code-lang-modes '("clojure" . clojure-mode))
+  (add-to-list 'markdown-gfm-additional-languages '("clojure" . clojure-mode))
   (add-to-list 'markdown-code-lang-modes '("yaml" . yaml-mode))
   (add-to-list 'markdown-gfm-additional-languages '("yaml" . yaml-mode)))
 

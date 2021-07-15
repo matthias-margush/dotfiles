@@ -52,8 +52,8 @@
 
 ;;; unbind annoying keys
 (unbind-key (kbd "s-m"))
-(unbind-key (kbd "s-l"))
-(unbind-key (kbd "s-p"))
+;; (unbind-key (kbd "s-l"))
+;; (unbind-key (kbd "s-p"))
 
 (use-package adaptive-wrap
   :hook (visual-line-mode . adaptive-wrap-prefix-mode)

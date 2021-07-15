@@ -132,6 +132,22 @@
   (tab-bar-close-tab)
   (me/tabs-refresh))
 
+(defun me/tab-or-window-close (_)
+  "Switch to the previous tab."
+  (interactive "P")
+  (if (or (window-parameter (selected-window) 'window-side)
+          (and (boundp 'imenu-list-buffer-name)
+               (string= (buffer-name) imenu-list-buffer-name)))
+      (progn
+        (message "%s" (window-parameter (selected-window) 'window-side))
+        (quit-window))
+    (if (= 1 (length (tab-bar-tabs)))
+        (delete-frame)
+      (tab-bar-close-tab)
+      (me/tabs-refresh))))
+
+(global-set-key (kbd "s-w") #'me/tab-or-window-close)
+
 (defun me/tab-first (_)
   "Switch to the previous tab."
   (interactive "P")

@@ -27,14 +27,14 @@
   (:states 'normal :keymaps 'org-mode-map
            "C-<return>" #'me/org-insert-heading
            "s-<return>" #'me/org-insert-todo
-           "s-J" #'org-next-link
-           "s-K" #'org-previous-link
-           "s-L" #'org-open-at-point
+           "C-s-<down>" #'org-next-link
+           "C-s-<up>" #'org-previous-link
+           "C-s-<right>" #'org-open-at-point
 
-           "s-j" #'org-forward-heading-same-level
-           "s-k" #'org-backward-heading-same-level
-           "s-h" #'outline-up-heading
-           "s-l" #'outline-next-heading
+           ;; "s-j" #'org-forward-heading-same-level
+           ;; "s-k" #'org-backward-heading-same-level
+           ;; "s-h" #'outline-up-heading
+           ;; "s-l" #'outline-next-heading
 
            "<tab>" #'org-cycle
            "S-<tab>" #'org-shifttab)

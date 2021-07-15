@@ -2,9 +2,14 @@
 
 (require 'package-config)
 
-(use-package imenu-list
-  :general
-  (:states 'normal :prefix leader "v" #'imenu-list-smart-toggle))
+(use-package side-hustle
+  :bind ("C-'" . side-hustle-toggle)
+
+  :init
+  (setq side-hustle-display-alist
+        '((side . right)
+          (slot . 0)
+          (window-width . 30))))
 
 (defun me/project-name ()
   (cdr-safe (project-current)))

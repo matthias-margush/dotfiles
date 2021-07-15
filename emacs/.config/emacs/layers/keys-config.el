@@ -4,7 +4,7 @@
 
 (use-package transient
   :init
-  (setq transient-show-popup 2.5))
+  (setq transient-show-popup 2))
 
 (define-transient-command me/jump-forward-transient ()
   "Jump forward"
