@@ -26,19 +26,20 @@
 
 
 (use-package lispyville
+  :after evil
   :general
   (:states 'normal
            :keymaps '(lisp-mode-map emacs-lisp-mode-map clojure-mode-map)
            ",t(" #'me/toggle-lispyville
-           ",t)" #'me/toggle-lispyville
-           :keymaps '(lisp-mode-map emacs-lisp-mode-map)
-           ",eb" #'eval-buffer
-           ",ee" #'eval-last-sexp
-           ",ef" #'eval-defun
-           ",td" #'toggle-debug-on-error)
-
+           ",t)" #'me/toggle-lispyville)
+  (:states 'normal
+   :keymaps '(emacs-lisp-mode-map)
+   ",eb" #'eval-buffer
+   ",ee" #'eval-last-sexp
+   ",ef" #'eval-defun
+   ",td" #'toggle-debug-on-error)
   (:states 'visual
-           :keymaps '(lisp-mode-map emacs-lisp-mode-map)
+           :keymaps '(emacs-lisp-mode-map)
            ",er" #'eval-region)
 
   :hook
@@ -57,8 +58,7 @@
                           ;; atom-movement       ; move by atom
                           additional-motions ; H, L, M-h, m-l, [, ], (, )
                           commentary         ; gc, gy, s-/
-                          slurp              ; >, <
-                          barf               ; >, <
+                          slurp/barf-cp ; >, <
                           ;; wrap          ; M-(, M-), M-[, M-], M-{, M-}
                           additional ; M-j/M-k: drag -- M-J: join -- M-s/M-S -- split/join -- M-r/M-R: raise/raise list -- M-t: transpose, M-v convolute
                           additional-insert ; M-i, M-a, M-o, M-O

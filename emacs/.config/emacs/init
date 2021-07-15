@@ -46,6 +46,7 @@
   "Save desktop if loaded."
   (when (bound-and-true-p *me/desktop-save*)
     (let ((y-or-n-p (lambda () t)))
+      (message "Saving desktop")
       (desktop-save "~/.config/emacs" t t)))
   t)
 

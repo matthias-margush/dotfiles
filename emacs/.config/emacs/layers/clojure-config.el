@@ -30,8 +30,11 @@
            ",xU" #'cider-xref-fn-refs
            ",ee" #'cider-eval-last-sexp
            ",eb" #'cider-load-buffer
-           ",eB" #'cider-load-all-project-ns
-           ",ef" #'cider-eval-defun-at-point)
+           ",en" #'cider-ns-reload
+           ",eN" #'cider-ns-reload-all
+           ",ep" #'cider-load-all-project-ns
+           ",ef" #'cider-eval-defun-at-point
+           ",fb" #'cider-format-buffer)
 
   :init
   (setq clojure-align-forms-automatically nil)
