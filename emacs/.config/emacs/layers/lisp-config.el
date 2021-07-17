@@ -24,9 +24,13 @@
   :config
   (lispy-set-key-theme '(parinfer)))
 
-
 (use-package lispyville
   :after evil
+  :bind (("C-c C-e" . eval-last-sexp)
+         ("C-c C-k" . eval-buffer)
+         ("C-c C-c" . eval-defun)
+         ("C-c C-v r" . eval-region))
+
   :general
   (:states 'normal
            :keymaps '(lisp-mode-map emacs-lisp-mode-map clojure-mode-map)

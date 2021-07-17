@@ -2,26 +2,31 @@
 
 (require 'evil-config)
 
+(use-package multiple-cursors
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)))
+
 (use-package transient
   :init
-  (setq transient-show-popup 2))
+  (setq transient-show-popup 1.5))
 
 (define-transient-command me/jump-forward-transient ()
   "Jump forward"
   ["Jump forward"
-   ("s-E" "Error" flymake-goto-next-error)
-   ("s-}" "Result" next-error)
-   ("s-D" "Difference" diff-hl-next-hunk)])
+   ("M-e" "Error" flymake-goto-next-error)
+   ("M-]" "Result" next-error)
+   ("M-d" "Difference" diff-hl-next-hunk)])
 
 (define-transient-command me/jump-backward-transient ()
   "Jump backward"
   ["Jump backward"
-   ("s-E" "Error" flymake-goto-prev-error)
-   ("s-{" "Result" previous-error)
-   ("s-D" "Difference" diff-hl-previous-hunk)])
+   ("M-e" "Error" flymake-goto-prev-error)
+   ("M-[" "Result" previous-error)
+   ("M-d" "Difference" diff-hl-previous-hunk)])
 
-(global-set-key (kbd "s-}") 'me/jump-forward-transient)
-(global-set-key (kbd "s-{") 'me/jump-backward-transient)
+(global-set-key (kbd "M-]") 'me/jump-forward-transient)
+(global-set-key (kbd "M-[") 'me/jump-backward-transient)
 
 (define-key isearch-mode-map (kbd "s-v") #'isearch-yank-kill)
 (global-set-key (kbd "S-s-<return>") #'toggle-frame-fullscreen)

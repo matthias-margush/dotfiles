@@ -13,7 +13,9 @@
 (use-package clojure-mode
   :hook ((clojure-mode . flymake-joker-clj-enable)
          (clojurescript-mode . flymake-joker-cljs-enable)
-         (clojure-mode . clj-refactor-mode))
+         (clojure-mode . clj-refactor-mode)
+         (clojure-mode . flymake-mode)
+         (clojurescript-mode . flymake-mode))
 
   :mode
   ("\\.\\(clj\\|dtm\\|edn\\)\\'" . clojure-mode)
