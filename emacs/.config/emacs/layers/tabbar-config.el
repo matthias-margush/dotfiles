@@ -26,9 +26,11 @@
 
 (defun spacebar--tab-name ()
   "Return the project name as the tab name."
-  (if-let ((project-name (me/project-name)))
-      (car (last (butlast (split-string (me/project-name) "/+"))))
-    (tab-bar-tab-name-truncated)))
+  (tab-bar-tab-name-truncated)
+  ;; (if-let ((project-name (me/project-name)))
+  ;;     (car (last (butlast (split-string (me/project-name) "/+"))))
+  ;;   (tab-bar-tab-name-truncated))
+  )
 
 (setq tab-bar-tab-name-function #'spacebar--tab-name)
 
@@ -138,9 +140,7 @@
   (if (or (window-parameter (selected-window) 'window-side)
           (and (boundp 'imenu-list-buffer-name)
                (string= (buffer-name) imenu-list-buffer-name)))
-      (progn
-        (message "%s" (window-parameter (selected-window) 'window-side))
-        (quit-window))
+      (quit-window)
     (if (= 1 (length (tab-bar-tabs)))
         (delete-frame)
       (tab-bar-close-tab)

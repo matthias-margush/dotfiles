@@ -2,14 +2,16 @@
 
 (require 'evil-config)
 
-(use-package multiple-cursors
-  :bind (("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)))
+(add-to-list 'load-path
+             (file-name-as-directory
+              (expand-file-name "layers/keys" user-emacs-directory)))
 
-(use-package transient
-  :init
-  (setq transient-show-popup 1.5))
+(require 'keys-init-config)
+
+;; (use-package multiple-cursors
+;;   :bind (("C-." . mc/mark-next-like-this)
+;;          ("C-," . mc/mark-previous-like-this)
+;;          ("C-c C-." . mc/mark-all-like-this)))
 
 (define-transient-command me/jump-forward-transient ()
   "Jump forward"
@@ -37,14 +39,14 @@
 
 (global-set-key (kbd "s-N") #'me/launch-emacs-instance)
 
-(general-define-key
- :states '(normal visual)
- :prefix local-leader
- "," #'narrow-or-widen-dwim)
+;; (general-define-key
+;;  :states '(normal visual)
+;;  :prefix local-leader
+;;  "," #'narrow-or-widen-dwim)
 
 (winner-mode)
-(define-key evil-window-map (kbd "u") #'winner-undo)
-(define-key evil-window-map (kbd "R") #'winner-redo)
+;; (define-key evil-window-map (kbd "u") #'winner-undo)
+;; (define-key evil-window-map (kbd "R") #'winner-redo)
 
 (defun me/open-messages ()
   (interactive)
@@ -52,13 +54,13 @@
   (other-window 1)
   (switch-to-buffer "*Messages*"))
 
-(general-define-key
- :states '(normal)
- :prefix leader
- "w" evil-window-map
- "bn" #'bookmark-set
- "bm" #'me/open-messages
- "TAB" #'evil-switch-to-windows-last-buffer)
+;; (general-define-key
+;;  :states '(normal)
+;;  :prefix leader
+;;  "w" evil-window-map
+;;  "bn" #'bookmark-set
+;;  "bm" #'me/open-messages
+;;  "TAB" #'evil-switch-to-windows-last-buffer)
 
 (defun narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
@@ -85,5 +87,7 @@ is already narrowed."
         ((derived-mode-p 'latex-mode)
          (LaTeX-narrow-to-environment))
         (t (narrow-to-defun))))
+
+(global-set-key (kbd "C-.") #'narrow-or-widen-dwim)
 
 (provide 'keys-config)

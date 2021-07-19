@@ -1,6 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 (require 'package-config)
+(require 'keys-init-config)
 
 (setq vc-follow-symlinks t)
 (setq ediff-window-setup-function #'ediff-setup-windows-plain)
@@ -10,36 +11,45 @@
   (pinentry-start))
 
 (use-package magit
-  :bind (("s-k" . magit-file-dispatch)
-         ("M-s-k" . magit-dispatch)
-         ("C-M-s-k" . magit-status)
-         :map transient-base-map
-         ("<escape>" . transient-quit-one))
-  :commands (magit-status magit-blame-addition)
+  ;; :bind (("s-k" . magit-file-dispatch)
+  ;;        ("M-s-k" . magit-dispatch)
+  ;;        ("C-M-s-k" . magit-status)
+  ;;        :map transient-base-map
+  ;;        ("<escape>" . transient-quit-one))
+  :commands (magit-dispatch magit-file-dispatch magit-status magit-blame-addition)
 
-  :general
-  (:keymaps 'magit-mode-map "SPC" nil)  ; magit overrides leader
-  (:states 'normal :prefix leader "g" git-map)
-  (:keymaps 'magit-mode-map :states 'normal :prefix local-leader
-            "r" #'github-review-forge-pr-at-point)
+  ;; :general
+  ;; (:keymaps 'magit-mode-map "SPC" nil)  ; magit overrides leader
+  ;; (:states 'normal :prefix leader "g" git-map)
+  ;; (:keymaps 'magit-mode-map :states 'normal :prefix local-leader
+  ;;          "r" #'github-review-forge-pr-at-point)
 
-  (:keymaps 'with-editor-mode-map :states 'normal ",cc" #'with-editor-finish)
-  (:keymaps 'with-editor-mode-map :states 'normal ",ck" #'with-editor-cancel)
+  ;; (:keymaps 'with-editor-mode-map :states 'normal ",cc" #'with-editor-finish)
+  ;; (:keymaps 'with-editor-mode-map :states 'normal ",ck" #'with-editor-cancel)
 
   ;;  smerge
-  (:keymaps 'smerge-mode-map :states 'normal "]n" #'smerge-next)
-  (:keymaps 'smerge-mode-map :states 'normal "[n" #'smerge-prev)
-  (:keymaps 'smerge-mode-map :states 'normal "]]" #'smerge-next)
-  (:keymaps 'smerge-mode-map :states 'normal "[[" #'smerge-prev)
-  (:keymaps 'smerge-mode-map :prefix local-leader "u" #'smerge-keep-upper)
-  (:keymaps 'smerge-mode-map :prefix local-leader "l" #'smerge-keep-lower)
-  (:keymaps 'smerge-mode-map :prefix local-leader "a" #'smerge-keep-all)
+  ;; (:keymaps 'smerge-mode-map :states 'normal "]n" #'smerge-next)
+  ;; (:keymaps 'smerge-mode-map :states 'normal "[n" #'smerge-prev)
+  ;; (:keymaps 'smerge-mode-map :states 'normal "]]" #'smerge-next)
+  ;; (:keymaps 'smerge-mode-map :states 'normal "[[" #'smerge-prev)
+  ;; (:keymaps 'smerge-mode-map :prefix local-leader "u" #'smerge-keep-upper)
+  ;; (:keymaps 'smerge-mode-map :prefix local-leader "l" #'smerge-keep-lower)
+  ;; (:keymaps 'smerge-mode-map :prefix local-leader "a" #'smerge-keep-all)
 
-  (:keymaps 'git-map
-            "g" #'magit-status
-            "b" #'magit-blame-addition)
+  ;; (:keymaps 'git-map
+  ;;           "g" #'magit-status
+  ;;           "b" #'magit-blame-addition)
 
   :init
+  (define-transient-command me/transient-vc
+    "Version Control"
+    ["Version Control"
+     ("g" "Status" magit-status)
+     ("f" "File Actions" magit-file-dispatch)
+     ("r" "Repo Actions" magit-dispatch)])
+
+  (transient-append-suffix #'me/transient-leader '(0 -1) '("g" "Version Control" me/transient-vc))
+  
   (defun me/worktree (branch start-point &optional force)
     ""
     (interactive

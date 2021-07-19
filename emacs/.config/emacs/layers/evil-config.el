@@ -58,7 +58,8 @@
   ;; (define-key evil-visual-state-map (kbd "s-v") "\"+p")
   ;; (define-key evil-insert-state-map (kbd "s-v") [?\C-o?\"?+?p])
   ;; (define-key evil-normal-state-map (kbd "s-v") "\"+p")
-  (evil-mode))
+  ;; (evil-mode)
+  )
 
 (use-package evil-lion
   :config
@@ -116,12 +117,12 @@
 
 (use-package hercules :commands hercules-def)
 
-(use-package drag-stuff
-  :general
-  (:states '(normal visual)
-    "M-k" #'drag-stuff-up
-    "M-j" #'drag-stuff-down
-    "M-l" #'drag-stuff-right
-    "M-h" #'drag-stuff-left))
+;; (use-package drag-stuff
+;;   :general
+;;   (:states '(normal visual)
+;;     "M-k" #'drag-stuff-up
+;;     "M-j" #'drag-stuff-down
+;;     "M-l" #'drag-stuff-right
+;;     "M-h" #'drag-stuff-left))
 
 (provide 'evil-config)

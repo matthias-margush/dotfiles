@@ -85,13 +85,13 @@ DIR must include a .project file to be considered a project."
   ;;       (me/project-open-notes project))))
   )
 
-(unbind-key (kbd "C-SPC"))
-(global-set-key (kbd "C-SPC C-SPC") #'me/project-switch-or-open)
+;; (unbind-key (kbd "C-SPC"))
+;; (global-set-key (kbd "C-SPC C-SPC") #'me/project-switch-or-open)
 
-(general-define-key
- :states 'normal
- :prefix leader
- "p" project-prefix-map)
+;; (general-define-key
+;;  :states 'normal
+;;  :prefix leader
+;;  "p" project-prefix-map)
 
 (global-set-key (kbd "s-p") project-prefix-map)
 (define-key project-prefix-map (kbd "n") #'me/project-notes)

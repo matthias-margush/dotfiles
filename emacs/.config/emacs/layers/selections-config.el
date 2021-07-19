@@ -69,16 +69,18 @@
 
 (use-package consult
   :bind (("s-l" . consult-buffer)
-         ("s-j" . consult-imenu)
-         ("s-F" . consult-ripgrep))
+         ("s-J" . consult-imenu)
+         ("s-j" . consult-line)
+         ("s-F" . consult-ripgrep)
+         ("s-:" . execute-extended-command))
 
-  :general
-  (:states 'normal :prefix leader "SPC" #'consult-buffer)
-  (:states 'normal :prefix leader "/" #'consult-ripgrep)
-  (:states '(normal insert) "s-:" #'execute-extended-command)
-  (:states 'normal :prefix leader "m" #'consult-mode-command)
-  (:states 'normal :prefix leader "j" #'consult-imenu)
-  (:states 'normal :prefix leader ":" #'consult-line)
+  ;; :general
+  ;; (:states 'normal :prefix leader "SPC" #'consult-buffer)
+  ;; (:states 'normal :prefix leader "/" #'consult-ripgrep)
+  ;; (:states '(normal insert) "s-:" #'execute-extended-command)
+  ;; (:states 'normal :prefix leader "m" #'consult-mode-command)
+  ;; (:states 'normal :prefix leader "j" #'consult-imenu)
+  ;; (:states 'normal :prefix leader ":" #'consult-line)
 
   :config
   (setq consult-project-root-function #'me/project-root)

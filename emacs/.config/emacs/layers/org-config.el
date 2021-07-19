@@ -3,44 +3,46 @@
 (require 'package-config)
 (require 'keys-config)
 
-(define-transient-command me/org-transient ()
-  "Org Mode"
-  ["Org"
-   ("s-L" "Store Link" org-store-link)
-   ("s-A" "Agenda" org-agenda)
-   ("s-C" "Capture" org-capture)])
-
 (use-package org
-  :bind ("s-O" . me/org-transient)
+  :bind (:map org-mode-map
+              ("s-i" . me/emphasize-italic)
+              ("s-_" . me/emphasize-underline)
+              ("s-b" . me/emphasize-bold)
+              ("s-|" . org-table-create)
+              ("C-<return>" . me/org-insert-heading)
+              ("s-<return>" . me/org-insert-todo)
+              ("C-s-<down>" . org-next-link)
+              ("C-s-<up>" . org-previous-link)
+              ("C-s-<right>" . org-open-at-point))
 
-  :general
-  (:states '(normal visual) :prefix leader
-           "c" #'org-capture
-           "l" #'org-store-link
-           "a" #'org-agenda)
-  (:keymaps 'org-mode-map :states 'normal :prefix local-leader "tt" #'org-todo)
-  (:keymaps 'org-mode-map
-            "s-i" #'me/emphasize-italic
-            "s-_" #'me/emphasize-underline
-            "s-b" #'me/emphasize-bold
-            "s-|" #'org-table-create)
-  (:states 'normal :keymaps 'org-mode-map
-           "C-<return>" #'me/org-insert-heading
-           "s-<return>" #'me/org-insert-todo
-           "C-s-<down>" #'org-next-link
-           "C-s-<up>" #'org-previous-link
-           "C-s-<right>" #'org-open-at-point
+  ;; :general
+  ;; (:states '(normal visual) :prefix leader
+  ;;          "c" #'org-capture
+  ;;          "l" #'org-store-link
+  ;;          "a" #'org-agenda)
+  ;; (:keymaps 'org-mode-map :states 'normal :prefix local-leader "tt" #'org-todo)
+  ;; (:keymaps 'org-mode-map
+  ;;           "s-i" #'me/emphasize-italic
+  ;;           "s-_" #'me/emphasize-underline
+  ;;           "s-b" #'me/emphasize-bold
+  ;;           "s-|" #'org-table-create)
+  ;; (:states 'normal :keymaps 'org-mode-map
+  ;;          "C-<return>" #'me/org-insert-heading
+  ;;          "s-<return>" #'me/org-insert-todo
+  ;;          "C-s-<down>" #'org-next-link
+  ;;          "C-s-<up>" #'org-previous-link
+  ;;          "C-s-<right>" #'org-open-at-point
 
-           ;; "s-j" #'org-forward-heading-same-level
-           ;; "s-k" #'org-backward-heading-same-level
-           ;; "s-h" #'outline-up-heading
-           ;; "s-l" #'outline-next-heading
+  ;;          ;; "s-j" #'org-forward-heading-same-level
+  ;;          ;; "s-k" #'org-backward-heading-same-level
+  ;;          ;; "s-h" #'outline-up-heading
+  ;;          ;; "s-l" #'outline-next-heading
 
-           "<tab>" #'org-cycle
-           "S-<tab>" #'org-shifttab)
-  (:states 'insert :keymaps 'org-mode-map
-           "C-<return>" #'me/org-insert-heading
-           "s-<return>" #'me/org-insert-todo)
+  ;;          "<tab>" #'org-cycle
+  ;;          "S-<tab>" #'org-shifttab)
+  ;; (:states 'insert :keymaps 'org-mode-map
+  ;;          "C-<return>" #'me/org-insert-heading
+  ;;          "s-<return>" #'me/org-insert-todo)
 
   :custom
   (org-hide-leading-stars nil)
@@ -56,6 +58,15 @@
   ;; (org-mode . me/org-faces)
 
   :init
+  (define-transient-command me/org-transient ()
+    "Org Mode"
+    ["Org"
+     ("s-L" "Store Link" org-store-link)
+     ("s-A" "Agenda" org-agenda)
+     ("s-C" "Capture" org-capture)])
+
+  (transient-append-suffix 'me/transient-leader '(0 -1) '("o" "Org" me/org-transient))
+
   (defun me/org-faces ()
     (interactive)
     (set-face-attribute 'default nil :font me/variable-pitch)
@@ -146,6 +157,7 @@ at the first function to return non-nil.")
    org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2020.2/libexec/plantuml.jar"
    org-pretty-entities t
    org-projectile-file "TODO.org"
+   org-replace-disputed-keys t
    org-src-fontify-natively t
    org-src-tab-acts-natively t
    org-edit-src-content-indentation 0

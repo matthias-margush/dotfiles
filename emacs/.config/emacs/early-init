@@ -33,6 +33,7 @@
   (message "Native JSON is *not* available"))
 
 (setq comp-deferred-compilation t)
+(setq-default cursor-type 'bar)
 
 (require 'package-config)
 (require 'theme-early-config)

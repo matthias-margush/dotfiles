@@ -2,19 +2,6 @@
 
 (require 'package-config)
 
-(global-set-key [wheel-right] (lambda () (interactive) (scroll-left 1)))
-(global-set-key [wheel-left] (lambda () (interactive) (scroll-right 1)))
-(global-set-key (kbd "<escape>") #'keyboard-escape-quit)
-
-;; common mac keybindings
-(global-set-key (kbd "s-[") #'xref-pop-marker-stack)
-(global-set-key (kbd "s-]") #'xref-push-marker-stack)
-(global-set-key (kbd "s-o") #'find-file)
-(global-set-key (kbd "M-<down>") #'scroll-up-command)
-(global-set-key (kbd "M-<up>") #'scroll-down-command)
-(global-set-key (kbd "s-<down>") #'end-of-buffer)
-(global-set-key (kbd "s-<up>") #'beginning-of-buffer)
-
 (recentf-mode)
 
 ;; History
